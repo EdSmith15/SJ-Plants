@@ -17,6 +17,8 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -37,10 +39,25 @@ MIN_SOURCE = 700     # skip originals narrower than this
 JPEG_QUALITY = 84
 
 
+MIN_INTERVAL = 1.0   # seconds between requests: Wikimedia rate-limits bots
+_last_request = [0.0]
+
+
 def get(url, timeout=60):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read()
+    """GET with a polite request rate and backoff on 429 / 5xx."""
+    for attempt in range(6):
+        wait = MIN_INTERVAL - (time.time() - _last_request[0])
+        if wait > 0:
+            time.sleep(wait)
+        _last_request[0] = time.time()
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read()
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or attempt == 5:
+                raise
+            time.sleep(5 * 2 ** attempt)   # 5, 10, 20, 40, 80 s
 
 
 def deck_lines(path=None):
