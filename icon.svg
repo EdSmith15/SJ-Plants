@@ -7,6 +7,6 @@
     <use href="#half" transform="matrix(-1 0 0 1 180 0)"/>
     <path d="M90 30 L90 144" stroke="#8FD3A4" stroke-width="2.6" stroke-linecap="round" fill="none"/>
     <path d="M90 44 L110 38 M90 44 L70 38 M90 68 L122 64 M90 68 L58 64 M90 94 L120 92 M90 94 L60 92 M90 116 L112 118 M90 116 L68 118" stroke="#8FD3A4" stroke-width="1.9" stroke-linecap="round" fill="none"/>
-    <path d="M90 146 C89 154 87 162 84 172" stroke="#1F6B3A" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <path d="M90 138 C89 152 87 162 84 172" stroke="#1F6B3A" stroke-width="5.5" stroke-linecap="round" fill="none"/>
   </g>
 </svg>
