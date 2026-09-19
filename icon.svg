@@ -1,12 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <defs>
+    <linearGradient id="blade" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#2E8A4E"/>
+      <stop offset="1" stop-color="#175A31"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
   <rect width="180" height="180" fill="#F4F5EF"/>
-  <g transform="rotate(-12 90 92) translate(0 -4)">
-    <g id="half" fill="#1F6B3A">
-      <path d="M90 22 C102 24 112 30 116 40 C119 48 106 52 98 54 C112 55 126 58 129 68 C132 78 110 80 100 80 C114 82 128 86 127 96 C126 106 108 106 100 105 C112 108 120 114 117 122 C114 130 102 130 96 130 C95 138 92 142 90 146 Z"/>
+  <g transform="rotate(-10 90 92)">
+    <!-- blade: five rounded lobes a side, narrowing to a small auricled base -->
+    <path id="leaf" fill="url(#blade)" d="
+      M92 18
+      C 99 22 106 27 109 34  C 112 41 105 46 100 50
+      C 110 50 120 53 122 61  C 124 69 110 73 103 75
+      C 113 76 125 80 125 88  C 125 96 110 99 103 100
+      C 112 102 121 106 119 113  C 117 120 106 122 100 124
+      C 106 126 110 130 108 135  C 106 140 98 143 93 146
+      C 91 149 89 151 88 152
+      C 86 150 84 148 82 146
+      C 76 143 68 140 67 135  C 66 130 71 126 76 124
+      C 69 122 58 119 56 112  C 54 105 64 102 73 100
+      C 65 99 51 96 52 87  C 53 79 65 76 73 75
+      C 66 73 53 69 54 61  C 55 53 66 50 76 50
+      C 71 46 66 41 69 34  C 72 27 82 22 92 18 Z"/>
+    <path d="M92 18 C 99 22 106 27 109 34 C 112 41 105 46 100 50 C 110 50 120 53 122 61 C 124 69 110 73 103 75 C 113 76 125 80 125 88 C 125 96 110 99 103 100 C 112 102 121 106 119 113 C 117 120 106 122 100 124 C 106 126 110 130 108 135 C 106 140 98 143 93 146 C 91 149 89 151 88 152 C 86 150 84 148 82 146 C 76 143 68 140 67 135 C 66 130 71 126 76 124 C 69 122 58 119 56 112 C 54 105 64 102 73 100 C 65 99 51 96 52 87 C 53 79 65 76 73 75 C 66 73 53 69 54 61 C 55 53 66 50 76 50 C 71 46 66 41 69 34 C 72 27 82 22 92 18 Z" fill="url(#sheen)"/>
+    <!-- veins: a slightly curved midrib and one lateral vein to each lobe -->
+    <g stroke="#9ED9B2" stroke-linecap="round" fill="none" opacity="0.85">
+      <path d="M92 24 C 91 60 90 110 88 148" stroke-width="1.8"/>
+      <path d="M91 40 C 96 38 102 36 106 34 M91 40 C 86 38 79 36 73 34
+               M91 62 C 100 60 110 59 118 60 M91 62 C 82 60 70 59 59 60
+               M90 87 C 100 87 112 87 121 88 M90 87 C 80 87 66 87 57 87
+               M89 111 C 98 111 108 112 115 112 M89 111 C 80 111 70 112 61 112
+               M88 133 C 94 133 100 134 104 135 M88 133 C 82 133 76 134 71 135" stroke-width="1.2"/>
     </g>
-    <use href="#half" transform="matrix(-1 0 0 1 180 0)"/>
-    <path d="M90 30 L90 144" stroke="#8FD3A4" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-    <path d="M90 44 L110 38 M90 44 L70 38 M90 68 L122 64 M90 68 L58 64 M90 94 L120 92 M90 94 L60 92 M90 116 L112 118 M90 116 L68 118" stroke="#8FD3A4" stroke-width="1.9" stroke-linecap="round" fill="none"/>
-    <path d="M90 138 C89 152 87 162 84 172" stroke="#1F6B3A" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <!-- petiole -->
+    <path d="M88 146 C 88 156 86 164 83 172" stroke="#175A31" stroke-width="4.5" stroke-linecap="round" fill="none"/>
   </g>
 </svg>
