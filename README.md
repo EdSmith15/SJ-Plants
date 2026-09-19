@@ -1,7 +1,9 @@
-# Binomial Drill
+# SJ Plants
 
-A single-file flashcard app for learning plant species names (genus + species).
-Open `index.html` in any browser, or add it to your phone's home screen.
+A single-file, iOS-styled flashcard app for learning plant species names
+(genus + species). Live at https://edsmith15.github.io/SJ-Plants/ — open it in
+Safari and use Share → Add to Home Screen. It opens with a welcome page, then a
+level picker, then the cards.
 
 The built-in deck is the **RHS Level 2 Certificate in Practical Horticulture,
 PCA1 Plant List 2026/2027** (46 species, list numbers 1 to 110), with common
@@ -39,7 +41,7 @@ Each card shows an identifying photo above the common name. The app looks for
 one in this order:
 
 1. A photo URL given as the fourth field of the deck line.
-2. `photos/<genus>-<species>.jpg`, `-2.jpg`, `-3.jpg` next to `index.html`.
+2. `photos/<genus>-<species>.jpg`, `-2.jpg`, `-3.jpg`, `-4.jpg` next to `index.html`.
 3. The images on the species' English Wikipedia article, fetched live from
    Wikimedia and cached in the browser. Write `wiki:Some title` in the fourth
    field to use a different article.
@@ -54,8 +56,10 @@ To keep photos with the repo for offline use, run:
 python3 tools/fetch_photos.py
 ```
 
-It saves up to three photos per species into `photos/` and lists the
-source, author and licence in `photos/CREDITS.md`. Pass a deck file as the
+It downloads the original files from Wikimedia Commons, resizes them to at
+most 1600px on the long side (needs `pip install pillow`), saves up to four per
+species into `photos/` and lists the source, author and licence in
+`photos/CREDITS.md`. Pass a deck file as the
 first argument to fetch photos for your own list. The GitHub Actions workflow
 in `.github/workflows/fetch-photos.yml` runs the same script automatically
 whenever the deck changes and commits the results.

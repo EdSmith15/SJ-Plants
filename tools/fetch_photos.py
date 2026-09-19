@@ -4,35 +4,40 @@
 Usage:  python3 tools/fetch_photos.py            # uses the deck built into index.html
         python3 tools/fetch_photos.py deck.txt   # or any file in the Deck editor format
 
-For each "Genus species" line it takes up to PER_SPECIES images from the
-species' English Wikipedia article (lead/taxobox photo first) and saves them
-as photos/<genus>-<species>.jpg, -2.jpg, -3.jpg, recording source file,
-author and licence in photos/CREDITS.md. A deck line whose fourth field is
+For each "Genus species" line it takes up to PER_SPECIES photographs from the
+species' English Wikipedia article (lead/taxobox photo first), downloads the
+original file from Wikimedia Commons, resizes it to at most MAX_EDGE pixels on
+the long side (needs Pillow: pip install pillow) and saves it as
+photos/<genus>-<species>.jpg, -2.jpg, -3.jpg ... Source file, author and
+licence go in photos/CREDITS.md. A deck line whose fourth field is
 "wiki:Some title" uses that Wikipedia article instead.
-Standard library only; needs internet access to en.wikipedia.org,
-commons.wikimedia.org and upload.wikimedia.org.
 """
+import io
 import json
 import os
 import re
 import sys
-import urllib.error
 import urllib.parse
 import urllib.request
+
+try:
+    from PIL import Image, ImageOps
+except ImportError:  # falls back to the article's own thumbnail sizes
+    Image = None
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, "photos")
 UA = {"User-Agent": "BinomialDrill/1.0 (flashcard app; https://github.com/EdSmith15/SJ-Plants)"}
-SKIP = re.compile(r"map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol", re.I)
-PER_SPECIES = 3
-# Wikimedia only serves the thumbnail widths it pre-renders for each file (see
-# https://w.wiki/GHai), so only the article's own srcset URLs are used: the
-# smallest one at least MIN_WIDTH wide, then the others largest first.
-MIN_WIDTH = 600
+SKIP = re.compile(r"map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol"
+                  r"|illustration|drawing|herbarium|botanical|koehler|thom|plate|sketch", re.I)
+PER_SPECIES = 4
+MAX_EDGE = 1600      # long side of the saved photo, in pixels
+MIN_SOURCE = 700     # skip originals narrower than this
+JPEG_QUALITY = 84
 
 
-def get(url, timeout=30):
+def get(url, timeout=60):
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
@@ -74,7 +79,7 @@ def media_list(title):
 
 
 def article_images(genus, species, wiki):
-    """Return up to PER_SPECIES (file_title, [candidate urls]) for the species."""
+    """Return [(file_title, largest srcset url)] for the species, lead image first."""
     name = genus + " " + species
     titles = ([wiki] if wiki else []) + [name]
     if "×" in name:
@@ -85,56 +90,44 @@ def article_images(genus, species, wiki):
             continue
         items = [i for i in data.get("items", [])
                  if i.get("type") == "image" and i.get("srcset")
-                 and not re.search(r"\.(svg|gif|png)$", i.get("title", ""), re.I)
+                 and re.search(r"\.(jpe?g|png|webp)$", i.get("title", ""), re.I)
                  and not SKIP.search(i.get("title", ""))]
         if not items:
             continue
         items.sort(key=lambda i: not i.get("leadImage"))
         out = []
-        for it in items[:PER_SPECIES]:
+        for it in items:
             srcs = [("https:" + e["src"]) if e["src"].startswith("//") else e["src"] for e in it["srcset"]]
-            out.append((it["title"], order_by_size(srcs)))
+            out.append((it["title"], srcs[-1]))
         return out
     return []
 
 
-def width_of(url):
-    m = re.search(r"/(\d+)px-", url)
-    return int(m.group(1)) if m else 0
-
-
-def order_by_size(srcs):
-    big = sorted([u for u in srcs if width_of(u) >= MIN_WIDTH], key=width_of)
-    rest = sorted([u for u in srcs if width_of(u) < MIN_WIDTH], key=width_of, reverse=True)
-    return big + rest
-
-
-def download(candidates):
-    last = None
-    for url in candidates:
-        try:
-            data = get(url)
-            if data:
-                return data
-        except Exception as e:  # try the next width
-            last = e
-    raise RuntimeError(str(last) if last else "no candidate URLs")
-
-
-def credit(file_title):
+def file_info(file_title):
+    """Original URL, width, author and licence from the Commons API."""
     q = urllib.parse.urlencode({
         "action": "query", "titles": file_title, "prop": "imageinfo",
-        "iiprop": "extmetadata", "format": "json",
+        "iiprop": "url|size|extmetadata", "format": "json",
     })
-    try:
-        data = json.loads(get("https://commons.wikimedia.org/w/api.php?" + q))
-        page = next(iter(data["query"]["pages"].values()))
-        meta = page["imageinfo"][0]["extmetadata"]
-        artist = re.sub(r"<[^>]+>", "", meta.get("Artist", {}).get("value", "")).strip()
-        licence = meta.get("LicenseShortName", {}).get("value", "")
-        return artist, licence
-    except Exception:
-        return "", ""
+    data = json.loads(get("https://commons.wikimedia.org/w/api.php?" + q))
+    page = next(iter(data["query"]["pages"].values()))
+    info = page["imageinfo"][0]
+    meta = info.get("extmetadata", {})
+    artist = re.sub(r"<[^>]+>", "", meta.get("Artist", {}).get("value", "")).strip()
+    licence = meta.get("LicenseShortName", {}).get("value", "")
+    return info["url"], int(info.get("width", 0)), artist, licence
+
+
+def fetch_resized(url, fallback_url):
+    if Image is None:
+        return get(fallback_url)
+    raw = get(url)
+    img = ImageOps.exif_transpose(Image.open(io.BytesIO(raw)))
+    img = img.convert("RGB")
+    img.thumbnail((MAX_EDGE, MAX_EDGE), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=JPEG_QUALITY, optimize=True, progressive=True)
+    return buf.getvalue()
 
 
 def main():
@@ -152,16 +145,21 @@ def main():
             print("no image", name)
             continue
         saved = 0
-        for file_title, candidates in images:
-            dest = os.path.join(OUT, slug + ("" if saved == 0 else "-%d" % (saved + 1)) + ".jpg")
+        for file_title, fallback in images:
+            if saved >= PER_SPECIES:
+                break
             try:
-                data = download(candidates)
+                url, width, artist, licence = file_info(file_title)
+                if width and width < MIN_SOURCE:
+                    print("small   ", name, "-", file_title, width, "px")
+                    continue
+                data = fetch_resized(url, fallback)
             except Exception as e:
                 print("failed  ", name, "-", file_title, "-", e)
                 continue
+            dest = os.path.join(OUT, slug + ("" if saved == 0 else "-%d" % (saved + 1)) + ".jpg")
             with open(dest, "wb") as f:
                 f.write(data)
-            artist, licence = credit(file_title)
             page = "https://commons.wikimedia.org/wiki/" + urllib.parse.quote(file_title)
             rows.append((name, os.path.basename(dest), file_title, artist, licence, page))
             print("saved   ", name, "<-", file_title, "(%d KB)" % (len(data) // 1024))

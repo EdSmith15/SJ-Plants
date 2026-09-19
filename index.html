@@ -3,413 +3,424 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Binomial Drill</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="SJ Plants">
+<title>SJ Plants</title>
 </head>
 <body>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&display=swap">
 <style>
   :root {
-    --ground: #F5F6F0;
-    --paper: #FFFFFF;
-    --ink: #1F261C;
-    --ink-2: #5E6B58;
-    --line: #D9DDD1;
-    --moss: #3E5C3A;
-    --moss-ink: #FFFFFF;
-    --moss-soft: #E6EDE1;
-    --ok: #2E7D4F;
-    --ok-soft: #DDF1E3;
-    --bad: #B3402F;
-    --bad-soft: #F8E1DC;
+    --bg: #F2F2F7;
+    --card: #FFFFFF;
+    --label: #000000;
+    --label-2: #6E6E73;
+    --label-3: #AEAEB2;
+    --sep: #E5E5EA;
+    --fill: #E9E9EB;
+    --tint: #007AFF;
+    --tint-ink: #FFFFFF;
+    --tint-soft: #E5F0FF;
+    --green: #34C759;
+    --green-soft: #E3F8E8;
+    --orange: #FF9500;
+    --red: #FF3B30;
+    --red-soft: #FFE5E3;
     --kb-bg: #D1D4D9;
     --kb-key: #FFFFFF;
     --kb-key-ink: #000000;
     --kb-key-dark: #ABB0BA;
     --kb-shadow: #898A8D;
-    --kb-return: #3E5C3A;
-    --kb-return-ink: #FFFFFF;
-    --overlay: rgba(31, 38, 28, 0.45);
-    --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --overlay: rgba(0, 0, 0, 0.5);
+    --nav-bg: rgba(249, 249, 249, 0.92);
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --ground: #151A14;
-      --paper: #1E2520;
-      --ink: #E7EBE1;
-      --ink-2: #9AA894;
-      --line: #313B2F;
-      --moss: #8DB07F;
-      --moss-ink: #10160F;
-      --moss-soft: #263323;
-      --ok: #6FC48F;
-      --ok-soft: #1E3A2A;
-      --bad: #E4806E;
-      --bad-soft: #43241F;
+      --bg: #000000;
+      --card: #1C1C1E;
+      --label: #FFFFFF;
+      --label-2: #98989F;
+      --label-3: #636366;
+      --sep: #38383A;
+      --fill: #2C2C2E;
+      --tint: #0A84FF;
+      --tint-ink: #FFFFFF;
+      --tint-soft: #0F2A4A;
+      --green: #30D158;
+      --green-soft: #113D22;
+      --orange: #FF9F0A;
+      --red: #FF453A;
+      --red-soft: #4A1A17;
       --kb-bg: #2B2B2D;
       --kb-key: #6B6B6E;
       --kb-key-ink: #FFFFFF;
       --kb-key-dark: #464649;
       --kb-shadow: #1A1A1B;
-      --kb-return: #8DB07F;
-      --kb-return-ink: #10160F;
-      --overlay: rgba(0, 0, 0, 0.6);
+      --overlay: rgba(0, 0, 0, 0.7);
+      --nav-bg: rgba(29, 29, 31, 0.92);
     }
   }
   :root[data-theme="dark"] {
-    --ground: #151A14;
-    --paper: #1E2520;
-    --ink: #E7EBE1;
-    --ink-2: #9AA894;
-    --line: #313B2F;
-    --moss: #8DB07F;
-    --moss-ink: #10160F;
-    --moss-soft: #263323;
-    --ok: #6FC48F;
-    --ok-soft: #1E3A2A;
-    --bad: #E4806E;
-    --bad-soft: #43241F;
+    --bg: #000000;
+    --card: #1C1C1E;
+    --label: #FFFFFF;
+    --label-2: #98989F;
+    --label-3: #636366;
+    --sep: #38383A;
+    --fill: #2C2C2E;
+    --tint: #0A84FF;
+    --tint-ink: #FFFFFF;
+    --tint-soft: #0F2A4A;
+    --green: #30D158;
+    --green-soft: #113D22;
+    --orange: #FF9F0A;
+    --red: #FF453A;
+    --red-soft: #4A1A17;
     --kb-bg: #2B2B2D;
     --kb-key: #6B6B6E;
     --kb-key-ink: #FFFFFF;
     --kb-key-dark: #464649;
     --kb-shadow: #1A1A1B;
-    --kb-return: #8DB07F;
-    --kb-return-ink: #10160F;
-    --overlay: rgba(0, 0, 0, 0.6);
+    --overlay: rgba(0, 0, 0, 0.7);
+    --nav-bg: rgba(29, 29, 31, 0.92);
   }
 
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   [hidden] { display: none !important; }
   html, body { height: 100%; }
   body {
     margin: 0;
-    background: var(--ground);
-    color: var(--ink);
+    background: var(--bg);
+    color: var(--label);
     font-family: var(--sans);
-    font-size: 16px;
+    font-size: 17px;
+    line-height: 1.3;
     -webkit-font-smoothing: antialiased;
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
   }
-  button { font: inherit; color: inherit; }
-  button:focus-visible, textarea:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+  button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; touch-action: manipulation; }
+  button:focus-visible, textarea:focus-visible { outline: 2px solid var(--tint); outline-offset: 2px; }
+  .screen { position: absolute; inset: 0; display: flex; flex-direction: column; }
 
-  /* ---------- top bar ---------- */
-  .top {
+  /* ---------- shared iOS bits ---------- */
+  .nav {
     flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px 8px;
+    height: 44px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 0 8px;
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid var(--sep);
   }
-  .top .deck-btn {
-    border: 0; background: transparent; padding: 6px 0;
-    color: var(--moss); font-weight: 600; font-size: 15px; cursor: pointer;
-    white-space: nowrap;
+  .nav .title { font-size: 17px; font-weight: 600; text-align: center; }
+  .nav .lead { justify-self: start; } .nav .trail { justify-self: end; }
+  .nav-btn { color: var(--tint); font-size: 17px; padding: 8px; display: inline-flex; align-items: center; gap: 2px; }
+  .nav-btn svg { width: 12px; height: 20px; }
+  .btn-fill {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 50px; border-radius: 12px;
+    background: var(--tint); color: var(--tint-ink);
+    font-size: 17px; font-weight: 600;
   }
-  .seg {
-    margin-left: auto;
-    display: inline-flex;
-    background: var(--line);
-    border-radius: 9px;
-    padding: 2px;
-    gap: 2px;
+  .btn-fill:active { filter: brightness(.9); }
+  .btn-tinted { background: var(--tint-soft); color: var(--tint); }
+  .btn-plain { color: var(--tint); font-weight: 400; background: transparent; }
+  .group {
+    background: var(--card); border-radius: 12px; overflow: hidden;
   }
-  .seg button {
-    border: 0; background: transparent; border-radius: 7px;
-    padding: 5px 12px; font-size: 13px; font-weight: 600; color: var(--ink-2);
-    cursor: pointer; touch-action: manipulation;
+  .row {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; min-height: 60px; padding: 10px 16px; text-align: left;
+    color: var(--label);
   }
-  .seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+  .row + .row { border-top: 0.5px solid var(--sep); margin-left: 0; }
+  .row:active { background: var(--fill); }
+  .row .icon {
+    flex: 0 0 auto; width: 36px; height: 36px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 15px;
+  }
+  .row .text { flex: 1 1 auto; min-width: 0; }
+  .row .text b { display: block; font-weight: 600; font-size: 17px; }
+  .row .text span { display: block; font-size: 14px; color: var(--label-2); margin-top: 2px; }
+  .row .chev { flex: 0 0 auto; color: var(--label-3); width: 10px; height: 16px; }
+  .footnote { font-size: 13px; color: var(--label-2); padding: 8px 16px 0; line-height: 1.35; }
 
+  /* ---------- splash ---------- */
+  #splash { justify-content: center; align-items: center; padding: 24px; text-align: center; gap: 0; }
+  #splash .leaf {
+    width: 112px; height: 112px; border-radius: 28px;
+    background: linear-gradient(160deg, #5BD87A, #1E9E4B);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(30, 158, 75, .25);
+    margin-bottom: 28px;
+  }
+  #splash .leaf svg { width: 66px; height: 66px; }
+  #splash h1 { margin: 0; font-size: 34px; font-weight: 700; letter-spacing: -.01em; line-height: 1.15; text-wrap: balance; max-width: 22ch; }
+  #splash p { margin: 12px 0 0; color: var(--label-2); font-size: 17px; max-width: 30ch; }
+  #splash .cta { position: absolute; left: 20px; right: 20px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 10px; }
+  #splash .fine { font-size: 12px; color: var(--label-3); }
+
+  /* ---------- level picker ---------- */
+  #levels main { flex: 1 1 auto; overflow-y: auto; padding: 8px 16px 24px; -webkit-overflow-scrolling: touch; }
+  .large-title { font-size: 34px; font-weight: 700; margin: 8px 0 14px; letter-spacing: -.01em; }
+  .section-label { font-size: 13px; color: var(--label-2); text-transform: uppercase; letter-spacing: .02em; padding: 0 16px 6px; margin-top: 22px; }
+  .icon.easy { background: var(--green); } .icon.medium { background: var(--orange); } .icon.hard { background: var(--red); }
+  .icon.deck { background: var(--tint); }
+  .stat { display: flex; justify-content: space-between; padding: 12px 16px; font-size: 15px; }
+  .stat + .stat { border-top: 0.5px solid var(--sep); }
+  .stat span:last-child { color: var(--label-2); font-variant-numeric: tabular-nums; }
+
+  /* ---------- practice ---------- */
+  #practice main {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto;
+    padding: 12px 16px 0; -webkit-overflow-scrolling: touch;
+  }
   .meta {
-    flex: 0 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 16px 6px;
-    font-size: 12px; color: var(--ink-2);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: .02em; text-transform: uppercase;
+    display: flex; justify-content: space-between; padding: 0 4px 8px;
+    font-size: 13px; color: var(--label-2); font-variant-numeric: tabular-nums;
   }
-  .meta .score { display: inline-flex; gap: 10px; }
-  .meta .score .ok { color: var(--ok); }
-  .meta .score .bad { color: var(--bad); }
-
-  /* ---------- stage ---------- */
-  main {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto;
-    padding: 4px 16px 16px;
-    -webkit-overflow-scrolling: touch;
-  }
+  .meta .ok { color: var(--green); } .meta .bad { color: var(--red); }
   .card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 22px 20px 20px;
-    max-width: 560px;
-    margin: 0 auto;
-    display: flex; flex-direction: column; gap: 14px;
-    min-height: 100%;
+    background: var(--card); border-radius: 16px; overflow: hidden;
+    max-width: 600px; margin: 0 auto;
+    display: flex; flex-direction: column;
   }
-  .eyebrow {
-    margin: 0;
-    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--ink-2);
-  }
-  .common {
-    margin: 0;
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(26px, 6.5vw, 34px);
-    line-height: 1.1;
-    text-wrap: balance;
-  }
-  .photo-wrap { display: flex; flex-direction: column; gap: 6px; }
-  .photo {
+  .hero { position: relative; background: var(--fill); }
+  .hero img.photo {
     display: block; width: 100%; max-width: 100%;
-    aspect-ratio: 16 / 9; max-height: 22vh; object-fit: cover;
-    border-radius: 12px; background: var(--moss-soft); cursor: zoom-in;
+    aspect-ratio: 4 / 3; object-fit: cover; cursor: zoom-in;
   }
-  .lightbox {
-    position: fixed; inset: 0; z-index: 30; background: var(--overlay);
-    display: flex; align-items: center; justify-content: center; padding: 16px;
-    cursor: zoom-out;
+  .hero .counter {
+    position: absolute; right: 10px; top: 10px;
+    background: rgba(0,0,0,.55); color: #fff; font-size: 12px; font-weight: 600;
+    padding: 4px 8px; border-radius: 999px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   }
-  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; object-fit: contain; }
-  .thumbs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+  .hero .dots { position: absolute; left: 0; right: 0; bottom: 10px; display: flex; justify-content: center; gap: 6px; pointer-events: none; }
+  .hero .dots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.55); box-shadow: 0 0 2px rgba(0,0,0,.4); }
+  .hero .dots span[aria-current="true"] { background: #fff; }
+  .thumbs { display: flex; gap: 6px; padding: 8px 12px 0; overflow-x: auto; }
   .thumbs img {
-    flex: 0 0 auto; width: 40px; height: 40px; object-fit: cover;
-    border-radius: 6px; border: 2px solid transparent; cursor: pointer;
-    background: var(--moss-soft);
+    flex: 0 0 auto; width: 48px; height: 48px; object-fit: cover; border-radius: 8px;
+    border: 2px solid transparent; background: var(--fill); cursor: pointer;
   }
-  .thumbs img[aria-current="true"] { border-color: var(--moss); }
-  .photo-nav { display: flex; align-items: center; gap: 8px; }
-  .dots { display: inline-flex; gap: 5px; }
-  .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
-  .dots span[aria-current="true"] { background: var(--moss); }
-  .credit { font-size: 11px; color: var(--ink-2); display: flex; gap: 10px; flex-wrap: wrap; }
-  .credit a { color: inherit; }
+  .thumbs img[aria-current="true"] { border-color: var(--tint); }
+  .credit { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 6px 16px 0; font-size: 12px; color: var(--label-2); }
+  .credit a { color: var(--tint); text-decoration: none; }
+  .body { padding: 12px 16px 6px; display: flex; flex-direction: column; gap: 10px; }
+  .eyebrow { margin: 0; font-size: 13px; color: var(--label-2); text-transform: uppercase; letter-spacing: .04em; }
+  .common { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -.01em; line-height: 1.15; text-wrap: balance; }
   .show-name {
-    align-self: flex-start;
-    border: 1px dashed var(--moss); background: var(--moss-soft); color: var(--moss);
-    border-radius: 10px; padding: 10px 14px; font-size: 15px; font-weight: 600;
-    cursor: pointer; touch-action: manipulation; text-align: left;
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 6px;
+    background: var(--tint-soft); color: var(--tint);
+    border-radius: 10px; padding: 9px 12px; font-size: 15px; font-weight: 600;
   }
   .show-name:active { filter: brightness(.95); }
-  .hint { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .hint { margin: 0; font-size: 14px; color: var(--label-2); }
 
+  .dock {
+    position: sticky; bottom: 0;
+    background: var(--card); padding: 6px 16px 14px;
+    border-top: 0.5px solid var(--sep);
+    display: flex; flex-direction: column; gap: 8px;
+  }
   .answer {
-    display: flex; flex-wrap: wrap; align-items: flex-end;
-    gap: 6px 18px;
-    padding: 6px 0 2px;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(20px, 5.4vw, 30px);
-    min-height: 54px;
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px 16px;
+    font-style: italic; font-size: clamp(22px, 5.6vw, 30px); font-weight: 500;
+    min-height: 48px; padding-top: 4px;
   }
   .word { display: inline-flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
   .word.long { font-size: .8em; }
   .cell {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 1em; height: 1.4em;
+    width: 1em; height: 1.35em; border-radius: 5px; line-height: 1; position: relative;
     border-bottom: 2px solid transparent;
-    border-radius: 3px;
-    line-height: 1;
-    position: relative;
   }
-  .cell.fixed { color: var(--ink); }
-  .cell.fixed.punct { width: .6em; color: var(--ink-2); }
-  .cell.blank {
-    color: var(--ink-2);
-    border-bottom-color: var(--line);
-    background: var(--moss-soft);
-    cursor: pointer;
-  }
-  .cell.blank.filled { color: var(--ink); }
-  .cell.blank.active { border-bottom-color: var(--moss); }
+  .cell.fixed.punct { width: .6em; color: var(--label-2); }
+  .cell.blank { background: var(--fill); color: var(--label-3); border-bottom-color: var(--label-3); cursor: pointer; }
+  .cell.blank.filled { color: var(--label); }
+  .cell.blank.active { border-bottom-color: var(--tint); }
   .cell.blank.active::after {
-    content: ""; position: absolute; left: 50%; bottom: -2px;
-    width: 60%; height: 2px; transform: translateX(-50%);
-    background: var(--moss);
-    animation: blink 1s steps(1) infinite;
+    content: ""; position: absolute; left: 50%; bottom: -2px; width: 60%; height: 2px;
+    transform: translateX(-50%); background: var(--tint); animation: blink 1s steps(1) infinite;
   }
   @keyframes blink { 50% { opacity: 0; } }
   .checked .cell.blank.active::after { display: none; }
-  .cell.blank.ok { background: var(--ok-soft); color: var(--ok); border-bottom-color: var(--ok); }
-  .cell.blank.bad { background: var(--bad-soft); color: var(--bad); border-bottom-color: var(--bad); }
-  .cell.blank.bad .fix {
-    position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
-    font-size: .5em; font-style: normal; color: var(--ok); margin-top: 3px;
-  }
-
+  .cell.blank.ok { background: var(--green-soft); color: var(--green); border-bottom-color: var(--green); }
+  .cell.blank.bad { background: var(--red-soft); color: var(--red); border-bottom-color: var(--red); }
+  .cell.blank.bad .fix { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); font-size: .5em; font-style: normal; color: var(--green); margin-top: 3px; }
   .typed {
-    min-height: 1.4em; padding: 2px 0;
-    border-bottom: 2px solid var(--line);
-    flex: 1 1 100%;
-    display: flex; align-items: center;
-    white-space: pre; overflow-x: auto;
+    flex: 1 1 100%; min-height: 1.35em; padding: 2px 0; display: flex; align-items: center;
+    border-bottom: 2px solid var(--sep); white-space: pre; overflow-x: auto;
   }
-  .typed.empty::before { content: attr(data-placeholder); color: var(--ink-2); opacity: .7; font-size: .7em; font-style: normal; }
-  .typed .caret {
-    display: inline-block; width: 2px; height: 1.1em; background: var(--moss);
-    margin-left: 1px; vertical-align: text-bottom;
-    animation: blink 1s steps(1) infinite;
-  }
+  .typed.empty::before { content: attr(data-placeholder); color: var(--label-3); font-style: normal; font-weight: 400; font-size: .7em; }
+  .typed .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--tint); margin-left: 1px; animation: blink 1s steps(1) infinite; }
   .checked .typed .caret { display: none; }
-  .typed.ok { color: var(--ok); border-bottom-color: var(--ok); }
-  .typed.bad { color: var(--bad); border-bottom-color: var(--bad); }
+  .typed.ok { color: var(--green); border-bottom-color: var(--green); }
+  .typed.bad { color: var(--red); border-bottom-color: var(--red); }
 
-  .feedback {
-    min-height: 24px;
-    font-size: 15px;
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;
-  }
+  .feedback { min-height: 20px; font-size: 15px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
   .feedback .verdict { font-weight: 600; }
-  .feedback.ok .verdict { color: var(--ok); }
-  .feedback.bad .verdict { color: var(--bad); }
-  .feedback .full { font-family: var(--serif); font-style: italic; font-size: 18px; }
-  .feedback .note { color: var(--ink-2); font-size: 13px; flex: 1 1 100%; }
+  .feedback.ok .verdict { color: var(--green); }
+  .feedback.bad .verdict { color: var(--red); }
+  .feedback .full { font-style: italic; font-weight: 500; font-size: 17px; }
+  .feedback .note { color: var(--label-2); font-size: 13px; flex: 1 1 100%; }
+  .actions { display: flex; gap: 8px; }
+  .actions .btn-fill { height: 44px; font-size: 16px; border-radius: 10px; }
+  .actions .btn-fill.quiet { background: var(--fill); color: var(--tint); }
 
-  .card-actions { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
-  .btn {
-    border: 1px solid var(--line); background: var(--paper);
-    border-radius: 10px; padding: 9px 14px; font-size: 14px; font-weight: 600;
-    cursor: pointer; touch-action: manipulation;
-  }
-  .btn.primary { background: var(--moss); color: var(--moss-ink); border-color: var(--moss); }
-  .btn.quiet { color: var(--ink-2); }
-
-  /* summary */
-  .summary { text-align: left; }
-  .summary h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; margin: 0; }
-  .summary .big { font-family: var(--serif); font-size: 48px; font-weight: 600; margin: 4px 0; font-variant-numeric: tabular-nums; }
-  .summary ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; }
-  .summary li em { font-family: var(--serif); color: var(--ink); font-size: 16px; }
+  .summary { padding: 20px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .summary h2 { margin: 0; font-size: 28px; font-weight: 700; }
+  .summary .big { font-size: 48px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .summary ul { margin: 0; padding-left: 20px; color: var(--label-2); font-size: 15px; }
+  .summary li em { color: var(--label); font-weight: 500; }
+  .summary .actions { margin-top: 10px; flex-direction: column; }
 
   /* ---------- keyboard ---------- */
   .kb {
-    flex: 0 0 auto;
-    background: var(--kb-bg);
+    flex: 0 0 auto; background: var(--kb-bg);
     padding: 8px 3px calc(8px + env(safe-area-inset-bottom, 0px));
-    user-select: none; -webkit-user-select: none;
-    touch-action: manipulation;
+    user-select: none; -webkit-user-select: none; touch-action: manipulation;
   }
-  .kb .row {
-    display: flex; justify-content: center; gap: 6px;
-    margin: 0 auto 10px; max-width: 560px;
-  }
-  .kb .row:last-child { margin-bottom: 0; }
+  .kb .row-k { display: flex; justify-content: center; gap: 6px; margin: 0 auto 10px; max-width: 560px; }
+  .kb .row-k:last-child { margin-bottom: 0; }
   .kb .key {
-    flex: 1 1 0;
-    max-width: 48px;
-    height: 44px;
-    border: 0; border-radius: 6px;
-    background: var(--kb-key); color: var(--kb-key-ink);
-    box-shadow: 0 1px 0 var(--kb-shadow);
-    font-family: var(--sans); font-size: 22px; font-weight: 400;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; cursor: pointer; padding: 0;
-    -webkit-tap-highlight-color: transparent;
+    flex: 1 1 0; max-width: 48px; height: 44px; border-radius: 6px;
+    background: var(--kb-key); color: var(--kb-key-ink); box-shadow: 0 1px 0 var(--kb-shadow);
+    font-size: 22px; display: flex; align-items: center; justify-content: center; position: relative;
   }
-  .kb .row.mid { padding: 0 24px; }
+  .kb .row-k.mid { padding: 0 24px; }
   .kb .key.wide { flex: 1.5 1 0; max-width: 72px; background: var(--kb-key-dark); font-size: 17px; }
   .kb .key.wide.shift[aria-pressed="true"] { background: var(--kb-key); }
   .kb .key.space { flex: 5 1 0; max-width: none; font-size: 16px; }
   .kb .key.dash { flex: 1.3 1 0; max-width: 64px; background: var(--kb-key-dark); font-size: 20px; }
-  .kb .key.ret { flex: 2.2 1 0; max-width: 110px; background: var(--kb-return); color: var(--kb-return-ink); font-size: 16px; font-weight: 600; }
-  .kb .key.ret.next { background: var(--moss); color: var(--moss-ink); }
+  .kb .key.ret { flex: 2.2 1 0; max-width: 110px; background: var(--tint); color: var(--tint-ink); font-size: 16px; font-weight: 600; }
   .kb .key.letter:active { background: var(--kb-key-dark); }
   .kb .key.letter:active::after {
-    content: attr(data-key);
-    position: absolute; left: 50%; bottom: 100%;
-    transform: translate(-50%, -2px);
-    min-width: 46px; height: 54px; padding: 0 8px;
-    border-radius: 8px 8px 8px 8px;
-    background: var(--kb-key); color: var(--kb-key-ink);
-    box-shadow: 0 2px 6px rgba(0,0,0,.25);
-    font-size: 32px; display: flex; align-items: center; justify-content: center;
-    z-index: 5;
+    content: attr(data-key); position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -2px);
+    min-width: 46px; height: 54px; padding: 0 8px; border-radius: 8px;
+    background: var(--kb-key); color: var(--kb-key-ink); box-shadow: 0 2px 6px rgba(0,0,0,.25);
+    font-size: 32px; display: flex; align-items: center; justify-content: center; z-index: 5;
   }
   .kb .key.wide:active, .kb .key.dash:active, .kb .key.space:active { filter: brightness(.9); }
   .kb[data-shift="on"] .key.letter { text-transform: uppercase; }
   .kb .key svg { width: 22px; height: 22px; fill: currentColor; }
 
+  /* ---------- lightbox ---------- */
+  .lightbox { position: fixed; inset: 0; z-index: 30; background: #000; display: flex; flex-direction: column; }
+  .lightbox .stage { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .lightbox .bar {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px)); color: #fff; font-size: 15px;
+  }
+  .lightbox .bar button { color: #fff; font-size: 17px; font-weight: 600; padding: 8px 4px; }
+
   /* ---------- deck sheet ---------- */
-  .sheet-wrap {
-    position: fixed; inset: 0; z-index: 20;
-    background: var(--overlay);
-    display: flex; align-items: flex-end; justify-content: center;
-  }
+  .sheet-wrap { position: fixed; inset: 0; z-index: 20; background: var(--overlay); display: flex; align-items: flex-end; justify-content: center; }
   .sheet {
-    background: var(--paper); color: var(--ink);
-    width: 100%; max-width: 640px;
-    border-radius: 18px 18px 0 0;
-    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
-    max-height: 88%;
-    display: flex; flex-direction: column; gap: 10px;
+    background: var(--bg); color: var(--label); width: 100%; max-width: 640px;
+    border-radius: 14px 14px 0 0; padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    max-height: 90%; display: flex; flex-direction: column; gap: 10px;
   }
-  .sheet h2 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 22px; }
-  .sheet p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.45; }
-  .sheet code { font-size: 12px; background: var(--moss-soft); padding: 1px 5px; border-radius: 4px; }
+  .grabber { width: 36px; height: 5px; border-radius: 3px; background: var(--label-3); margin: 0 auto 4px; }
+  .sheet h2 { margin: 0; font-size: 20px; font-weight: 700; }
+  .sheet p { margin: 0; font-size: 13px; color: var(--label-2); line-height: 1.4; }
+  .sheet code { font-size: 12px; background: var(--fill); padding: 1px 5px; border-radius: 4px; }
   .sheet textarea {
-    flex: 1 1 auto; min-height: 180px;
-    width: 100%; resize: vertical;
+    flex: 1 1 auto; min-height: 180px; width: 100%; resize: vertical;
     font: 14px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    color: var(--ink); background: var(--ground);
-    border: 1px solid var(--line); border-radius: 10px; padding: 10px;
+    color: var(--label); background: var(--card); border: 0.5px solid var(--sep); border-radius: 10px; padding: 10px;
   }
-  .sheet .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .sheet .row .btn { padding: 9px 12px; }
-  .sheet .row .spacer { flex: 1; }
-  .sheet .err { color: var(--bad); font-size: 13px; }
+  .sheet .btns { display: flex; gap: 8px; }
+  .sheet .btns .btn-fill { height: 44px; font-size: 16px; }
+  .sheet .err { color: var(--red); font-size: 13px; }
 
   .shake { animation: shake .35s; }
   @keyframes shake { 20%, 60% { transform: translateX(-5px);} 40%, 80% { transform: translateX(5px);} }
-  @media (prefers-reduced-motion: reduce) {
-    .cell.blank.active::after, .typed .caret { animation: none; }
-    .shake { animation: none; }
-  }
-  @media (max-width: 380px) {
-    .kb .key { height: 40px; font-size: 20px; }
-    .kb .row { gap: 4px; }
-  }
+  @media (prefers-reduced-motion: reduce) { .cell.blank.active::after, .typed .caret, .shake { animation: none; } }
+  @media (max-width: 380px) { .kb .key { height: 40px; font-size: 20px; } .kb .row-k { gap: 4px; } }
 </style>
 
-<header class="top">
-  <button class="deck-btn" id="deckBtn" type="button">Deck ▾</button>
-  <div class="seg" role="group" aria-label="Difficulty">
-    <button type="button" id="lvl-easy" data-level="easy" aria-pressed="true">Easy</button>
-    <button type="button" id="lvl-medium" data-level="medium" aria-pressed="false">Medium</button>
-    <button type="button" id="lvl-hard" data-level="hard" aria-pressed="false">Hard</button>
+<!-- ============ Opening page ============ -->
+<section class="screen" id="splash">
+  <div class="leaf" aria-hidden="true">
+    <svg viewBox="0 0 64 64" fill="none"><path d="M52 12C30 12 14 26 12 50c24 2 40-14 40-38Z" fill="#fff" opacity=".95"/><path d="M14 48c8-12 18-22 30-30" stroke="#1E9E4B" stroke-width="3" stroke-linecap="round"/></svg>
   </div>
-</header>
-<div class="meta">
-  <span id="progress">Card 1 of 32</span>
-  <span class="score"><span class="ok" id="okCount">0 right</span><span class="bad" id="badCount">0 wrong</span></span>
-</div>
+  <h1>SJ let’s learn about plants</h1>
+  <p>Flashcards for the RHS Level 2 PCA1 plant list. Learn every genus and species with photos to help you identify them.</p>
+  <div class="cta">
+    <button class="btn-fill" type="button" id="startBtn">Get started</button>
+    <span class="fine" id="splashFine"></span>
+  </div>
+</section>
 
-<main>
-  <section class="card" id="card" aria-live="polite"></section>
-</main>
+<!-- ============ Level selection ============ -->
+<section class="screen" id="levels" hidden>
+  <header class="nav">
+    <span class="lead"></span>
+    <span class="title">Levels</span>
+    <button class="nav-btn trail" type="button" id="deckBtnLevels">Deck</button>
+  </header>
+  <main>
+    <h1 class="large-title">Choose a level</h1>
+    <div class="group">
+      <button class="row" type="button" data-level="easy">
+        <span class="icon easy">1</span>
+        <span class="text"><b>Easy</b><span>A few letters of each word are missing. Different ones every time.</span></span>
+        <svg class="chev" viewBox="0 0 10 16" fill="none"><path d="M1.5 1.5 8 8l-6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="row" type="button" data-level="medium">
+        <span class="icon medium">2</span>
+        <span class="text"><b>Medium</b><span>Either the genus or the species is missing entirely.</span></span>
+        <svg class="chev" viewBox="0 0 10 16" fill="none"><path d="M1.5 1.5 8 8l-6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="row" type="button" data-level="hard">
+        <span class="icon hard">3</span>
+        <span class="text"><b>Hard</b><span>Type the full name from the photo alone.</span></span>
+        <svg class="chev" viewBox="0 0 10 16" fill="none"><path d="M1.5 1.5 8 8l-6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="section-label">Deck</div>
+    <div class="group" id="deckStats"></div>
+    <p class="footnote">The English name is hidden on every card until you tap to reveal it. Cards you get wrong come round again in the same round.</p>
+  </main>
+</section>
 
-<div class="kb" id="kb" data-shift="off" aria-label="On-screen keyboard"></div>
+<!-- ============ Practice ============ -->
+<section class="screen" id="practice" hidden>
+  <header class="nav">
+    <button class="nav-btn lead" type="button" id="backBtn">
+      <svg viewBox="0 0 12 20" fill="none"><path d="M10 1.5 2 10l8 8.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Levels
+    </button>
+    <span class="title" id="navTitle">Easy</span>
+    <button class="nav-btn trail" type="button" id="deckBtn">Deck</button>
+  </header>
+  <main id="stage">
+    <div class="meta">
+      <span id="progress"></span>
+      <span><span class="ok" id="okCount">0 right</span> · <span class="bad" id="badCount">0 wrong</span></span>
+    </div>
+    <section class="card" id="card" aria-live="polite"></section>
+  </main>
+  <div class="kb" id="kb" data-shift="off" aria-label="On-screen keyboard"></div>
+</section>
 
 <div class="sheet-wrap" id="sheetWrap" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="grabber"></div>
     <h2 id="sheetTitle">Your deck</h2>
     <p>One plant per line: <code>Genus species | Common name | Family | Photo URL | List number</code>. Everything after the name is optional. Write hybrids with an x or ×, e.g. <code>Erica × darleyensis</code>. Edits are kept on this device.</p>
     <textarea id="deckText" spellcheck="false"></textarea>
     <div class="err" id="deckErr"></div>
-    <div class="row">
-      <button class="btn quiet" type="button" id="resetDeck">Restore RHS list</button>
-      <span class="spacer"></span>
-      <button class="btn" type="button" id="cancelDeck">Cancel</button>
-      <button class="btn primary" type="button" id="saveDeck">Save &amp; restart</button>
+    <div class="btns">
+      <button class="btn-fill btn-tinted" type="button" id="resetDeck">Restore RHS list</button>
+      <button class="btn-fill btn-tinted" type="button" id="cancelDeck">Cancel</button>
+      <button class="btn-fill" type="button" id="saveDeck">Save</button>
     </div>
   </div>
 </div>
@@ -474,43 +485,50 @@
 
   var STORE_DECK = 'binomial-drill.deck.v1';
   var STORE_LEVEL = 'binomial-drill.level.v1';
+  var LEVEL_NAMES = { easy: 'Easy', medium: 'Medium', hard: 'Hard' };
 
   function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
   function save(key, val) { try { localStorage.setItem(key, val); } catch (e) { /* ignore */ } }
   function remove(key) { try { localStorage.removeItem(key); } catch (e) { /* ignore */ } }
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function cap(w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function key(card) { return card.genus + ' ' + card.species; }
 
   // ------------------------------------------------------------------
   // Deck parsing
   // ------------------------------------------------------------------
-  function cap(w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }
-
   function parseDeck(text) {
     var cards = [], errors = [];
     text.split(/\r?\n/).forEach(function (raw, n) {
       var line = raw.trim();
       if (!line || line.charAt(0) === '#') return;
       var parts = line.split(/\s*(?:\||;|\t| - | – )\s*/);
-      // Tokens; a lone x / X / × is the hybrid sign and is kept as ×.
       var tokens = parts[0].trim().split(/\s+/).map(function (t) { return /^[xX×]$/.test(t) ? '×' : t; });
       var bad = tokens.some(function (t) { return t !== '×' && !/^[A-Za-z][A-Za-z-]*$/.test(t); });
       var letterTokens = tokens.filter(function (t) { return t !== '×'; });
-      if (letterTokens.length < 2 || tokens[tokens.length - 1] === '×') {
-        errors.push('Line ' + (n + 1) + ': needs "Genus species"'); return;
-      }
-      if (bad) {
-        errors.push('Line ' + (n + 1) + ': "' + parts[0] + '" has characters other than letters, hyphens and ×');
-        return;
-      }
+      if (letterTokens.length < 2 || tokens[tokens.length - 1] === '×') { errors.push('Line ' + (n + 1) + ': needs "Genus species"'); return; }
+      if (bad) { errors.push('Line ' + (n + 1) + ': "' + parts[0] + '" has characters other than letters, hyphens and ×'); return; }
       var genus, rest;
       if (tokens[0] === '×') { genus = '× ' + cap(tokens[1]); rest = tokens.slice(2); }
       else { genus = cap(tokens[0]); rest = tokens.slice(1); }
+      var fourth = (parts[3] || '').trim();
       cards.push({
         genus: genus,
         species: rest.join(' ').toLowerCase(),
         common: (parts[1] || '').trim(),
         family: (parts[2] || '').trim(),
-        image: /^wiki:/i.test((parts[3] || '').trim()) ? '' : (parts[3] || '').trim(),
-        wiki: /^wiki:/i.test((parts[3] || '').trim()) ? (parts[3] || '').trim().slice(5).trim() : '',
+        image: /^wiki:/i.test(fourth) ? '' : fourth,
+        wiki: /^wiki:/i.test(fourth) ? fourth.slice(5).trim() : '',
         ref: (parts[4] || '').trim()
       });
     });
@@ -521,47 +539,50 @@
   // State
   // ------------------------------------------------------------------
   var state = {
-    level: 'easy',
-    deckText: SAMPLE,
-    deck: [],
-    queue: [],
-    total: 0,
-    current: null,
-    words: [],      // [{text, cells:[{ch, blank, val, letter}]}]
-    blanks: [],     // flattened blank cells in order
-    cursor: 0,
-    typed: '',
-    checked: false,
-    lastCorrect: false,
-    firstTry: {},   // key -> true/false (first attempt result)
-    ok: 0, bad: 0,
-    missed: [],     // cards answered wrong at least once
-    shift: false,
-    done: false
+    level: 'easy', deckText: SAMPLE, deck: [], queue: [], total: 0, current: null,
+    words: [], blanks: [], cursor: 0, typed: '', checked: false, lastCorrect: false,
+    firstTry: {}, ok: 0, bad: 0, missed: [], shift: false, done: false
   };
-
-  var $ = function (id) { return document.getElementById(id); };
   var cardEl = $('card'), kbEl = $('kb');
 
-  function shuffle(a) {
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
+  // ------------------------------------------------------------------
+  // Screens
+  // ------------------------------------------------------------------
+  function show(id) {
+    ['splash', 'levels', 'practice'].forEach(function (s) { $(s).hidden = s !== id; });
   }
-  function key(card) { return card.genus + ' ' + card.species; }
+  function renderDeckStats() {
+    var cards = parseDeck(state.deckText).cards;
+    var g = $('deckStats'); g.innerHTML = '';
+    var custom = state.deckText.trim() !== SAMPLE.trim();
+    var s1 = el('div', 'stat'); s1.appendChild(el('span', null, custom ? 'Your deck' : 'RHS Level 2 · PCA1 2026/27')); s1.appendChild(el('span', null, cards.length + ' species'));
+    g.appendChild(s1);
+    var best = ['easy', 'medium', 'hard'].map(function (l) { var b = load('binomial-drill.best.' + l); return b ? LEVEL_NAMES[l] + ' ' + b : null; }).filter(Boolean);
+    var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best first-try score')); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
+    g.appendChild(s2);
+    $('splashFine').textContent = cards.length + ' species · photos from Wikimedia Commons';
+  }
+  $('startBtn').addEventListener('click', function () { renderDeckStats(); show('levels'); });
+  $('backBtn').addEventListener('click', function () { renderDeckStats(); show('levels'); });
+  Array.prototype.forEach.call(document.querySelectorAll('#levels .row[data-level]'), function (b) {
+    b.addEventListener('click', function () { setLevel(b.getAttribute('data-level')); show('practice'); });
+  });
 
   // ------------------------------------------------------------------
   // Round lifecycle
   // ------------------------------------------------------------------
+  function setLevel(level) {
+    state.level = level;
+    save(STORE_LEVEL, level);
+    $('navTitle').textContent = LEVEL_NAMES[level];
+    startRound();
+  }
+
   function startRound() {
-    var parsed = parseDeck(state.deckText);
-    state.deck = parsed.cards;
+    state.deck = parseDeck(state.deckText).cards;
     state.queue = shuffle(state.deck.slice());
     state.total = state.deck.length;
-    state.ok = 0; state.bad = 0; state.firstTry = {}; state.missed = [];
-    state.done = false;
+    state.ok = 0; state.bad = 0; state.firstTry = {}; state.missed = []; state.done = false;
     nextCard();
   }
 
@@ -574,16 +595,14 @@
     renderCard();
     renderKeyboard();
     updateMeta();
+    $('stage').scrollTop = 0;
   }
 
   function buildBlanks() {
-    var c = state.current;
-    var words = [];
+    var c = state.current, words = [];
     c.genus.split(' ').forEach(function (w) { words.push({ text: w, role: 'genus' }); });
     c.species.split(' ').forEach(function (w) { words.push({ text: w, role: 'species' }); });
-    var hideRole = null;
-    if (state.level === 'medium') hideRole = Math.random() < 0.5 ? 'genus' : 'species';
-
+    var hideRole = state.level === 'medium' ? (Math.random() < 0.5 ? 'genus' : 'species') : null;
     state.words = words.map(function (w) {
       var letters = [];
       var cells = Array.prototype.map.call(w.text, function (ch, i) {
@@ -609,13 +628,6 @@
   // ------------------------------------------------------------------
   // Rendering
   // ------------------------------------------------------------------
-  function el(tag, cls, text) {
-    var e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  }
-
   function hintText() {
     if (state.level === 'easy') return 'Fill in the missing letters. Each dash is one letter.';
     if (state.level === 'medium') {
@@ -628,32 +640,30 @@
   function renderCard() {
     var c = state.current;
     cardEl.innerHTML = '';
-    cardEl.appendChild(el('p', 'eyebrow', (c.family || 'Plant') + (c.ref ? ' · No. ' + c.ref : '')));
-    var pw = el('div', 'photo-wrap'); pw.hidden = true;
-    var img = el('img', 'photo'); img.alt = c.common || key(c);
-    img.addEventListener('click', function () {
-      var lb = el('div', 'lightbox'); var big = el('img'); big.src = img.src; big.alt = img.alt;
-      lb.appendChild(big); lb.addEventListener('click', function () { lb.remove(); });
-      document.body.appendChild(lb);
-    });
-    var thumbs = el('div', 'thumbs');
-    var credit = el('div', 'credit');
-    pw.appendChild(img); pw.appendChild(thumbs); pw.appendChild(credit);
-    cardEl.appendChild(pw);
-    loadPhotos(c, pw, img, thumbs, credit);
-    var common = el('h1', 'common', c.common || '(no common name given)');
-    common.id = 'common'; common.hidden = true;
-    var showBtn = el('button', 'show-name', 'Tap here to show English name');
-    showBtn.type = 'button'; showBtn.id = 'showName';
-    showBtn.addEventListener('click', revealCommon);
-    cardEl.appendChild(showBtn);
-    cardEl.appendChild(common);
-    cardEl.appendChild(el('p', 'hint', hintText()));
 
+    var hero = el('div', 'hero'); hero.hidden = true;
+    var img = el('img', 'photo'); img.alt = c.common || key(c);
+    var counter = el('span', 'counter'); var dots = el('div', 'dots');
+    hero.appendChild(img); hero.appendChild(counter); hero.appendChild(dots);
+    cardEl.appendChild(hero);
+    var thumbs = el('div', 'thumbs'); thumbs.hidden = true; cardEl.appendChild(thumbs);
+    var credit = el('div', 'credit'); cardEl.appendChild(credit);
+    loadPhotos(c, { hero: hero, img: img, counter: counter, dots: dots, thumbs: thumbs, credit: credit });
+
+    var body = el('div', 'body');
+    body.appendChild(el('p', 'eyebrow', (c.family || 'Plant') + (c.ref ? ' · No. ' + c.ref : '')));
+    var showBtn = el('button', 'show-name', 'Tap here to show English name'); showBtn.type = 'button'; showBtn.id = 'showName';
+    showBtn.addEventListener('click', revealCommon);
+    body.appendChild(showBtn);
+    var common = el('h1', 'common', c.common || '(no common name given)'); common.id = 'common'; common.hidden = true;
+    body.appendChild(common);
+    body.appendChild(el('p', 'hint', hintText()));
+    cardEl.appendChild(body);
+
+    var dock = el('div', 'dock');
     var ans = el('div', 'answer'); ans.id = 'answer';
     if (state.level === 'hard') {
-      var typed = el('div', 'typed'); typed.id = 'typed';
-      typed.setAttribute('data-placeholder', 'Type the full name');
+      var typed = el('div', 'typed'); typed.id = 'typed'; typed.setAttribute('data-placeholder', 'Type the full name');
       ans.appendChild(typed);
     } else {
       state.words.forEach(function (w) {
@@ -662,11 +672,7 @@
           var s;
           if (cell.blank) {
             s = el('span', 'cell blank');
-            s.addEventListener('click', function () {
-              if (state.checked) return;
-              state.cursor = state.blanks.indexOf(cell);
-              paintCells();
-            });
+            s.addEventListener('click', function () { if (state.checked) return; state.cursor = state.blanks.indexOf(cell); paintCells(); });
             cell.el = s;
           } else {
             s = el('span', 'cell fixed' + (cell.letter ? '' : ' punct'), cell.ch);
@@ -676,158 +682,15 @@
         ans.appendChild(wEl);
       });
     }
-    cardEl.appendChild(ans);
-    var fb = el('div', 'feedback'); fb.id = 'feedback';
-    cardEl.appendChild(fb);
-
-    var actions = el('div', 'card-actions');
-    var skip = el('button', 'btn quiet', 'Reveal'); skip.type = 'button'; skip.id = 'revealBtn';
-    skip.addEventListener('click', function () { if (!state.checked) reveal(); });
-    actions.appendChild(skip);
-    cardEl.appendChild(actions);
-
+    dock.appendChild(ans);
+    var fb = el('div', 'feedback'); fb.id = 'feedback'; dock.appendChild(fb);
+    var actions = el('div', 'actions'); actions.id = 'actions';
+    var reveal = el('button', 'btn-fill quiet', 'Reveal answer'); reveal.type = 'button'; reveal.id = 'revealBtn';
+    reveal.addEventListener('click', function () { if (!state.checked) revealAnswer(); });
+    actions.appendChild(reveal);
+    dock.appendChild(actions);
+    cardEl.appendChild(dock);
     paintCells();
-  }
-
-  // ------------------------------------------------------------------
-  // Photos. Order tried: URL given in the deck, then photos/<genus>-<species>.jpg
-  // next to this file (see tools/fetch_photos.py), then the images on the
-  // species' Wikipedia article, fetched live and cached on this device.
-  // ------------------------------------------------------------------
-  var photoToken = 0;
-  var WIKI_MEDIA = 'https://en.wikipedia.org/api/rest_v1/page/media-list/';
-  var MAX_LOCAL = 4;
-
-  function slug(c) { return (c.genus + '-' + c.species).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-+|-+$/g, ''); }
-  function rhsUrl(c) { return 'https://www.rhs.org.uk/plants/search-results?query=' + encodeURIComponent(key(c).replace(/× ?/g, '')); }
-
-  // Resolution order: a photo URL in the deck; then photos/<slug>.jpg, -2, -3 ...
-  // next to this file (see tools/fetch_photos.py); then the images on the
-  // species' Wikipedia article, fetched live and cached on this device.
-  function loadPhotos(c, wrap, img, thumbs, credit) {
-    var token = ++photoToken;
-    if (c.image) { show([{ src: c.image, page: null }]); return; }
-    var local = [], n = 0;
-    probeLocal();
-
-    function localName(i) { return 'photos/' + slug(c) + (i ? '-' + (i + 1) : '') + '.jpg'; }
-
-    function probeLocal() {
-      if (token !== photoToken) return;
-      if (n >= MAX_LOCAL) { done(); return; }
-      var src = localName(n);
-      var probe = new Image();
-      probe.onload = function () { if (probe.naturalWidth > 0) { local.push({ src: src, page: null }); n++; probeLocal(); } else { done(); } };
-      probe.onerror = done;
-      probe.src = src;
-    }
-
-    function done() {
-      if (token !== photoToken) return;
-      if (local.length) show(local); else fromWikipedia();
-    }
-
-    function fromWikipedia() {
-      var cacheKey = 'binomial-drill.photos.v2.' + key(c) + (c.wiki ? '|' + c.wiki : '');
-      var cached = load(cacheKey);
-      if (cached) {
-        try { var arr = JSON.parse(cached); if (arr.length) { show(arr); return; } } catch (e) { /* refetch */ }
-      }
-      if (typeof fetch !== 'function') return;
-      var k = key(c);
-      var titles = [];
-      if (c.wiki) titles.push(c.wiki);
-      titles.push(k);
-      if (k.indexOf('×') >= 0) titles.push(k.replace(/× ?/g, ''));
-      var attempt = 0;
-      lookup();
-
-      function lookup() {
-        if (attempt >= titles.length) return;
-        var title = encodeURIComponent(titles[attempt++].replace(/ /g, '_'));
-        fetch(WIKI_MEDIA + title)
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .then(handle)
-          .catch(function () { /* offline or blocked: card simply has no photo */ });
-      }
-
-      function handle(d) {
-        if (token !== photoToken) return;
-        if (!d) { lookup(); return; }
-        var items = (d.items || []).filter(function (it) {
-          if (it.type !== 'image' || !it.srcset || !it.srcset.length) return false;
-          var t = it.title || '';
-          if (/\.(svg|gif|png)$/i.test(t)) return false;
-          if (/map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol/i.test(t)) return false;
-          return true;
-        });
-        items.sort(function (a, b) { return (b.leadImage ? 1 : 0) - (a.leadImage ? 1 : 0); });
-        items = items.slice(0, 5).map(function (it) {
-          // Wikimedia only serves the thumbnail widths it pre-renders per file,
-          // so use the article's own srcset: smallest entry >= 600px, else largest.
-          var srcs = it.srcset.map(function (e) { return e.src.indexOf('//') === 0 ? 'https:' + e.src : e.src; });
-          var w = function (u) { var m = /\/(\d+)px-/.exec(u); return m ? +m[1] : 0; };
-          var big = srcs.filter(function (u) { return w(u) >= 600; }).sort(function (a, b) { return w(a) - w(b); });
-          var largest = srcs.slice().sort(function (a, b) { return w(b) - w(a); })[0];
-          return { src: big[0] || largest, alt: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
-        });
-        if (!items.length) { lookup(); return; }
-        save(cacheKey, JSON.stringify(items));
-        show(items);
-      }
-    }
-
-    function show(list) {
-      if (token !== photoToken) return;
-      var current = 0, triedAlt = false;
-      thumbs.innerHTML = '';
-      var dots = el('span', 'dots');
-      if (list.length > 1) {
-        list.forEach(function (it, i) {
-          var t = el('img'); t.src = it.src; t.alt = ''; t.loading = 'lazy';
-          t.addEventListener('click', function () { pick(i); });
-          t.addEventListener('error', function () { if (it.alt && t.src !== it.alt) t.src = it.alt; });
-          thumbs.appendChild(t);
-          dots.appendChild(el('span'));
-        });
-      }
-      img.onload = function () { if (token === photoToken) wrap.hidden = false; };
-      img.onerror = function () {
-        if (list[current].alt && !triedAlt) { triedAlt = true; img.src = list[current].alt; return; }
-        if (list.length > 1) { list.splice(current, 1); pick(Math.min(current, list.length - 1)); }
-      };
-      // Swipe left / right on the photo to move through the set.
-      var x0 = null;
-      img.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-      img.addEventListener('touchend', function (e) {
-        if (x0 == null) return;
-        var dx = e.changedTouches[0].clientX - x0; x0 = null;
-        if (Math.abs(dx) < 40 || list.length < 2) return;
-        pick((current + (dx < 0 ? 1 : list.length - 1)) % list.length);
-        e.preventDefault();
-      });
-      pick(0);
-
-      function pick(i) {
-        current = i; triedAlt = false;
-        img.src = list[i].src;
-        credit.innerHTML = '';
-        if (list.length > 1) {
-          var nav = el('span', 'photo-nav');
-          nav.appendChild(dots);
-          nav.appendChild(el('span', null, (i + 1) + ' of ' + list.length + ' · swipe'));
-          credit.appendChild(nav);
-        }
-        if (list[i].page) {
-          var a = el('a', null, 'Wikimedia Commons'); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener';
-          credit.appendChild(a);
-        }
-        var r = el('a', null, 'See on RHS ↗'); r.href = rhsUrl(c); r.target = '_blank'; r.rel = 'noopener';
-        credit.appendChild(r);
-        Array.prototype.forEach.call(thumbs.children, function (t, k) { t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
-        Array.prototype.forEach.call(dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
-      }
-    }
   }
 
   function revealCommon() {
@@ -853,12 +716,9 @@
     });
   }
 
-
   function updateMeta() {
     var left = state.queue.length + (state.current && !state.checked ? 1 : 0);
-    $('progress').textContent = state.done
-      ? 'Round complete'
-      : left + ' left · ' + state.total + ' species';
+    $('progress').textContent = state.done ? 'Round complete' : left + ' left · ' + state.total + ' species';
     $('okCount').textContent = state.ok + ' right';
     $('badCount').textContent = state.bad + ' wrong';
   }
@@ -866,41 +726,179 @@
   function renderSummary() {
     cardEl.innerHTML = '';
     var wrap = el('div', 'summary');
-    wrap.appendChild(el('p', 'eyebrow', state.level + ' · ' + state.total + ' species'));
+    wrap.appendChild(el('p', 'eyebrow', LEVEL_NAMES[state.level] + ' · ' + state.total + ' species'));
     wrap.appendChild(el('h2', null, 'Round complete'));
     var firstTryOk = Object.keys(state.firstTry).filter(function (k) { return state.firstTry[k]; }).length;
     wrap.appendChild(el('div', 'big', firstTryOk + ' / ' + state.total));
     wrap.appendChild(el('p', 'hint', 'right first time. Every card was answered correctly before the round ended.'));
+    var prev = load('binomial-drill.best.' + state.level);
+    var score = firstTryOk + '/' + state.total;
+    if (!prev || parseInt(prev, 10) < firstTryOk) save('binomial-drill.best.' + state.level, score);
     if (state.missed.length) {
-      var h = el('p', 'hint', 'Worth another look:'); h.style.marginTop = '10px';
-      wrap.appendChild(h);
+      wrap.appendChild(el('p', 'hint', 'Worth another look:'));
       var ul = el('ul');
       state.missed.forEach(function (c) {
-        var li = el('li');
-        var em = el('em', null, key(c));
-        li.appendChild(em);
+        var li = el('li'); li.appendChild(el('em', null, key(c)));
         if (c.common) li.appendChild(document.createTextNode(' · ' + c.common));
         ul.appendChild(li);
       });
       wrap.appendChild(ul);
     }
-    cardEl.appendChild(wrap);
-    var actions = el('div', 'card-actions');
-    var again = el('button', 'btn primary', 'Run again'); again.type = 'button';
-    again.addEventListener('click', startRound);
+    var actions = el('div', 'actions');
+    var again = el('button', 'btn-fill', 'Run again'); again.type = 'button'; again.addEventListener('click', startRound);
     actions.appendChild(again);
     if (state.missed.length) {
-      var onlyMissed = el('button', 'btn', 'Retry missed only'); onlyMissed.type = 'button';
+      var onlyMissed = el('button', 'btn-fill quiet', 'Retry missed only'); onlyMissed.type = 'button';
       onlyMissed.addEventListener('click', function () {
         var missed = state.missed.slice();
         startRound();
-        state.queue = shuffle(missed.slice());
-        state.total = missed.length;
+        state.queue = shuffle(missed.slice()); state.total = missed.length;
         nextCard();
       });
       actions.appendChild(onlyMissed);
     }
-    cardEl.appendChild(actions);
+    var back = el('button', 'btn-fill quiet', 'Choose another level'); back.type = 'button';
+    back.addEventListener('click', function () { renderDeckStats(); show('levels'); });
+    actions.appendChild(back);
+    wrap.appendChild(actions);
+    cardEl.appendChild(wrap);
+  }
+
+  // ------------------------------------------------------------------
+  // Photos. Order tried: URL given in the deck; photos/<slug>.jpg, -2, -3 ...
+  // next to this file (see tools/fetch_photos.py); then the images on the
+  // species' Wikipedia article, fetched live and cached on this device.
+  // ------------------------------------------------------------------
+  var photoToken = 0;
+  var WIKI_MEDIA = 'https://en.wikipedia.org/api/rest_v1/page/media-list/';
+  var MAX_LOCAL = 6;
+
+  function slug(c) { return (c.genus + '-' + c.species).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function rhsUrl(c) { return 'https://www.rhs.org.uk/plants/search-results?query=' + encodeURIComponent(key(c).replace(/× ?/g, '')); }
+
+  function loadPhotos(c, ui) {
+    var token = ++photoToken;
+    if (c.image) { showSet([{ src: c.image, page: null }]); return; }
+    var local = [], n = 0;
+    probeLocal();
+
+    function localName(i) { return 'photos/' + slug(c) + (i ? '-' + (i + 1) : '') + '.jpg'; }
+    function probeLocal() {
+      if (token !== photoToken) return;
+      if (n >= MAX_LOCAL) { done(); return; }
+      var src = localName(n), probe = new Image();
+      probe.onload = function () { if (probe.naturalWidth > 0) { local.push({ src: src, page: null }); n++; probeLocal(); } else { done(); } };
+      probe.onerror = done;
+      probe.src = src;
+    }
+    function done() { if (token !== photoToken) return; if (local.length) showSet(local); else fromWikipedia(); }
+
+    function fromWikipedia() {
+      var cacheKey = 'binomial-drill.photos.v2.' + key(c) + (c.wiki ? '|' + c.wiki : '');
+      var cached = load(cacheKey);
+      if (cached) { try { var arr = JSON.parse(cached); if (arr.length) { showSet(arr); return; } } catch (e) { /* refetch */ } }
+      if (typeof fetch !== 'function') return;
+      var k = key(c), titles = [];
+      if (c.wiki) titles.push(c.wiki);
+      titles.push(k);
+      if (k.indexOf('×') >= 0) titles.push(k.replace(/× ?/g, ''));
+      var attempt = 0;
+      lookup();
+      function lookup() {
+        if (attempt >= titles.length) return;
+        var title = encodeURIComponent(titles[attempt++].replace(/ /g, '_'));
+        fetch(WIKI_MEDIA + title).then(function (r) { return r.ok ? r.json() : null; }).then(handle).catch(function () { /* offline */ });
+      }
+      function handle(d) {
+        if (token !== photoToken) return;
+        if (!d) { lookup(); return; }
+        var items = (d.items || []).filter(function (it) {
+          if (it.type !== 'image' || !it.srcset || !it.srcset.length) return false;
+          var t = it.title || '';
+          if (!/\.(jpe?g|png|webp)$/i.test(t)) return false;
+          if (/map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol|illustration|drawing|herbarium/i.test(t)) return false;
+          return true;
+        });
+        items.sort(function (a, b) { return (b.leadImage ? 1 : 0) - (a.leadImage ? 1 : 0); });
+        items = items.slice(0, 5).map(function (it) {
+          var srcs = it.srcset.map(function (e) { return e.src.indexOf('//') === 0 ? 'https:' + e.src : e.src; });
+          var w = function (u) { var m = /\/(\d+)px-/.exec(u); return m ? +m[1] : 0; };
+          var largest = srcs.slice().sort(function (a, b) { return w(b) - w(a); })[0];
+          return { src: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
+        });
+        if (!items.length) { lookup(); return; }
+        save(cacheKey, JSON.stringify(items));
+        showSet(items);
+      }
+    }
+
+    function showSet(list) {
+      if (token !== photoToken) return;
+      var current = 0;
+      ui.thumbs.innerHTML = ''; ui.dots.innerHTML = '';
+      if (list.length > 1) {
+        ui.thumbs.hidden = false;
+        list.forEach(function (it, i) {
+          var t = el('img'); t.src = it.src; t.alt = ''; t.loading = 'lazy';
+          t.addEventListener('click', function () { pick(i); });
+          ui.thumbs.appendChild(t);
+          ui.dots.appendChild(el('span'));
+        });
+      }
+      ui.img.onload = function () { if (token === photoToken) ui.hero.hidden = false; };
+      ui.img.onerror = function () { if (list.length > 1) { list.splice(current, 1); pick(Math.min(current, list.length - 1)); } };
+      // Swipe left / right on the photo to move through the set; tap to enlarge.
+      var x0 = null, y0 = null, moved = false;
+      ui.img.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; moved = false; }, { passive: true });
+      ui.img.addEventListener('touchmove', function (e) { if (x0 != null && Math.abs(e.touches[0].clientX - x0) > 10) moved = true; }, { passive: true });
+      ui.img.addEventListener('touchend', function (e) {
+        if (x0 == null) return;
+        var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+        if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) && list.length > 1) { pick((current + (dx < 0 ? 1 : list.length - 1)) % list.length); e.preventDefault(); }
+      });
+      ui.img.addEventListener('click', function () { if (!moved) openLightbox(list, current, function (i) { pick(i); }); });
+      pick(0);
+
+      function pick(i) {
+        current = i;
+        ui.img.src = list[i].src;
+        ui.counter.textContent = (i + 1) + ' / ' + list.length;
+        ui.counter.hidden = list.length < 2;
+        ui.credit.innerHTML = '';
+        if (list[i].page) { var a = el('a', null, 'Wikimedia Commons'); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener'; ui.credit.appendChild(a); }
+        var r = el('a', null, 'See on RHS'); r.href = rhsUrl(c); r.target = '_blank'; r.rel = 'noopener'; ui.credit.appendChild(r);
+        Array.prototype.forEach.call(ui.thumbs.children, function (t, k) { t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+        Array.prototype.forEach.call(ui.dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      }
+    }
+  }
+
+  function openLightbox(list, index, onChange) {
+    var lb = el('div', 'lightbox');
+    var stage = el('div', 'stage'); var big = el('img'); big.alt = '';
+    stage.appendChild(big); lb.appendChild(stage);
+    var bar = el('div', 'bar');
+    var prev = el('button', null, '‹ Prev'); prev.type = 'button';
+    var label = el('span'); var next = el('button', null, 'Next ›'); next.type = 'button';
+    var close = el('button', null, 'Done'); close.type = 'button';
+    bar.appendChild(prev); bar.appendChild(label); bar.appendChild(next); bar.appendChild(close);
+    lb.appendChild(bar);
+    var i = index;
+    function go(n) { i = (n + list.length) % list.length; big.src = list[i].src; label.textContent = (i + 1) + ' of ' + list.length; onChange(i); }
+    prev.hidden = next.hidden = list.length < 2;
+    prev.addEventListener('click', function () { go(i - 1); });
+    next.addEventListener('click', function () { go(i + 1); });
+    close.addEventListener('click', function () { lb.remove(); });
+    stage.addEventListener('click', function () { lb.remove(); });
+    var x0 = null;
+    big.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    big.addEventListener('touchend', function (e) {
+      if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) >= 40 && list.length > 1) { go(i + (dx < 0 ? 1 : -1)); e.preventDefault(); e.stopPropagation(); }
+    });
+    big.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.body.appendChild(lb);
+    go(i);
   }
 
   // ------------------------------------------------------------------
@@ -911,15 +909,11 @@
     if (state.level === 'hard') {
       if (state.typed.length >= 60) return;
       if (ch === ' ' && (state.typed === '' || state.typed.slice(-1) === ' ')) return;
-      state.typed += ch;
-      paintCells();
-      return;
+      state.typed += ch; paintCells(); return;
     }
-    if (ch === ' ') return;
     if (!/[a-z]/i.test(ch)) return;
     if (state.cursor >= state.blanks.length) return;
-    var cell = state.blanks[state.cursor];
-    var wordRole = null;
+    var cell = state.blanks[state.cursor], wordRole = null;
     state.words.forEach(function (w) { if (w.cells.indexOf(cell) >= 0) wordRole = w; });
     var isFirstOfGenus = wordRole && wordRole.role === 'genus' && wordRole.text !== '×' && wordRole.cells.indexOf(cell) === 0;
     cell.val = isFirstOfGenus ? ch.toUpperCase() : ch.toLowerCase();
@@ -929,16 +923,8 @@
 
   function backspace() {
     if (state.checked || state.done || !state.current) return;
-    if (state.level === 'hard') {
-      state.typed = state.typed.slice(0, -1);
-      paintCells();
-      return;
-    }
-    if (state.cursor > 0) {
-      state.cursor--;
-      state.blanks[state.cursor].val = '';
-      paintCells();
-    }
+    if (state.level === 'hard') { state.typed = state.typed.slice(0, -1); paintCells(); return; }
+    if (state.cursor > 0) { state.cursor--; state.blanks[state.cursor].val = ''; paintCells(); }
   }
 
   function submit() {
@@ -949,21 +935,16 @@
 
   function normalise(s) { return s.trim().replace(/×/g, 'x').replace(/\s+/g, ' ').toLowerCase(); }
   function withoutHybridSign(s) { return normalise(s).replace(/(^| )x( |$)/g, ' ').replace(/\s+/g, ' ').trim(); }
-  function sameName(typed, answer) {
-    return normalise(typed) === normalise(answer) || withoutHybridSign(typed) === withoutHybridSign(answer);
-  }
+  function sameName(typed, answer) { return normalise(typed) === normalise(answer) || withoutHybridSign(typed) === withoutHybridSign(answer); }
 
   function check() {
     var c = state.current, correct;
-    var fb = $('feedback');
     if (state.level === 'hard') {
       if (!state.typed.trim()) { nudge(); return; }
       correct = sameName(state.typed, key(c));
-      var t = $('typed');
-      t.classList.add(correct ? 'ok' : 'bad');
+      $('typed').classList.add(correct ? 'ok' : 'bad');
     } else {
-      var unfilled = state.blanks.some(function (cell) { return !cell.val; });
-      if (unfilled) { nudge(); return; }
+      if (state.blanks.some(function (cell) { return !cell.val; })) { nudge(); return; }
       correct = true;
       state.blanks.forEach(function (cell) {
         var good = cell.val.toLowerCase() === cell.ch.toLowerCase();
@@ -975,13 +956,10 @@
     finish(correct, false);
   }
 
-  function reveal() {
+  function revealAnswer() {
     var c = state.current;
-    if (state.level === 'hard') {
-      state.typed = key(c); paintCells(); $('typed').classList.add('bad');
-    } else {
-      state.blanks.forEach(function (cell) { cell.val = cell.ch; cell.el.textContent = cell.ch; cell.el.classList.add('bad'); });
-    }
+    if (state.level === 'hard') { state.typed = key(c); paintCells(); $('typed').classList.add('bad'); }
+    else { state.blanks.forEach(function (cell) { cell.val = cell.ch; cell.el.textContent = cell.ch; cell.el.classList.add('bad'); }); }
     finish(false, true);
   }
 
@@ -995,9 +973,7 @@
     if (correct) state.ok++; else state.bad++;
     if (!correct) {
       if (state.missed.indexOf(c) < 0) state.missed.push(c);
-      // Put the card back a few places down the queue so it comes round again.
-      var at = Math.min(state.queue.length, 3);
-      state.queue.splice(at, 0, c);
+      state.queue.splice(Math.min(state.queue.length, 3), 0, c);   // comes round again shortly
     }
     fb.className = 'feedback ' + (correct ? 'ok' : 'bad');
     fb.innerHTML = '';
@@ -1005,9 +981,8 @@
     fb.appendChild(el('span', 'full', k));
     fb.appendChild(el('span', 'note', correct ? 'Press Next to continue.' : 'This card will come round again shortly.'));
     var rb = $('revealBtn'); if (rb) rb.hidden = true;
-    var nextBtn = el('button', 'btn primary', 'Next'); nextBtn.type = 'button';
-    nextBtn.addEventListener('click', nextCard);
-    cardEl.querySelector('.card-actions').appendChild(nextBtn);
+    var nextBtn = el('button', 'btn-fill', 'Next'); nextBtn.type = 'button'; nextBtn.addEventListener('click', nextCard);
+    $('actions').appendChild(nextBtn);
     renderKeyboard();
     updateMeta();
   }
@@ -1015,9 +990,7 @@
   function nudge() {
     var a = $('answer');
     a.classList.remove('shake'); void a.offsetWidth; a.classList.add('shake');
-    var fb = $('feedback');
-    fb.className = 'feedback';
-    fb.innerHTML = '';
+    var fb = $('feedback'); fb.className = 'feedback'; fb.innerHTML = '';
     fb.appendChild(el('span', 'note', state.level === 'hard' ? 'Type the name first.' : 'Fill every dash first.'));
   }
 
@@ -1032,7 +1005,7 @@
   function renderKeyboard() {
     kbEl.innerHTML = '';
     ROWS.forEach(function (row, r) {
-      var rowEl = el('div', 'row' + (r === 1 ? ' mid' : ''));
+      var rowEl = el('div', 'row-k' + (r === 1 ? ' mid' : ''));
       if (r === 2) rowEl.appendChild(makeKey('shift', 'wide shift', state.shift ? SHIFT_SVG_ON : SHIFT_SVG));
       row.split('').forEach(function (ch) {
         var k = makeKey(ch, 'letter', null);
@@ -1043,10 +1016,10 @@
       if (r === 2) rowEl.appendChild(makeKey('backspace', 'wide del', DEL_SVG));
       kbEl.appendChild(rowEl);
     });
-    var bottom = el('div', 'row');
+    var bottom = el('div', 'row-k');
     bottom.appendChild(makeKey('-', 'dash', null)).textContent = '-';
     bottom.appendChild(makeKey(' ', 'space', null)).textContent = 'space';
-    var ret = makeKey('enter', 'ret' + (state.checked ? ' next' : ''), null);
+    var ret = makeKey('enter', 'ret', null);
     ret.textContent = state.done ? 'Again' : (state.checked ? 'Next' : 'Check');
     bottom.appendChild(ret);
     kbEl.appendChild(bottom);
@@ -1056,54 +1029,34 @@
   }
 
   function makeKey(code, cls, html) {
-    var b = el('button', 'key ' + cls);
-    b.type = 'button';
+    var b = el('button', 'key ' + cls); b.type = 'button';
     b.setAttribute('data-code', code);
     if (html) b.innerHTML = html;
-    var label = { shift: 'Shift', backspace: 'Delete', enter: 'Return', ' ': 'Space', '-': 'Hyphen' }[code] || code;
-    b.setAttribute('aria-label', label);
+    b.setAttribute('aria-label', { shift: 'Shift', backspace: 'Delete', enter: 'Return', ' ': 'Space', '-': 'Hyphen' }[code] || code);
     return b;
   }
 
   function pressKey(code) {
     if (code === 'shift') { state.shift = !state.shift; renderKeyboard(); return; }
     if (code === 'backspace') { backspace(); return; }
-    if (code === 'enter') { if (state.done) { startRound(); } else { submit(); } return; }
+    if (code === 'enter') { if (state.done) startRound(); else submit(); return; }
     var ch = code;
     if (/[a-z]/.test(ch) && state.shift) { ch = ch.toUpperCase(); state.shift = false; renderKeyboard(); }
     typeChar(ch);
   }
 
   kbEl.addEventListener('pointerdown', function (e) {
-    var b = e.target.closest('.key');
-    if (!b) return;
-    e.preventDefault();
-    pressKey(b.getAttribute('data-code'));
+    var b = e.target.closest('.key'); if (!b) return;
+    e.preventDefault(); pressKey(b.getAttribute('data-code'));
   });
   kbEl.addEventListener('contextmenu', function (e) { e.preventDefault(); });
 
-  // Physical keyboard for desktop use
   document.addEventListener('keydown', function (e) {
-    if (!$('sheetWrap').hidden) return;
+    if (!$('sheetWrap').hidden || $('practice').hidden) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key === 'Backspace') { e.preventDefault(); backspace(); }
     else if (e.key === 'Enter') { e.preventDefault(); pressKey('enter'); }
     else if (e.key.length === 1 && /[a-z \-]/i.test(e.key)) { e.preventDefault(); typeChar(e.key); }
-  });
-
-  // ------------------------------------------------------------------
-  // Level switch
-  // ------------------------------------------------------------------
-  function setLevel(level) {
-    state.level = level;
-    save(STORE_LEVEL, level);
-    ['easy', 'medium', 'hard'].forEach(function (l) {
-      $('lvl-' + l).setAttribute('aria-pressed', l === level ? 'true' : 'false');
-    });
-    startRound();
-  }
-  ['easy', 'medium', 'hard'].forEach(function (l) {
-    $('lvl-' + l).addEventListener('click', function () { if (state.level !== l) setLevel(l); });
   });
 
   // ------------------------------------------------------------------
@@ -1113,6 +1066,7 @@
   function openSheet() { deckText.value = state.deckText; deckErr.textContent = ''; sheetWrap.hidden = false; deckText.focus(); }
   function closeSheet() { sheetWrap.hidden = true; }
   $('deckBtn').addEventListener('click', openSheet);
+  $('deckBtnLevels').addEventListener('click', openSheet);
   $('cancelDeck').addEventListener('click', closeSheet);
   sheetWrap.addEventListener('click', function (e) { if (e.target === sheetWrap) closeSheet(); });
   $('resetDeck').addEventListener('click', function () { deckText.value = SAMPLE; deckErr.textContent = ''; });
@@ -1123,7 +1077,8 @@
     state.deckText = deckText.value;
     if (deckText.value.trim() === SAMPLE.trim()) remove(STORE_DECK); else save(STORE_DECK, deckText.value);
     closeSheet();
-    startRound();
+    renderDeckStats();
+    if (!$('practice').hidden) startRound();
   });
 
   // ------------------------------------------------------------------
@@ -1133,10 +1088,8 @@
   if (savedDeck && parseDeck(savedDeck).cards.length) state.deckText = savedDeck;
   var savedLevel = load(STORE_LEVEL);
   if (savedLevel === 'medium' || savedLevel === 'hard') state.level = savedLevel;
-  ['easy', 'medium', 'hard'].forEach(function (l) {
-    $('lvl-' + l).setAttribute('aria-pressed', l === state.level ? 'true' : 'false');
-  });
-  startRound();
+  renderDeckStats();
+  show('splash');
 })();
 </script>
 </body>
