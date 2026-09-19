@@ -198,6 +198,8 @@
     display: flex; flex-direction: column;
   }
   .hero { position: relative; background: var(--fill); border-radius: 22px 22px 0 0; overflow: hidden; }
+  .hero.failed img.photo { opacity: 0; }
+  .hero.failed .counter { left: 12px; right: auto; background: var(--red); }
   .summary { border-radius: 22px; }
   .hero img.photo { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; cursor: zoom-in; }
   .hero .counter {
@@ -925,8 +927,12 @@
           ui.dots.appendChild(el('span'));
         });
       }
-      ui.img.onload = function () { if (token === photoToken) ui.hero.hidden = false; };
-      ui.img.onerror = function () { if (list.length > 1) { list.splice(current, 1); pick(Math.min(current, list.length - 1)); } };
+      ui.img.onload = function () { if (token === photoToken) { ui.hero.hidden = false; ui.hero.classList.remove('failed'); } };
+      ui.img.onerror = function () {
+        if (list.length > 1) { list.splice(current, 1); pick(Math.min(current, list.length - 1)); return; }
+        // Nothing in the set would load: say so on the card instead of showing nothing.
+        if (token === photoToken) { ui.hero.hidden = false; ui.hero.classList.add('failed'); ui.counter.hidden = false; ui.counter.textContent = 'Photo didn\u2019t load'; }
+      };
       // Swipe left / right on the photo to move through the set; tap to enlarge.
       var x0 = null, y0 = null, moved = false;
       ui.img.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; moved = false; }, { passive: true });
