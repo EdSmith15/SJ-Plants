@@ -1,0 +1,156 @@
+# Photo credits
+
+RHS photos are reproduced from the RHS plant pages linked below and remain the copyright of the Royal Horticultural Society. Wikimedia Commons photos are used under the licence shown.
+
+- **× Cuprocyparis leylandii** — `cuprocyparis-leylandii-2.jpg` — [File:Cupressocyparis_leylandii.jpg](https://commons.wikimedia.org/wiki/File%3ACupressocyparis_leylandii.jpg) — W.Baumgartner — CC BY-SA 3.0
+- **× Cuprocyparis leylandii** — `cuprocyparis-leylandii-3.jpg` — [File:Carmel_Monterey_Cypress.jpg](https://commons.wikimedia.org/wiki/File%3ACarmel_Monterey_Cypress.jpg) — Amadscientist — CC BY-SA 3.0
+- **× Cuprocyparis leylandii** — `cuprocyparis-leylandii.jpg` — [RHS_WSY0040276_11984.JPG](https://www.rhs.org.uk/plants/190606/%C3%97-cuprocyparis-leylandii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Acer griseum** — `acer-griseum.jpg` — [RHS_PUB0017882_21.JPG](https://www.rhs.org.uk/plants/197/acer-griseum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Acer griseum** — `acer-griseum-2.jpg` — [RHS_WSYD0014265_21.JPG](https://www.rhs.org.uk/plants/197/acer-griseum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Acer griseum** — `acer-griseum-3.jpg` — [RHS_WSYD0014345_21.JPG](https://www.rhs.org.uk/plants/197/acer-griseum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Acer griseum** — `acer-griseum-4.jpg` — [Web_Use-MAR0055029_21.jpg](https://www.rhs.org.uk/plants/197/acer-griseum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Aesculus hippocastanum** — `aesculus-hippocastanum.jpg` — [moja09130.jpg](https://www.rhs.org.uk/plants/585/aesculus-hippocastanum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Aesculus hippocastanum** — `aesculus-hippocastanum-2.jpg` — [sepa01435.jpg](https://www.rhs.org.uk/plants/585/aesculus-hippocastanum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Aesculus hippocastanum** — `aesculus-hippocastanum-3.jpg` — [visi27219.jpg](https://www.rhs.org.uk/plants/585/aesculus-hippocastanum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Agave americana** — `agave-americana-3.jpg` — [File:Agave_July_2011-1.jpg](https://commons.wikimedia.org/wiki/File%3AAgave_July_2011-1.jpg) — Alvesgaspar — CC BY-SA 3.0
+- **Agave americana** — `agave-americana.jpg` — [Web_Use-PUB0000872_2106.jpg](https://www.rhs.org.uk/plants/95075/agave-americana/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Agave americana** — `agave-americana-2.jpg` — [WSY0039112_13711.jpg](https://www.rhs.org.uk/plants/95075/agave-americana/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Araucaria araucana** — `araucaria-araucana.jpg` — [sepa13922.jpg](https://www.rhs.org.uk/plants/1456/araucaria-araucana/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Araucaria araucana** — `araucaria-araucana-2.jpg` — [visi23293.jpg](https://www.rhs.org.uk/plants/1456/araucaria-araucana/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Araucaria araucana** — `araucaria-araucana-3.jpg` — [WSYD0000996_4380.jpg](https://www.rhs.org.uk/plants/1456/araucaria-araucana/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Arbutus unedo** — `arbutus-unedo.jpg` — [moja03592.jpg](https://www.rhs.org.uk/plants/1473/arbutus-unedo/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Arbutus unedo** — `arbutus-unedo-2.jpg` — [RHS_PUB0007929_158.JPG](https://www.rhs.org.uk/plants/1473/arbutus-unedo/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Arbutus unedo** — `arbutus-unedo-3.jpg` — [WSY0034311_5684.jpg](https://www.rhs.org.uk/plants/1473/arbutus-unedo/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Asplenium scolopendrium** — `asplenium-scolopendrium-3.jpg` — [File:Asplenium_scolopendrium.jpg](https://commons.wikimedia.org/wiki/File%3AAsplenium_scolopendrium.jpg) — No machine-readable author provided. MPF assumed (based on copyright claims). — CC BY 2.5
+- **Asplenium scolopendrium** — `asplenium-scolopendrium.jpg` — [eyma01076.jpg](https://www.rhs.org.uk/plants/25910/asplenium-scolopendrium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Asplenium scolopendrium** — `asplenium-scolopendrium-2.jpg` — [sepa01611.jpg](https://www.rhs.org.uk/plants/25910/asplenium-scolopendrium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Berberis darwinii** — `berberis-darwinii.jpg` — [elbo13601.jpg](https://www.rhs.org.uk/plants/2105/berberis-darwinii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Berberis darwinii** — `berberis-darwinii-2.jpg` — [rile00100.jpg](https://www.rhs.org.uk/plants/2105/berberis-darwinii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Berberis darwinii** — `berberis-darwinii-3.jpg` — [visi65591.jpg](https://www.rhs.org.uk/plants/2105/berberis-darwinii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Buxus sempervirens** — `buxus-sempervirens.jpg` — [moja03901.jpg](https://www.rhs.org.uk/plants/2579/buxus-sempervirens/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Buxus sempervirens** — `buxus-sempervirens-2.jpg` — [RHS_ADV0000253_273.JPG](https://www.rhs.org.uk/plants/2579/buxus-sempervirens/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Buxus sempervirens** — `buxus-sempervirens-3.jpg` — [visi101732.jpg](https://www.rhs.org.uk/plants/2579/buxus-sempervirens/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Capsella bursa-pastoris** — `capsella-bursa-pastoris-3.jpg` — [File:A_Field_of_Shepherd’s-purse.jpg](https://commons.wikimedia.org/wiki/File%3AA_Field_of_Shepherd%E2%80%99s-purse.jpg) — SaltySemanticSchmuck — CC BY-SA 4.0
+- **Capsella bursa-pastoris** — `capsella-bursa-pastoris.jpg` — [RHS_WSYD0014517_11873.JPG](https://www.rhs.org.uk/plants/105534/capsella-bursa-pastoris/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Capsella bursa-pastoris** — `capsella-bursa-pastoris-2.jpg` — [RHS_WSYD0015991_11873.JPG](https://www.rhs.org.uk/plants/105534/capsella-bursa-pastoris/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Choisya ternata** — `choisya-ternata.jpg` — [RHS_HYD0000431_427.JPG](https://www.rhs.org.uk/plants/3766/choisya-ternata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Choisya ternata** — `choisya-ternata-2.jpg` — [RHS_PUB0020801_427.JPG](https://www.rhs.org.uk/plants/3766/choisya-ternata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Choisya ternata** — `choisya-ternata-3.jpg` — [WSY0034521_4597.jpg](https://www.rhs.org.uk/plants/3766/choisya-ternata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Clematis armandi** — `clematis-armandi-2.jpg` — [File:Clematis_armandii01-4035~2015_03_22.JPG](https://commons.wikimedia.org/wiki/File%3AClematis_armandii01-4035~2015_03_22.JPG) — This picture is a work by Emmanuel Douzery.
+Please credit this with: Picture : Emmanuel Douzery in the immediate vicinity of the picture.
+If you use one of my works, please email me (account needed) or leave me a short message on my discussion page. It would be greatly appreciated!
+Do not copy this picture illegally by ignoring the terms of the license below, as it is not in the public domain.
+If you would like special permission to use, license, or purchase the picture, please contact me to negotiate terms. — CC BY-SA 4.0
+- **Clematis armandi** — `clematis-armandi-3.jpg` — [File:(MHNT)_Clematis_armandii_-_flower.jpg](https://commons.wikimedia.org/wiki/File%3A%28MHNT%29_Clematis_armandii_-_flower.jpg) — Didier Descouens — CC BY-SA 4.0
+- **Clematis armandi** — `clematis-armandi.jpg` — [WSY0016889_3806.jpg](https://www.rhs.org.uk/plants/3923/clematis-armandi/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Clivia miniata** — `clivia-miniata-2.jpg` — [File:Clivia_miniata,_blomme_en_vrugte,_Manie_van_der_Schijff_BT,_a.jpg](https://commons.wikimedia.org/wiki/File%3AClivia_miniata%2C_blomme_en_vrugte%2C_Manie_van_der_Schijff_BT%2C_a.jpg) — JMK — CC BY-SA 3.0
+- **Clivia miniata** — `clivia-miniata-3.jpg` — [File:CliviaMiniata.jpg](https://commons.wikimedia.org/wiki/File%3ACliviaMiniata.jpg) — unknown author — CC BY-SA 3.0
+- **Clivia miniata** — `clivia-miniata.jpg` — [WSY0034843_6023.jpg](https://www.rhs.org.uk/plants/4036/clivia-miniata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cordyline australis** — `cordyline-australis-3.jpg` — [File:CabbageTreeKaihoka.jpg](https://commons.wikimedia.org/wiki/File%3ACabbageTreeKaihoka.jpg) — Jade — CC BY-SA 2.0
+- **Cordyline australis** — `cordyline-australis.jpg` — [moja02329.jpg](https://www.rhs.org.uk/plants/4361/cordyline-australis/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cordyline australis** — `cordyline-australis-2.jpg` — [moja02537.jpg](https://www.rhs.org.uk/plants/4361/cordyline-australis/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cornus sanguinea** — `cornus-sanguinea.jpg` — [sepa14984.jpg](https://www.rhs.org.uk/plants/4408/cornus-sanguinea/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cornus sanguinea** — `cornus-sanguinea-2.jpg` — [vaem06998.jpg](https://www.rhs.org.uk/plants/4408/cornus-sanguinea/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cornus sanguinea** — `cornus-sanguinea-3.jpg` — [WSY0036006_3504.jpg](https://www.rhs.org.uk/plants/4408/cornus-sanguinea/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cyclamen hederifolium** — `cyclamen-hederifolium.jpg` — [PUB0003091_610.jpg](https://www.rhs.org.uk/plants/5145/cyclamen-hederifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cyclamen hederifolium** — `cyclamen-hederifolium-2.jpg` — [PUB0011642_610.jpg](https://www.rhs.org.uk/plants/5145/cyclamen-hederifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cyclamen hederifolium** — `cyclamen-hederifolium-3.jpg` — [Web_Use-_KOT5123_610.jpg](https://www.rhs.org.uk/plants/5145/cyclamen-hederifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Cyclamen hederifolium** — `cyclamen-hederifolium-4.jpg` — [Web_Use-_KOT5132_610.jpg](https://www.rhs.org.uk/plants/5145/cyclamen-hederifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Daphne bholua** — `daphne-bholua.jpg` — [_KOS7725.jpg](https://www.rhs.org.uk/plants/5311/daphne-bholua/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Daphne bholua** — `daphne-bholua-2.jpg` — [RHS_WSYD0012782_6898.JPG](https://www.rhs.org.uk/plants/5311/daphne-bholua/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Daphne bholua** — `daphne-bholua-3.jpg` — [RHS_WSYD0015706_6898.JPG](https://www.rhs.org.uk/plants/5311/daphne-bholua/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Dracaena trifasciata** — `dracaena-trifasciata.jpg` — [Web_Use-_KOT5640_1777.jpg](https://www.rhs.org.uk/plants/16430/sansevieria-trifasciata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Dracaena trifasciata** — `dracaena-trifasciata-2.jpg` — [Web_Use-_KOT5670_1777.jpg](https://www.rhs.org.uk/plants/16430/sansevieria-trifasciata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Dracaena trifasciata** — `dracaena-trifasciata-3.jpg` — [Web_Use-_KOT5674_1777.jpg](https://www.rhs.org.uk/plants/16430/sansevieria-trifasciata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Dracaena trifasciata** — `dracaena-trifasciata-4.jpg` — [Web_Use-_KOT5679_1777.jpg](https://www.rhs.org.uk/plants/16430/sansevieria-trifasciata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Dracaena trifasciata** — `dracaena-trifasciata-5.jpg` — [WSY0034340_11014.jpg](https://www.rhs.org.uk/plants/16430/sansevieria-trifasciata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Elymus repens** — `elymus-repens-2.jpg` — [File:Kweek_Elytrigia_repens.jpg](https://commons.wikimedia.org/wiki/File%3AKweek_Elytrigia_repens.jpg) — Rasbak — CC BY-SA 3.0
+- **Elymus repens** — `elymus-repens-3.jpg` — [File:Kweek_ligula_Elytrigia_repens.jpg](https://commons.wikimedia.org/wiki/File%3AKweek_ligula_Elytrigia_repens.jpg) — Rasbak — CC BY-SA 3.0
+- **Elymus repens** — `elymus-repens.jpg` — [WSYD0016013.jpg](https://www.rhs.org.uk/plants/6342/elymus-repens/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Erica × darleyensis** — `erica-darleyensis-3.jpg` — [File:Erica_darleyensis_a1.jpg](https://commons.wikimedia.org/wiki/File%3AErica_darleyensis_a1.jpg) — Jerzy Opioła — CC BY-SA 4.0
+- **Erica × darleyensis** — `erica-darleyensis.jpg` — [vaem02679.jpg](https://www.rhs.org.uk/plants/93146/erica-%C3%97-darleyensis/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Erica × darleyensis** — `erica-darleyensis-2.jpg` — [visi155942.jpg](https://www.rhs.org.uk/plants/93146/erica-%C3%97-darleyensis/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fagus sylvatica** — `fagus-sylvatica.jpg` — [jope02793.jpg](https://www.rhs.org.uk/plants/7127/fagus-sylvatica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fagus sylvatica** — `fagus-sylvatica-2.jpg` — [visi29143.jpg](https://www.rhs.org.uk/plants/7127/fagus-sylvatica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fagus sylvatica** — `fagus-sylvatica-3.jpg` — [visi32414.jpg](https://www.rhs.org.uk/plants/7127/fagus-sylvatica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fatsia japonica** — `fatsia-japonica.jpg` — [RHS_WSYD0000553_788.JPG](https://www.rhs.org.uk/plants/7147/fatsia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fatsia japonica** — `fatsia-japonica-2.jpg` — [RHS_WSYD0003474_788.JPG](https://www.rhs.org.uk/plants/7147/fatsia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fatsia japonica** — `fatsia-japonica-3.jpg` — [Web_Use-PUB0012020_788.jpg](https://www.rhs.org.uk/plants/7147/fatsia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Fatsia japonica** — `fatsia-japonica-4.jpg` — [WSY0022816_4548.jpg](https://www.rhs.org.uk/plants/7147/fatsia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Griselinia littoralis** — `griselinia-littoralis-3.jpg` — [File:Griselinia_littoralis_258334503.jpg](https://commons.wikimedia.org/wiki/File%3AGriselinia_littoralis_258334503.jpg) — Mike Dickison — CC BY 4.0
+- **Griselinia littoralis** — `griselinia-littoralis.jpg` — [moja02566.jpg](https://www.rhs.org.uk/plants/8123/griselinia-littoralis/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Griselinia littoralis** — `griselinia-littoralis-2.jpg` — [WSY0034506_4674.jpg](https://www.rhs.org.uk/plants/8123/griselinia-littoralis/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Hedera helix** — `hedera-helix.jpg` — [MAR0031136_8328.jpg](https://www.rhs.org.uk/plants/43091/hedera-helix/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Hedera helix** — `hedera-helix-2.jpg` — [rera02542.jpg](https://www.rhs.org.uk/plants/43091/hedera-helix/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Hedera helix** — `hedera-helix-3.jpg` — [visi102089.jpg](https://www.rhs.org.uk/plants/43091/hedera-helix/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Helleborus × hybridus** — `helleborus-hybridus.jpg` — [GWIS1146.jpg](https://www.rhs.org.uk/plants/124882/helleborus-%C3%97-hybridus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Helleborus × hybridus** — `helleborus-hybridus-2.jpg` — [PUB0015728_5086.jpg](https://www.rhs.org.uk/plants/124882/helleborus-%C3%97-hybridus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Helleborus × hybridus** — `helleborus-hybridus-3.jpg` — [rera04178.jpg](https://www.rhs.org.uk/plants/124882/helleborus-%C3%97-hybridus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Helleborus × hybridus** — `helleborus-hybridus-4.jpg` — [rera04179.jpg](https://www.rhs.org.uk/plants/124882/helleborus-%C3%97-hybridus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ilex aquifolium** — `ilex-aquifolium-3.jpg` — [File:Ilex-aquifolium_(Europaeische_Stechpalme-1).jpg](https://commons.wikimedia.org/wiki/File%3AIlex-aquifolium_%28Europaeische_Stechpalme-1%29.jpg) — Jürgen Howaldt — CC BY-SA 2.0 de
+- **Ilex aquifolium** — `ilex-aquifolium.jpg` — [elbo15963.jpg](https://www.rhs.org.uk/plants/9087/ilex-aquifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ilex aquifolium** — `ilex-aquifolium-2.jpg` — [WSYD0009440_6332.jpg](https://www.rhs.org.uk/plants/9087/ilex-aquifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ligustrum ovalifolium** — `ligustrum-ovalifolium.jpg` — [elbo14556.jpg](https://www.rhs.org.uk/plants/91966/ligustrum-ovalifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ligustrum ovalifolium** — `ligustrum-ovalifolium-2.jpg` — [visi156415.jpg](https://www.rhs.org.uk/plants/91966/ligustrum-ovalifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ligustrum ovalifolium** — `ligustrum-ovalifolium-3.jpg` — [visi191021.jpg](https://www.rhs.org.uk/plants/91966/ligustrum-ovalifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Liriope muscari** — `liriope-muscari.jpg` — [visi92532.jpg](https://www.rhs.org.uk/plants/10344/liriope-muscari/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Liriope muscari** — `liriope-muscari-2.jpg` — [Web_Use-PUB0008619_3390.jpg](https://www.rhs.org.uk/plants/10344/liriope-muscari/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Liriope muscari** — `liriope-muscari-3.jpg` — [WSY0036707_5175.jpg](https://www.rhs.org.uk/plants/10344/liriope-muscari/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Monstera deliciosa** — `monstera-deliciosa-3.jpg` — [File:Monstera_deliciosa2.jpg](https://commons.wikimedia.org/wiki/File%3AMonstera_deliciosa2.jpg) — unknown author — CC BY-SA 3.0
+- **Monstera deliciosa** — `monstera-deliciosa.jpg` — [visi187210.jpg](https://www.rhs.org.uk/plants/11192/monstera-deliciosa-f/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Monstera deliciosa** — `monstera-deliciosa-2.jpg` — [visi50224.jpg](https://www.rhs.org.uk/plants/11192/monstera-deliciosa-f/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Muscari armeniacum** — `muscari-armeniacum-3.jpg` — [File:Muscari_armeniacum_4.jpg](https://commons.wikimedia.org/wiki/File%3AMuscari_armeniacum_4.jpg) — Opioła Jerzy (Poland) — CC BY 2.5
+- **Muscari armeniacum** — `muscari-armeniacum.jpg` — [grjo00667.jpg](https://www.rhs.org.uk/plants/11247/muscari-armeniacum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Muscari armeniacum** — `muscari-armeniacum-2.jpg` — [hemo00709.jpg](https://www.rhs.org.uk/plants/11247/muscari-armeniacum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ophiopogon planiscapus** — `ophiopogon-planiscapus.jpg` — [elbo57432.jpg](https://www.rhs.org.uk/plants/11839/ophiopogon-planiscapus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ophiopogon planiscapus** — `ophiopogon-planiscapus-2.jpg` — [elbo57433.jpg](https://www.rhs.org.uk/plants/11839/ophiopogon-planiscapus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Ophiopogon planiscapus** — `ophiopogon-planiscapus-3.jpg` — [elbo57435.jpg](https://www.rhs.org.uk/plants/11839/ophiopogon-planiscapus/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Phormium tenax** — `phormium-tenax.jpg` — [elbo28193.jpg](https://www.rhs.org.uk/plants/12791/phormium-tenax/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Phormium tenax** — `phormium-tenax-2.jpg` — [elbo37083.jpg](https://www.rhs.org.uk/plants/12791/phormium-tenax/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Phormium tenax** — `phormium-tenax-3.jpg` — [WSY0034729_4757.jpg](https://www.rhs.org.uk/plants/12791/phormium-tenax/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Photinia × fraseri** — `photinia-fraseri-3.jpg` — [File:Photinia_fraseri_B.JPG](https://commons.wikimedia.org/wiki/File%3APhotinia_fraseri_B.JPG) — Wouter Hagens — Public domain
+- **Photinia × fraseri** — `photinia-fraseri.jpg` — [elbo39254.jpg](https://www.rhs.org.uk/plants/94829/photinia-%C3%97-fraseri-red-robin/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Photinia × fraseri** — `photinia-fraseri-2.jpg` — [WSY0016516_4520.jpg](https://www.rhs.org.uk/plants/94829/photinia-%C3%97-fraseri-red-robin/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Phyllostachys aurea** — `phyllostachys-aurea.jpg` — [kllu00047.jpg](https://www.rhs.org.uk/plants/75274/phyllostachys-aurea/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Phyllostachys aurea** — `phyllostachys-aurea-2.jpg` — [RHS_RHS-0002080_1448.JPG](https://www.rhs.org.uk/plants/75274/phyllostachys-aurea/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Phyllostachys aurea** — `phyllostachys-aurea-3.jpg` — [WSY0035393_3391.jpg](https://www.rhs.org.uk/plants/75274/phyllostachys-aurea/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Pittosporum tenuifolium** — `pittosporum-tenuifolium.jpg` — [_KOS8439.jpg](https://www.rhs.org.uk/plants/13202/pittosporum-tenuifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Pittosporum tenuifolium** — `pittosporum-tenuifolium-2.jpg` — [_KOS8445.jpg](https://www.rhs.org.uk/plants/13202/pittosporum-tenuifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Pittosporum tenuifolium** — `pittosporum-tenuifolium-3.jpg` — [_KOS8451.jpg](https://www.rhs.org.uk/plants/13202/pittosporum-tenuifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Pittosporum tenuifolium** — `pittosporum-tenuifolium-4.jpg` — [_KOS8468.jpg](https://www.rhs.org.uk/plants/13202/pittosporum-tenuifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Pittosporum tenuifolium** — `pittosporum-tenuifolium-5.jpg` — [_KOS8488.jpg](https://www.rhs.org.uk/plants/13202/pittosporum-tenuifolium/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Prunus serrula** — `prunus-serrula.jpg` — [_KOS7926.jpg](https://www.rhs.org.uk/plants/14025/prunus-serrula/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Prunus serrula** — `prunus-serrula-2.jpg` — [_KOS7927.jpg](https://www.rhs.org.uk/plants/14025/prunus-serrula/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Prunus serrula** — `prunus-serrula-3.jpg` — [WSY0035836_4335.jpg](https://www.rhs.org.uk/plants/14025/prunus-serrula/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Quercus robur** — `quercus-robur-3.jpg` — [File:Quercus_robur.jpg](https://commons.wikimedia.org/wiki/File%3AQuercus_robur.jpg) — unknown author — CC BY-SA 3.0
+- **Quercus robur** — `quercus-robur.jpg` — [rera04783.jpg](https://www.rhs.org.uk/plants/14294/quercus-robur/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Quercus robur** — `quercus-robur-2.jpg` — [sepa14782.jpg](https://www.rhs.org.uk/plants/14294/quercus-robur/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Salvia rosmarinus** — `salvia-rosmarinus-3.jpg` — [File:Rosemary_in_bloom.JPG](https://commons.wikimedia.org/wiki/File%3ARosemary_in_bloom.JPG) — Margalob — CC BY-SA 4.0
+- **Salvia rosmarinus** — `salvia-rosmarinus.jpg` — [kaan00022.jpg](https://www.rhs.org.uk/plants/384211/salvia-rosmarinus-ro/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Salvia rosmarinus** — `salvia-rosmarinus-2.jpg` — [RHS_WSYD0012977_6618.JPG](https://www.rhs.org.uk/plants/384211/salvia-rosmarinus-ro/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Sarcococca confusa** — `sarcococca-confusa.jpg` — [Web_Use-PUB0031199_1784.jpg](https://www.rhs.org.uk/plants/16452/sarcococca-confusa/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Sarcococca confusa** — `sarcococca-confusa-2.jpg` — [Web_Use-PUB0031205_1784.jpg](https://www.rhs.org.uk/plants/16452/sarcococca-confusa/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Sarcococca confusa** — `sarcococca-confusa-3.jpg` — [Web_Use-RHS_HH_January_2018_119_1784.jpg](https://www.rhs.org.uk/plants/16452/sarcococca-confusa/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Sempervivum arachnoideum** — `sempervivum-arachnoideum.jpg` — [Sempervivum_arachnoideum_1824.JPG](https://www.rhs.org.uk/plants/17075/sempervivum-arachnoideum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Sempervivum arachnoideum** — `sempervivum-arachnoideum-2.jpg` — [Sempervivum_arachnoideum-004_1824.JPG](https://www.rhs.org.uk/plants/17075/sempervivum-arachnoideum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Sempervivum arachnoideum** — `sempervivum-arachnoideum-3.jpg` — [WSY0034469_3373.jpg](https://www.rhs.org.uk/plants/17075/sempervivum-arachnoideum/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Skimmia japonica** — `skimmia-japonica.jpg` — [clha01553.jpg](https://www.rhs.org.uk/plants/17401/skimmia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Skimmia japonica** — `skimmia-japonica-2.jpg` — [RHS_RHS-0009298_10347.JPG](https://www.rhs.org.uk/plants/17401/skimmia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Skimmia japonica** — `skimmia-japonica-3.jpg` — [vaem08880.jpg](https://www.rhs.org.uk/plants/17401/skimmia-japonica/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Spathiphyllum wallisii** — `spathiphyllum-wallisii.jpg` — [sepa07602.jpg](https://www.rhs.org.uk/plants/17623/spathiphyllum-wallisii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Spathiphyllum wallisii** — `spathiphyllum-wallisii-2.jpg` — [Web_Use-Plant_profile_Peace_Lilly_06.jpg](https://www.rhs.org.uk/plants/17623/spathiphyllum-wallisii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Spathiphyllum wallisii** — `spathiphyllum-wallisii-3.jpg` — [WSY0035932_4041.jpg](https://www.rhs.org.uk/plants/17623/spathiphyllum-wallisii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Taxus baccata** — `taxus-baccata.jpg` — [GWIS729.jpg](https://www.rhs.org.uk/plants/18001/taxus-baccata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Taxus baccata** — `taxus-baccata-2.jpg` — [Web_Use-_TSC1962_1911.jpg](https://www.rhs.org.uk/plants/18001/taxus-baccata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Taxus baccata** — `taxus-baccata-3.jpg` — [Web_Use-PUB0000830_1911.jpg](https://www.rhs.org.uk/plants/18001/taxus-baccata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Taxus baccata** — `taxus-baccata-4.jpg` — [Web_Use-PUB0019533_1911.jpg](https://www.rhs.org.uk/plants/18001/taxus-baccata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Taxus baccata** — `taxus-baccata-5.jpg` — [WSY0024056_12129.jpg](https://www.rhs.org.uk/plants/18001/taxus-baccata/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Viburnum davidii** — `viburnum-davidii.jpg` — [elbo04528.jpg](https://www.rhs.org.uk/plants/18892/viburnum-davidii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Viburnum davidii** — `viburnum-davidii-2.jpg` — [rera00908.jpg](https://www.rhs.org.uk/plants/18892/viburnum-davidii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Viburnum davidii** — `viburnum-davidii-3.jpg` — [vaem01596.jpg](https://www.rhs.org.uk/plants/18892/viburnum-davidii/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Vinca major** — `vinca-major-3.jpg` — [File:Vinca_major_-_Flower_and_bud.jpg](https://commons.wikimedia.org/wiki/File%3AVinca_major_-_Flower_and_bud.jpg) — Didier Descouens — CC BY-SA 4.0
+- **Vinca major** — `vinca-major.jpg` — [vaem13158.jpg](https://www.rhs.org.uk/plants/18969/vinca-major/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Vinca major** — `vinca-major-2.jpg` — [WSY0052118_6177.jpg](https://www.rhs.org.uk/plants/18969/vinca-major/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia.jpg` — [File:Zamioculcas_zamiifolia_1.jpg](https://commons.wikimedia.org/wiki/File%3AZamioculcas_zamiifolia_1.jpg) — User:WeFt — CC BY-SA 3.0
+- **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-2.jpg` — [File:Zamioculcas_zamiifolia_bluete1.jpg](https://commons.wikimedia.org/wiki/File%3AZamioculcas_zamiifolia_bluete1.jpg) — Michelangelo76 — Public domain
+- **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-3.jpg` — [File:Raven_ZZ_Zamioculcas_Dowon_1.jpg](https://commons.wikimedia.org/wiki/File%3ARaven_ZZ_Zamioculcas_Dowon_1.jpg) — Dbwolfe — CC BY-SA 4.0
