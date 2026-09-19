@@ -39,6 +39,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No new photos."
           else
-            git commit -m "Add species photos from Wikimedia Commons"
+            git commit -m "Add species photos"
+            git pull --rebase origin main
             git push
           fi
