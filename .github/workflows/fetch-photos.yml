@@ -31,11 +31,14 @@ jobs:
       - name: Fetch photos
         run: python3 tools/fetch_photos.py
 
+      - name: Embed photo index in the page
+        run: python3 tools/embed_index.py
+
       - name: Commit photos
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add photos
+          git add photos index.html
           if git diff --cached --quiet; then
             echo "No new photos."
           else
