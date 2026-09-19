@@ -763,11 +763,13 @@
         });
         items.sort(function (a, b) { return (b.leadImage ? 1 : 0) - (a.leadImage ? 1 : 0); });
         items = items.slice(0, 5).map(function (it) {
-          // Wikimedia only serves the thumbnail widths it lists. 640 is one of
-          // them; the largest srcset entry is the safe fallback.
+          // Wikimedia only serves the thumbnail widths it pre-renders per file,
+          // so use the article's own srcset: smallest entry >= 600px, else largest.
           var srcs = it.srcset.map(function (e) { return e.src.indexOf('//') === 0 ? 'https:' + e.src : e.src; });
-          var largest = srcs[srcs.length - 1];
-          return { src: largest.replace(/\/\d+px-/, '/640px-'), alt: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
+          var w = function (u) { var m = /\/(\d+)px-/.exec(u); return m ? +m[1] : 0; };
+          var big = srcs.filter(function (u) { return w(u) >= 600; }).sort(function (a, b) { return w(a) - w(b); });
+          var largest = srcs.slice().sort(function (a, b) { return w(b) - w(a); })[0];
+          return { src: big[0] || largest, alt: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
         });
         if (!items.length) { lookup(); return; }
         save(cacheKey, JSON.stringify(items));

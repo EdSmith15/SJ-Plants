@@ -26,9 +26,10 @@ OUT = os.path.join(ROOT, "photos")
 UA = {"User-Agent": "BinomialDrill/1.0 (flashcard app; https://github.com/EdSmith15/SJ-Plants)"}
 SKIP = re.compile(r"map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol", re.I)
 PER_SPECIES = 3
-# Wikimedia only serves the thumbnail widths it lists (see https://w.wiki/GHai);
-# these are tried in order, then the article's own largest srcset URL.
-WIDTHS = (640, 800, 480, 400)
+# Wikimedia only serves the thumbnail widths it pre-renders for each file (see
+# https://w.wiki/GHai), so only the article's own srcset URLs are used: the
+# smallest one at least MIN_WIDTH wide, then the others largest first.
+MIN_WIDTH = 600
 
 
 def get(url, timeout=30):
@@ -92,11 +93,20 @@ def article_images(genus, species, wiki):
         out = []
         for it in items[:PER_SPECIES]:
             srcs = [("https:" + e["src"]) if e["src"].startswith("//") else e["src"] for e in it["srcset"]]
-            largest = srcs[-1]
-            candidates = [re.sub(r"/\d+px-", "/%dpx-" % w, largest, count=1) for w in WIDTHS] + [largest]
-            out.append((it["title"], candidates))
+            out.append((it["title"], order_by_size(srcs)))
         return out
     return []
+
+
+def width_of(url):
+    m = re.search(r"/(\d+)px-", url)
+    return int(m.group(1)) if m else 0
+
+
+def order_by_size(srcs):
+    big = sorted([u for u in srcs if width_of(u) >= MIN_WIDTH], key=width_of)
+    rest = sorted([u for u in srcs if width_of(u) < MIN_WIDTH], key=width_of, reverse=True)
+    return big + rest
 
 
 def download(candidates):

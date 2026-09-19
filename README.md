@@ -54,7 +54,7 @@ To keep photos with the repo for offline use, run:
 python3 tools/fetch_photos.py
 ```
 
-It saves up to three 640px photos per species into `photos/` and lists the
+It saves up to three photos per species into `photos/` and lists the
 source, author and licence in `photos/CREDITS.md`. Pass a deck file as the
 first argument to fetch photos for your own list. The GitHub Actions workflow
 in `.github/workflows/fetch-photos.yml` runs the same script automatically
