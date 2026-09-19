@@ -398,11 +398,11 @@
 <div class="sheet-wrap" id="sheetWrap" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <h2 id="sheetTitle">Your deck</h2>
-    <p>One plant per line: <code>Genus species | Common name | Family</code>. Family is optional. Add a fourth field with an image URL to show a photo. Edits are kept on this device.</p>
+    <p>One plant per line: <code>Genus species | Common name | Family | Photo URL | List number</code>. Everything after the name is optional. Write hybrids with an x or ×, e.g. <code>Erica × darleyensis</code>. Edits are kept on this device.</p>
     <textarea id="deckText" spellcheck="false"></textarea>
     <div class="err" id="deckErr"></div>
     <div class="row">
-      <button class="btn quiet" type="button" id="resetDeck">Restore sample deck</button>
+      <button class="btn quiet" type="button" id="resetDeck">Restore RHS list</button>
       <span class="spacer"></span>
       <button class="btn" type="button" id="cancelDeck">Cancel</button>
       <button class="btn primary" type="button" id="saveDeck">Save &amp; restart</button>
@@ -415,41 +415,57 @@
   'use strict';
 
   // ------------------------------------------------------------------
-  // Sample deck (common UK plants). Replace via the Deck button in-app.
+  // Default deck: the RHS Level 2 PCA1 plant list. Edit via the Deck button.
   // ------------------------------------------------------------------
   var SAMPLE = [
-    'Quercus robur | Pedunculate oak | Fagaceae',
-    'Fagus sylvatica | Beech | Fagaceae',
-    'Betula pendula | Silver birch | Betulaceae',
-    'Alnus glutinosa | Alder | Betulaceae',
-    'Corylus avellana | Hazel | Betulaceae',
-    'Fraxinus excelsior | Ash | Oleaceae',
-    'Acer pseudoplatanus | Sycamore | Sapindaceae',
-    'Ilex aquifolium | Holly | Aquifoliaceae',
-    'Taxus baccata | Yew | Taxaceae',
-    'Crataegus monogyna | Hawthorn | Rosaceae',
-    'Prunus spinosa | Blackthorn | Rosaceae',
-    'Rubus fruticosus | Bramble | Rosaceae',
-    'Sambucus nigra | Elder | Adoxaceae',
-    'Hedera helix | Ivy | Araliaceae',
-    'Urtica dioica | Stinging nettle | Urticaceae',
-    'Bellis perennis | Daisy | Asteraceae',
-    'Taraxacum officinale | Dandelion | Asteraceae',
-    'Achillea millefolium | Yarrow | Asteraceae',
-    'Ranunculus repens | Creeping buttercup | Ranunculaceae',
-    'Plantago lanceolata | Ribwort plantain | Plantaginaceae',
-    'Digitalis purpurea | Foxglove | Plantaginaceae',
-    'Trifolium repens | White clover | Fabaceae',
-    'Hyacinthoides non-scripta | Bluebell | Asparagaceae',
-    'Primula vulgaris | Primrose | Primulaceae',
-    'Galium aparine | Cleavers | Rubiaceae',
-    'Lamium album | White dead-nettle | Lamiaceae',
-    'Heracleum sphondylium | Hogweed | Apiaceae',
-    'Anthriscus sylvestris | Cow parsley | Apiaceae',
-    'Silene dioica | Red campion | Caryophyllaceae',
-    'Geranium robertianum | Herb Robert | Geraniaceae',
-    'Pteridium aquilinum | Bracken | Dennstaedtiaceae',
-    'Calluna vulgaris | Heather | Ericaceae'
+    '# RHS Level 2 Certificate in Practical Horticulture — PCA1 Plant List 2026/2027',
+    '# Genus species | Common name | Family | Photo URL (optional) | RHS list number',
+    '× Cuprocyparis leylandii | Leyland cypress | Cupressaceae | | 1',
+    'Acer griseum | Paperbark maple | Sapindaceae | | 4',
+    'Aesculus hippocastanum | Horse chestnut | Sapindaceae | | 8',
+    'Agave americana | Century plant | Asparagaceae | | 9',
+    'Araucaria araucana | Monkey puzzle | Araucariaceae | | 11',
+    'Arbutus unedo | Strawberry tree | Ericaceae | | 12',
+    'Asplenium scolopendrium | Hart\'s tongue fern | Aspleniaceae | | 14',
+    'Berberis darwinii | Darwin\'s barberry | Berberidaceae | | 17',
+    'Buxus sempervirens | Common box | Buxaceae | | 20',
+    'Capsella bursa-pastoris | Shepherd\'s purse | Brassicaceae | | 25',
+    'Choisya ternata | Mexican orange blossom | Rutaceae | | 27',
+    'Clematis armandi | Armand clematis | Ranunculaceae | | 28',
+    'Clivia miniata | Natal lily | Amaryllidaceae | | 29',
+    'Cordyline australis | Cabbage palm | Asparagaceae | | 30',
+    'Cornus sanguinea | Common dogwood | Cornaceae | | 31',
+    'Cyclamen hederifolium | Ivy-leaved cyclamen | Primulaceae | | 37',
+    'Daphne bholua | Nepalese paper plant | Thymelaeaceae | | 39',
+    'Dracaena trifasciata | Snake plant | Asparagaceae | | 41',
+    'Elymus repens | Couch grass | Poaceae | | 43',
+    'Erica × darleyensis | Darley Dale heath | Ericaceae | | 44',
+    'Fagus sylvatica | Common beech | Fagaceae | | 47',
+    'Fatsia japonica | Japanese aralia | Araliaceae | | 48',
+    'Griselinia littoralis | New Zealand broadleaf | Griseliniaceae | | 52',
+    'Hedera helix | Common ivy | Araliaceae | | 53',
+    'Helleborus × hybridus | Lenten rose | Ranunculaceae | | 55',
+    'Ilex aquifolium | Common holly | Aquifoliaceae | | 56',
+    'Ligustrum ovalifolium | Garden privet | Oleaceae | | 61',
+    'Liriope muscari | Lilyturf | Asparagaceae | | 62',
+    'Monstera deliciosa | Swiss cheese plant | Araceae | | 69',
+    'Muscari armeniacum | Grape hyacinth | Asparagaceae | | 70',
+    'Ophiopogon planiscapus | Mondo grass | Asparagaceae | | 73',
+    'Phormium tenax | New Zealand flax | Asphodelaceae | | 77',
+    'Photinia × fraseri | Red robin photinia | Rosaceae | | 78',
+    'Phyllostachys aurea | Golden bamboo | Poaceae | | 79',
+    'Pittosporum tenuifolium | Kohuhu | Pittosporaceae | | 80',
+    'Prunus serrula | Tibetan cherry | Rosaceae | | 85',
+    'Quercus robur | English oak | Fagaceae | | 87',
+    'Salvia rosmarinus | Rosemary | Lamiaceae | | 91',
+    'Sarcococca confusa | Sweet box | Buxaceae | | 93',
+    'Sempervivum arachnoideum | Cobweb houseleek | Crassulaceae | | 94',
+    'Skimmia japonica | Japanese skimmia | Rutaceae | | 95',
+    'Spathiphyllum wallisii | Peace lily | Araceae | | 96',
+    'Taxus baccata | Common yew | Taxaceae | | 102',
+    'Viburnum davidii | David\'s viburnum | Viburnaceae | | 107',
+    'Vinca major | Greater periwinkle | Apocynaceae | | 108',
+    'Zamioculcas zamiifolia | ZZ plant | Araceae | | 110'
   ].join('\n');
 
   var STORE_DECK = 'binomial-drill.deck.v1';
@@ -462,25 +478,35 @@
   // ------------------------------------------------------------------
   // Deck parsing
   // ------------------------------------------------------------------
+  function cap(w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }
+
   function parseDeck(text) {
     var cards = [], errors = [];
     text.split(/\r?\n/).forEach(function (raw, n) {
       var line = raw.trim();
       if (!line || line.charAt(0) === '#') return;
       var parts = line.split(/\s*(?:\||;|\t| - | – )\s*/);
-      var name = parts[0].trim().split(/\s+/);
-      if (name.length < 2) { errors.push('Line ' + (n + 1) + ': needs "Genus species"'); return; }
-      var genus = name[0], species = name.slice(1).join(' ');
-      if (!/^[A-Za-z][A-Za-z-]*$/.test(genus) || !/^[A-Za-z][A-Za-z-]*(?: [A-Za-z][A-Za-z-]*)*$/.test(species)) {
-        errors.push('Line ' + (n + 1) + ': "' + parts[0] + '" has characters other than letters and hyphens');
+      // Tokens; a lone x / X / × is the hybrid sign and is kept as ×.
+      var tokens = parts[0].trim().split(/\s+/).map(function (t) { return /^[xX×]$/.test(t) ? '×' : t; });
+      var bad = tokens.some(function (t) { return t !== '×' && !/^[A-Za-z][A-Za-z-]*$/.test(t); });
+      var letterTokens = tokens.filter(function (t) { return t !== '×'; });
+      if (letterTokens.length < 2 || tokens[tokens.length - 1] === '×') {
+        errors.push('Line ' + (n + 1) + ': needs "Genus species"'); return;
+      }
+      if (bad) {
+        errors.push('Line ' + (n + 1) + ': "' + parts[0] + '" has characters other than letters, hyphens and ×');
         return;
       }
+      var genus, rest;
+      if (tokens[0] === '×') { genus = '× ' + cap(tokens[1]); rest = tokens.slice(2); }
+      else { genus = cap(tokens[0]); rest = tokens.slice(1); }
       cards.push({
-        genus: genus.charAt(0).toUpperCase() + genus.slice(1).toLowerCase(),
-        species: species.toLowerCase(),
+        genus: genus,
+        species: rest.join(' ').toLowerCase(),
         common: (parts[1] || '').trim(),
         family: (parts[2] || '').trim(),
-        image: (parts[3] || '').trim()
+        image: (parts[3] || '').trim(),
+        ref: (parts[4] || '').trim()
       });
     });
     return { cards: cards, errors: errors };
@@ -547,7 +573,8 @@
 
   function buildBlanks() {
     var c = state.current;
-    var words = [{ text: c.genus, role: 'genus' }];
+    var words = [];
+    c.genus.split(' ').forEach(function (w) { words.push({ text: w, role: 'genus' }); });
     c.species.split(' ').forEach(function (w) { words.push({ text: w, role: 'species' }); });
     var hideRole = null;
     if (state.level === 'medium') hideRole = Math.random() < 0.5 ? 'genus' : 'species';
@@ -590,13 +617,13 @@
       var hidden = state.words.some(function (w) { return w.role === 'genus' && w.cells.some(function (c) { return c.blank; }); }) ? 'genus' : 'species';
       return 'Type the missing ' + hidden + '. Each dash is one letter.';
     }
-    return 'Type the full name: genus, a space, then species.';
+    return 'Type the full name: genus, a space, then species.' + (key(state.current).indexOf('×') >= 0 ? ' The × can be typed as x or left out.' : '');
   }
 
   function renderCard() {
     var c = state.current;
     cardEl.innerHTML = '';
-    cardEl.appendChild(el('p', 'eyebrow', c.family || 'Plant'));
+    cardEl.appendChild(el('p', 'eyebrow', (c.family || 'Plant') + (c.ref ? ' · No. ' + c.ref : '')));
     var pw = el('div', 'photo-wrap'); pw.hidden = true;
     var img = el('img', 'photo'); img.alt = c.common || key(c);
     img.addEventListener('click', function () {
@@ -665,7 +692,7 @@
   var photoToken = 0;
   var WIKI_MEDIA = 'https://en.wikipedia.org/api/rest_v1/page/media-list/';
 
-  function slug(c) { return (c.genus + '-' + c.species).toLowerCase().replace(/[^a-z]+/g, '-'); }
+  function slug(c) { return (c.genus + '-' + c.species).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-+|-+$/g, ''); }
 
   function loadPhotos(c, wrap, img, thumbs, credit) {
     var token = ++photoToken;
@@ -691,11 +718,24 @@
         try { var arr = JSON.parse(cached); if (arr.length) { show(arr); return; } } catch (e) { /* refetch */ }
       }
       if (typeof fetch !== 'function') return;
-      var title = encodeURIComponent(key(c).replace(/ /g, '_'));
-      fetch(WIKI_MEDIA + title)
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          if (!d || token !== photoToken) return;
+      var k = key(c);
+      var titles = [k];
+      if (k.indexOf('×') >= 0) titles.push(k.replace(/× ?/g, ''));
+      var attempt = 0;
+      lookup();
+
+      function lookup() {
+        if (attempt >= titles.length) return;
+        var title = encodeURIComponent(titles[attempt++].replace(/ /g, '_'));
+        fetch(WIKI_MEDIA + title)
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(handle)
+          .catch(function () { /* offline or blocked: card simply has no photo */ });
+      }
+
+      function handle(d) {
+          if (token !== photoToken) return;
+          if (!d) { lookup(); return; }
           var items = (d.items || []).filter(function (it) {
             if (it.type !== 'image' || !it.srcset || !it.srcset.length) return false;
             var t = it.title || '';
@@ -710,11 +750,10 @@
             src = src.replace(/\/\d+px-/, '/640px-');
             return { src: src, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
           });
-          if (!items.length) return;
+          if (!items.length) { lookup(); return; }
           save(cacheKey, JSON.stringify(items));
           show(items);
-        })
-        .catch(function () { /* offline or blocked: card simply has no photo */ });
+      }
     }
 
     function show(list) {
@@ -839,7 +878,7 @@
     var cell = state.blanks[state.cursor];
     var wordRole = null;
     state.words.forEach(function (w) { if (w.cells.indexOf(cell) >= 0) wordRole = w; });
-    var isFirstOfGenus = wordRole && wordRole.role === 'genus' && wordRole.cells.indexOf(cell) === 0;
+    var isFirstOfGenus = wordRole && wordRole.role === 'genus' && wordRole.text !== '×' && wordRole.cells.indexOf(cell) === 0;
     cell.val = isFirstOfGenus ? ch.toUpperCase() : ch.toLowerCase();
     state.cursor++;
     paintCells();
@@ -865,14 +904,18 @@
     check();
   }
 
-  function normalise(s) { return s.trim().replace(/\s+/g, ' ').toLowerCase(); }
+  function normalise(s) { return s.trim().replace(/×/g, 'x').replace(/\s+/g, ' ').toLowerCase(); }
+  function withoutHybridSign(s) { return normalise(s).replace(/(^| )x( |$)/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function sameName(typed, answer) {
+    return normalise(typed) === normalise(answer) || withoutHybridSign(typed) === withoutHybridSign(answer);
+  }
 
   function check() {
     var c = state.current, correct;
     var fb = $('feedback');
     if (state.level === 'hard') {
       if (!state.typed.trim()) { nudge(); return; }
-      correct = normalise(state.typed) === normalise(key(c));
+      correct = sameName(state.typed, key(c));
       var t = $('typed');
       t.classList.add(correct ? 'ok' : 'bad');
     } else {

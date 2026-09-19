@@ -3,6 +3,12 @@
 A single-file flashcard app for learning plant species names (genus + species).
 Open `index.html` in any browser, or add it to your phone's home screen.
 
+The built-in deck is the **RHS Level 2 Certificate in Practical Horticulture,
+PCA1 Plant List 2026/2027** (46 species, list numbers 1 to 110), with common
+names and families taken from the RHS plant database. Hybrids such as
+*Erica × darleyensis* show the × as a fixed character; in hard mode the × can be
+typed as `x` or left out.
+
 ## Levels
 
 | Level  | What you see                                   | What you type                         |
@@ -20,12 +26,12 @@ cards later in the same round, and the round-end summary lists what to revisit.
 Tap **Deck** in the top-left and paste one plant per line:
 
 ```
-Genus species | Common name | Family | https://example.com/optional-photo.jpg
+Genus species | Common name | Family | https://example.com/optional-photo.jpg | List number
 ```
 
-Family and photo are optional. The deck is saved in the browser on that device.
-The sample deck of 32 common UK plants is there as a placeholder; replace it with
-your list.
+Everything after the name is optional. Write hybrids with an `x` or `×`. The
+deck is saved in the browser on that device; "Restore RHS list" brings back the
+built-in deck.
 
 ## Photos
 

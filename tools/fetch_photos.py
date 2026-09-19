@@ -42,14 +42,27 @@ def deck_lines(path=None):
         line = raw.strip()
         if not line or line.startswith("#"):
             continue
-        name = re.split(r"\s*(?:\||;|\t| - | – )\s*", line)[0].split()
-        if len(name) >= 2:
-            yield name[0].capitalize(), " ".join(name[1:]).lower()
+        tokens = ["×" if t in ("x", "X", "×") else t
+                  for t in re.split(r"\s*(?:\||;|\t| - | – )\s*", line)[0].split()]
+        if tokens and tokens[0] == "×":
+            genus, rest = "× " + tokens[1].capitalize(), tokens[2:]
+        else:
+            genus, rest = tokens[0].capitalize(), tokens[1:]
+        if [t for t in rest if t != "×"]:
+            yield genus, " ".join(rest).lower()
 
 
 def lead_image(genus, species):
-    title = urllib.parse.quote((genus + "_" + species).replace(" ", "_"))
-    data = json.loads(get("https://en.wikipedia.org/api/rest_v1/page/media-list/" + title))
+    name = genus + " " + species
+    titles = [name] + ([re.sub(r"× ?", "", name)] if "×" in name else [])
+    data = {}
+    for t in titles:
+        try:
+            data = json.loads(get("https://en.wikipedia.org/api/rest_v1/page/media-list/"
+                                  + urllib.parse.quote(t.replace(" ", "_"))))
+            break
+        except Exception:
+            continue
     items = [i for i in data.get("items", [])
              if i.get("type") == "image" and i.get("srcset")
              and not re.search(r"\.(svg|gif|png)$", i.get("title", ""), re.I)
@@ -85,7 +98,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     rows = []
     for genus, species in deck_lines(sys.argv[1] if len(sys.argv) > 1 else None):
-        slug = re.sub(r"[^a-z]+", "-", (genus + "-" + species).lower())
+        slug = re.sub(r"[^a-z]+", "-", (genus + "-" + species).lower()).strip("-")
         dest = os.path.join(OUT, slug + ".jpg")
         name = genus + " " + species
         if os.path.exists(dest):
