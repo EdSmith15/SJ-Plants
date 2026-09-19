@@ -41,3 +41,65 @@ if m:
 else:
     show("PLANT PAGE (known)", "https://www.rhs.org.uk/plants/11839/ophiopogon-planiscapus/details")
 show("SEARCH API guess", "https://www.rhs.org.uk/api/plantsearch?query=" + urllib.parse.quote(q))
+
+# ---- second pass: image sizes and the RHS Digital Collections site ----
+def head(url):
+    try:
+        req = urllib.request.Request(url, headers=UA, method="HEAD")
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.status, r.headers.get("Content-Type"), r.headers.get("Content-Length")
+    except Exception as e:
+        return "ERR", str(e)[:80], None
+
+def jpeg_size(data):
+    i = 2
+    while i < len(data):
+        if data[i] != 0xFF: return None
+        marker = data[i+1]; ln = int.from_bytes(data[i+2:i+4], "big")
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i+7:i+9], "big"), int.from_bytes(data[i+5:i+7], "big")
+        i += 2 + ln
+    return None
+
+print("=" * 80); print("IMAGE VARIANTS for elbo57432")
+for variant in ["detail", "large", "full", "original", "zoom", "medium", "thumb", "listing"]:
+    u = "https://apps.rhs.org.uk/plantselectorimages/%s/elbo57432.jpg" % variant
+    print(variant, head(u))
+try:
+    req = urllib.request.Request("https://apps.rhs.org.uk/plantselectorimages/detail/elbo57432.jpg", headers=UA)
+    data = urllib.request.urlopen(req, timeout=30).read()
+    print("detail bytes", len(data), "dimensions", jpeg_size(data))
+except Exception as e:
+    print("detail fetch error", e)
+
+print("=" * 80); print("PLANT PAGE image context")
+try:
+    _, _, h = get("https://www.rhs.org.uk/plants/11839/ophiopogon-planiscapus/details")
+    for m in re.finditer(r'<img[^>]*plantselectorimages[^>]*>', h):
+        print(m.group(0)[:400])
+    for m in re.finditer(r'.{0,200}plantselectorimages/detail/elbo57432.{0,200}', h, re.S):
+        print("CTX:", re.sub(r"\s+", " ", m.group(0))[:500]); break
+    for m in re.finditer(r'<script[^>]+src="([^"]+)"', h):
+        print("script:", m.group(1))
+except Exception as e:
+    print("err", e)
+
+print("=" * 80); print("RHS DIGITAL COLLECTIONS")
+for u in ["https://collections.rhs.org.uk/search?q=" + urllib.parse.quote(q),
+          "https://collections.rhs.org.uk/results?q=" + urllib.parse.quote(q),
+          "https://collections.rhs.org.uk/?q=" + urllib.parse.quote(q),
+          "https://collections.rhs.org.uk/view/92898/ophiopogon-planiscapus-kokuryu"]:
+    try:
+        status, ctype, h = get(u)
+        print(u, status, ctype, len(h))
+        print("  title:", re.findall(r"<title>(.*?)</title>", h, re.S)[:1])
+        views = sorted(set(re.findall(r'href="(/view/\d+/[^"?]+)', h)))
+        print("  view links:", len(views), views[:8])
+        imgs = sorted(set(re.findall(r'(?:src|srcset|data-src|href)="([^"]*(?:\.jpe?g|\.png|iiif|thumb|image)[^"]*)"', h, re.I)))
+        print("  images:", len(imgs)); [print("   ", x[:200]) for x in imgs[:12]]
+        apis = sorted(set(re.findall(r'["\'](https?://[^"\']*(?:api|iiif|search)[^"\']*)["\']', h, re.I)))
+        print("  api-ish:", apis[:8])
+        for m in re.finditer(r'<script[^>]+src="([^"]+)"', h):
+            print("  script:", m.group(1)[:160])
+    except Exception as e:
+        print(u, "ERROR", e)
