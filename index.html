@@ -178,6 +178,15 @@
 
   /* ---------- level picker ---------- */
   #levels main { flex: 1 1 auto; overflow-y: auto; padding: 8px 20px 28px; -webkit-overflow-scrolling: touch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    border: 1.5px solid var(--sep); background: var(--card); color: var(--label);
+    border-radius: 999px; padding: 10px 16px; font-size: 14px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip small { font-weight: 600; color: var(--label-2); }
+  .chip[aria-pressed="true"] { background: var(--tint); border-color: var(--tint); color: var(--tint-ink); }
+  .chip[aria-pressed="true"] small { color: var(--tint-ink); opacity: .8; }
   .large-title { font-family: var(--serif); font-weight: 500; font-size: 36px; letter-spacing: -.02em; margin: 10px 0 18px; line-height: 1.05; }
   .section-label { font-size: 12px; color: var(--label-2); text-transform: uppercase; letter-spacing: .12em; font-weight: 700; padding: 0 4px 10px; margin-top: 28px; }
   .icon.easy { background: var(--green-soft); color: var(--green); }
@@ -396,7 +405,9 @@
     <button class="nav-btn trail" type="button" id="deckBtnLevels">Deck</button>
   </header>
   <main>
-    <h1 class="large-title">Choose a level</h1>
+    <h1 class="large-title">Revise</h1>
+    <div class="chips" id="scopeChips" role="group" aria-label="Which species to revise"></div>
+    <div class="section-label">Choose a level</div>
     <div class="group">
       <button class="row" type="button" data-level="easy">
         <span class="icon easy">1</span>
@@ -416,7 +427,7 @@
     </div>
     <div class="section-label">Deck</div>
     <div class="stats" id="deckStats"></div>
-    <p class="footnote">The English name is hidden on every card until you tap to reveal it. At the end of a round you get a percentage score and can retry just the ones you missed.</p>
+    <p class="footnote">Pick a week to revise that week's species together with everything from earlier weeks, or the full list. The English name is hidden on every card until you tap to reveal it, and each round ends with a percentage score.</p>
   </main>
 </section>
 
@@ -444,7 +455,7 @@
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="grabber"></div>
     <h2 id="sheetTitle">Your deck</h2>
-    <p>One plant per line: <code>Genus species | Common name | Family | Photo URL | List number | RHS page number</code>. Everything after the name is optional. Write hybrids with an x or ×, e.g. <code>Erica × darleyensis</code>. Edits are kept on this device.</p>
+    <p>One plant per line: <code>Genus species | Common name | Family | Photo URL | List number | RHS page number | Week</code>. A week number puts the species into that week's revision set (each week includes the earlier ones). Everything after the name is optional. Write hybrids with an x or ×, e.g. <code>Erica × darleyensis</code>. Edits are kept on this device.</p>
     <textarea id="deckText" spellcheck="false"></textarea>
     <div class="err" id="deckErr"></div>
     <div class="btns">
@@ -465,30 +476,30 @@
   // ------------------------------------------------------------------
   var SAMPLE = [
     '# RHS Level 2 Certificate in Practical Horticulture — PCA1 Plant List 2026/2027',
-    '# Genus species | Common name | Family | Photo URL or wiki:Wikipedia title (optional) | RHS list number | RHS plant page number',
+    '# Genus species | Common name | Family | Photo URL or wiki:Wikipedia title (optional) | RHS list number | RHS plant page number | Week introduced',
     '× Cuprocyparis leylandii | Leyland cypress | Cupressaceae | | 1 | 190606',
     'Acer griseum | Paperbark maple | Sapindaceae | | 4 | 197',
-    'Aesculus hippocastanum | Horse chestnut | Sapindaceae | | 8 | 585',
+    'Aesculus hippocastanum | Horse chestnut | Sapindaceae | | 8 | 585 | 1',
     'Agave americana | Century plant | Asparagaceae | | 9 | 95075',
     'Araucaria araucana | Monkey puzzle | Araucariaceae | | 11 | 1456',
     'Arbutus unedo | Strawberry tree | Ericaceae | | 12 | 1473',
     'Asplenium scolopendrium | Hart\'s tongue fern | Aspleniaceae | | 14 | 25910',
     'Berberis darwinii | Darwin\'s barberry | Berberidaceae | | 17 | 2105',
-    'Buxus sempervirens | Common box | Buxaceae | | 20 | 2579',
+    'Buxus sempervirens | Common box | Buxaceae | | 20 | 2579 | 1',
     'Capsella bursa-pastoris | Shepherd\'s purse | Brassicaceae | | 25 | 105534',
     'Choisya ternata | Mexican orange blossom | Rutaceae | | 27 | 3766',
-    'Clematis armandi | Armand clematis | Ranunculaceae | wiki:Clematis armandii | 28 | 3923 | 3923',
+    'Clematis armandi | Armand clematis | Ranunculaceae | wiki:Clematis armandii | 28 | 3923',
     'Clivia miniata | Natal lily | Amaryllidaceae | | 29 | 4036',
     'Cordyline australis | Cabbage palm | Asparagaceae | | 30 | 4361',
-    'Cornus sanguinea | Common dogwood | Cornaceae | | 31 | 4408',
+    'Cornus sanguinea | Common dogwood | Cornaceae | | 31 | 4408 | 1',
     'Cyclamen hederifolium | Ivy-leaved cyclamen | Primulaceae | | 37 | 5145',
     'Daphne bholua | Nepalese paper plant | Thymelaeaceae | | 39 | 5311',
     'Dracaena trifasciata | Snake plant | Asparagaceae | | 41 | 16430',
     'Elymus repens | Couch grass | Poaceae | | 43 | 6342',
     'Erica × darleyensis | Darley Dale heath | Ericaceae | | 44 | 93146',
     'Fagus sylvatica | Common beech | Fagaceae | | 47 | 7127',
-    'Fatsia japonica | Japanese aralia | Araliaceae | | 48 | 7147',
-    'Griselinia littoralis | New Zealand broadleaf | Griseliniaceae | | 52 | 8123',
+    'Fatsia japonica | Japanese aralia | Araliaceae | | 48 | 7147 | 1',
+    'Griselinia littoralis | New Zealand broadleaf | Griseliniaceae | | 52 | 8123 | 1',
     'Hedera helix | Common ivy | Araliaceae | | 53 | 43091',
     'Helleborus × hybridus | Lenten rose | Ranunculaceae | wiki:Helleborus orientalis | 55 | 124882',
     'Ilex aquifolium | Common holly | Aquifoliaceae | | 56 | 9087',
@@ -516,6 +527,7 @@
 
   var STORE_DECK = 'binomial-drill.deck.v1';
   var STORE_LEVEL = 'binomial-drill.level.v1';
+  var STORE_SCOPE = 'binomial-drill.scope.v1';
   var LEVEL_NAMES = { easy: 'Easy', medium: 'Medium', hard: 'Hard' };
 
   function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
@@ -561,7 +573,8 @@
         image: /^wiki:/i.test(fourth) ? '' : fourth,
         wiki: /^wiki:/i.test(fourth) ? fourth.slice(5).trim() : '',
         ref: (parts[4] || '').trim(),
-        rhs: /^\d+$/.test((parts[5] || '').trim()) ? (parts[5] || '').trim() : ''
+        rhs: /^\d+$/.test((parts[5] || '').trim()) ? (parts[5] || '').trim() : '',
+        week: parseInt((parts[6] || '').trim(), 10) || 0
       });
     });
     return { cards: cards, errors: errors };
@@ -573,8 +586,44 @@
   var state = {
     level: 'easy', deckText: SAMPLE, deck: [], queue: [], total: 0, current: null,
     words: [], blanks: [], cursor: 0, typed: '', checked: false, lastCorrect: false,
-    firstTry: {}, ok: 0, bad: 0, missed: [], shift: false, done: false, kbOpen: false
+    firstTry: {}, ok: 0, bad: 0, missed: [], shift: false, done: false, kbOpen: false,
+    scope: 'full'   // 'full' or a week number: that week plus every earlier one
   };
+
+  function allCards() { return parseDeck(state.deckText).cards; }
+  function weeksInDeck() {
+    var seen = {}; allCards().forEach(function (c) { if (c.week > 0) seen[c.week] = true; });
+    return Object.keys(seen).map(Number).sort(function (a, b) { return a - b; });
+  }
+  function scopedCards() {
+    var cards = allCards();
+    if (state.scope === 'full') return cards;
+    return cards.filter(function (c) { return c.week > 0 && c.week <= state.scope; });
+  }
+  function scopeName() { return state.scope === 'full' ? 'Full list' : 'Week ' + state.scope; }
+  function scopeKey() { return state.scope === 'full' ? 'full' : 'w' + state.scope; }
+  function setScope(scope) {
+    state.scope = scope;
+    save(STORE_SCOPE, String(scope));
+    renderScopeChips(); renderDeckStats();
+  }
+  function renderScopeChips() {
+    var box = $('scopeChips'); box.innerHTML = '';
+    var weeks = weeksInDeck();
+    if (!weeks.length) { state.scope = 'full'; box.hidden = true; return; }
+    box.hidden = false;
+    if (state.scope !== 'full' && weeks.indexOf(state.scope) < 0) state.scope = 'full';
+    var options = weeks.map(function (w) { return { value: w, label: 'Week ' + w }; }).concat([{ value: 'full', label: 'Full list' }]);
+    options.forEach(function (o) {
+      var b = el('button', 'chip'); b.type = 'button';
+      var count = o.value === 'full' ? allCards().length : allCards().filter(function (c) { return c.week > 0 && c.week <= o.value; }).length;
+      b.appendChild(document.createTextNode(o.label + ' '));
+      b.appendChild(el('small', null, String(count)));
+      b.setAttribute('aria-pressed', state.scope === o.value ? 'true' : 'false');
+      b.addEventListener('click', function () { setScope(o.value); });
+      box.appendChild(b);
+    });
+  }
   var cardEl = $('card'), kbEl = $('kb');
 
   // ------------------------------------------------------------------
@@ -584,25 +633,29 @@
     ['splash', 'levels', 'practice'].forEach(function (s) { $(s).hidden = s !== id; });
   }
   function bestPct(level) {
-    var b = load('binomial-drill.best.' + level);
+    var b = load('binomial-drill.best.' + level + '.' + scopeKey()) || (scopeKey() === 'full' ? load('binomial-drill.best.' + level) : null);
     if (!b) return null;
     if (b.indexOf('/') > 0) { var p = b.split('/'); return Math.round(+p[0] / +p[1] * 100); }   // older "40/46" format
     var n = parseInt(b, 10); return isNaN(n) ? null : n;
   }
 
   function renderDeckStats() {
-    var cards = parseDeck(state.deckText).cards;
+    var cards = allCards();
     var g = $('deckStats'); g.innerHTML = '';
     var custom = state.deckText.trim() !== SAMPLE.trim();
     var s1 = el('div', 'stat'); s1.appendChild(el('span', null, custom ? 'Your deck' : 'RHS Level 2 · PCA1 2026/27')); s1.appendChild(el('span', null, cards.length + ' species'));
     g.appendChild(s1);
+    if (weeksInDeck().length) {
+      var s0 = el('div', 'stat'); s0.appendChild(el('span', null, 'Revising')); s0.appendChild(el('span', null, scopeName() + ' · ' + scopedCards().length + ' species'));
+      g.appendChild(s0);
+    }
     var best = ['easy', 'medium', 'hard'].map(function (l) { var b = bestPct(l); return b == null ? null : LEVEL_NAMES[l] + ' ' + b + '%'; }).filter(Boolean);
-    var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best score')); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
+    var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best score · ' + scopeName())); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
     g.appendChild(s2);
     $('splashFine').textContent = cards.length + ' species · photos from the RHS and Wikimedia Commons';
   }
-  $('startBtn').addEventListener('click', function () { renderDeckStats(); show('levels'); });
-  $('backBtn').addEventListener('click', function () { renderDeckStats(); show('levels'); });
+  $('startBtn').addEventListener('click', function () { renderScopeChips(); renderDeckStats(); show('levels'); });
+  $('backBtn').addEventListener('click', function () { renderScopeChips(); renderDeckStats(); show('levels'); });
   Array.prototype.forEach.call(document.querySelectorAll('#levels .row[data-level]'), function (b) {
     b.addEventListener('click', function () { setLevel(b.getAttribute('data-level')); show('practice'); });
   });
@@ -613,12 +666,13 @@
   function setLevel(level) {
     state.level = level;
     save(STORE_LEVEL, level);
-    $('navTitle').textContent = LEVEL_NAMES[level];
+    $('navTitle').textContent = LEVEL_NAMES[level] + (weeksInDeck().length ? ' · ' + scopeName() : '');
     startRound();
   }
 
   function startRound() {
-    state.deck = parseDeck(state.deckText).cards;
+    state.deck = scopedCards();
+    if (!state.deck.length) { state.scope = 'full'; state.deck = allCards(); }
     state.queue = shuffle(state.deck.slice());
     state.total = state.deck.length;
     state.ok = 0; state.bad = 0; state.firstTry = {}; state.missed = []; state.done = false;
@@ -790,14 +844,14 @@
   function renderSummary() {
     cardEl.innerHTML = '';
     var wrap = el('div', 'summary');
-    wrap.appendChild(el('p', 'eyebrow', LEVEL_NAMES[state.level] + ' · ' + state.total + ' species'));
+    wrap.appendChild(el('p', 'eyebrow', LEVEL_NAMES[state.level] + ' · ' + scopeName() + ' · ' + state.total + ' species'));
     wrap.appendChild(el('h2', null, 'Round complete'));
     var firstTryOk = Object.keys(state.firstTry).filter(function (k) { return state.firstTry[k]; }).length;
     var pct = state.total ? Math.round(firstTryOk / state.total * 100) : 0;
     wrap.appendChild(el('div', 'big', pct + '%'));
     wrap.appendChild(el('p', 'hint', firstTryOk + ' of ' + state.total + ' right.'));
     var prev = bestPct(state.level);
-    if (prev == null || prev < pct) save('binomial-drill.best.' + state.level, String(pct));
+    if (prev == null || prev < pct) save('binomial-drill.best.' + state.level + '.' + scopeKey(), String(pct));
     if (prev != null && pct > prev) wrap.appendChild(el('p', 'hint', 'New best for this level (was ' + prev + '%).'));
     if (state.missed.length) {
       var toggle = el('button', 'show-name', 'Click here to see list of missed species'); toggle.type = 'button';
@@ -1177,6 +1231,7 @@
     state.deckText = deckText.value;
     if (deckText.value.trim() === SAMPLE.trim()) remove(STORE_DECK); else save(STORE_DECK, deckText.value);
     closeSheet();
+    renderScopeChips();
     renderDeckStats();
     if (!$('practice').hidden) startRound();
   });
@@ -1188,6 +1243,9 @@
   if (savedDeck && parseDeck(savedDeck).cards.length) state.deckText = savedDeck;
   var savedLevel = load(STORE_LEVEL);
   if (savedLevel === 'medium' || savedLevel === 'hard') state.level = savedLevel;
+  var savedScope = load(STORE_SCOPE);
+  if (savedScope && savedScope !== 'full' && !isNaN(parseInt(savedScope, 10))) state.scope = parseInt(savedScope, 10);
+  renderScopeChips();
   renderDeckStats();
   show('splash');
 })();
