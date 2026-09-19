@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <rect width="180" height="180" fill="#F4F5EF"/>
+  <g transform="rotate(-12 90 92) translate(0 -4)">
+    <g id="half" fill="#1F6B3A">
+      <path d="M90 22 C102 24 112 30 116 40 C119 48 106 52 98 54 C112 55 126 58 129 68 C132 78 110 80 100 80 C114 82 128 86 127 96 C126 106 108 106 100 105 C112 108 120 114 117 122 C114 130 102 130 96 130 C95 138 92 142 90 146 Z"/>
+    </g>
+    <use href="#half" transform="matrix(-1 0 0 1 180 0)"/>
+    <path d="M90 30 L90 144" stroke="#8FD3A4" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+    <path d="M90 44 L110 38 M90 44 L70 38 M90 68 L122 64 M90 68 L58 64 M90 94 L120 92 M90 94 L60 92 M90 116 L112 118 M90 116 L68 118" stroke="#8FD3A4" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+    <path d="M90 146 C89 154 87 162 84 172" stroke="#1F6B3A" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>
