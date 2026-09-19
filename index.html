@@ -188,7 +188,11 @@
     background: var(--moss-soft);
   }
   .thumbs img[aria-current="true"] { border-color: var(--moss); }
-  .credit { font-size: 11px; color: var(--ink-2); }
+  .photo-nav { display: flex; align-items: center; gap: 8px; }
+  .dots { display: inline-flex; gap: 5px; }
+  .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+  .dots span[aria-current="true"] { background: var(--moss); }
+  .credit { font-size: 11px; color: var(--ink-2); display: flex; gap: 10px; flex-wrap: wrap; }
   .credit a { color: inherit; }
   .show-name {
     align-self: flex-start;
@@ -419,7 +423,7 @@
   // ------------------------------------------------------------------
   var SAMPLE = [
     '# RHS Level 2 Certificate in Practical Horticulture — PCA1 Plant List 2026/2027',
-    '# Genus species | Common name | Family | Photo URL (optional) | RHS list number',
+    '# Genus species | Common name | Family | Photo URL or wiki:Wikipedia title (optional) | RHS list number',
     '× Cuprocyparis leylandii | Leyland cypress | Cupressaceae | | 1',
     'Acer griseum | Paperbark maple | Sapindaceae | | 4',
     'Aesculus hippocastanum | Horse chestnut | Sapindaceae | | 8',
@@ -431,7 +435,7 @@
     'Buxus sempervirens | Common box | Buxaceae | | 20',
     'Capsella bursa-pastoris | Shepherd\'s purse | Brassicaceae | | 25',
     'Choisya ternata | Mexican orange blossom | Rutaceae | | 27',
-    'Clematis armandi | Armand clematis | Ranunculaceae | | 28',
+    'Clematis armandi | Armand clematis | Ranunculaceae | wiki:Clematis armandii | 28',
     'Clivia miniata | Natal lily | Amaryllidaceae | | 29',
     'Cordyline australis | Cabbage palm | Asparagaceae | | 30',
     'Cornus sanguinea | Common dogwood | Cornaceae | | 31',
@@ -444,7 +448,7 @@
     'Fatsia japonica | Japanese aralia | Araliaceae | | 48',
     'Griselinia littoralis | New Zealand broadleaf | Griseliniaceae | | 52',
     'Hedera helix | Common ivy | Araliaceae | | 53',
-    'Helleborus × hybridus | Lenten rose | Ranunculaceae | | 55',
+    'Helleborus × hybridus | Lenten rose | Ranunculaceae | wiki:Helleborus orientalis | 55',
     'Ilex aquifolium | Common holly | Aquifoliaceae | | 56',
     'Ligustrum ovalifolium | Garden privet | Oleaceae | | 61',
     'Liriope muscari | Lilyturf | Asparagaceae | | 62',
@@ -505,7 +509,8 @@
         species: rest.join(' ').toLowerCase(),
         common: (parts[1] || '').trim(),
         family: (parts[2] || '').trim(),
-        image: (parts[3] || '').trim(),
+        image: /^wiki:/i.test((parts[3] || '').trim()) ? '' : (parts[3] || '').trim(),
+        wiki: /^wiki:/i.test((parts[3] || '').trim()) ? (parts[3] || '').trim().slice(5).trim() : '',
         ref: (parts[4] || '').trim()
       });
     });
@@ -691,35 +696,48 @@
   // ------------------------------------------------------------------
   var photoToken = 0;
   var WIKI_MEDIA = 'https://en.wikipedia.org/api/rest_v1/page/media-list/';
+  var MAX_LOCAL = 4;
 
   function slug(c) { return (c.genus + '-' + c.species).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function rhsUrl(c) { return 'https://www.rhs.org.uk/plants/search-results?query=' + encodeURIComponent(key(c).replace(/× ?/g, '')); }
 
+  // Resolution order: a photo URL in the deck; then photos/<slug>.jpg, -2, -3 ...
+  // next to this file (see tools/fetch_photos.py); then the images on the
+  // species' Wikipedia article, fetched live and cached on this device.
   function loadPhotos(c, wrap, img, thumbs, credit) {
     var token = ++photoToken;
-    var candidates = [];
-    if (c.image) candidates.push(c.image);
-    candidates.push('photos/' + slug(c) + '.jpg');
-    tryLocal();
+    if (c.image) { show([{ src: c.image, page: null }]); return; }
+    var local = [], n = 0;
+    probeLocal();
 
-    function tryLocal() {
+    function localName(i) { return 'photos/' + slug(c) + (i ? '-' + (i + 1) : '') + '.jpg'; }
+
+    function probeLocal() {
       if (token !== photoToken) return;
-      var src = candidates.shift();
-      if (!src) { fromWikipedia(); return; }
+      if (n >= MAX_LOCAL) { done(); return; }
+      var src = localName(n);
       var probe = new Image();
-      probe.onload = function () { show([{ src: src, page: null }]); };
-      probe.onerror = tryLocal;
+      probe.onload = function () { if (probe.naturalWidth > 0) { local.push({ src: src, page: null }); n++; probeLocal(); } else { done(); } };
+      probe.onerror = done;
       probe.src = src;
     }
 
+    function done() {
+      if (token !== photoToken) return;
+      if (local.length) show(local); else fromWikipedia();
+    }
+
     function fromWikipedia() {
-      var cacheKey = 'binomial-drill.photos.' + key(c);
+      var cacheKey = 'binomial-drill.photos.v2.' + key(c) + (c.wiki ? '|' + c.wiki : '');
       var cached = load(cacheKey);
       if (cached) {
         try { var arr = JSON.parse(cached); if (arr.length) { show(arr); return; } } catch (e) { /* refetch */ }
       }
       if (typeof fetch !== 'function') return;
       var k = key(c);
-      var titles = [k];
+      var titles = [];
+      if (c.wiki) titles.push(c.wiki);
+      titles.push(k);
       if (k.indexOf('×') >= 0) titles.push(k.replace(/× ?/g, ''));
       var attempt = 0;
       lookup();
@@ -734,55 +752,78 @@
       }
 
       function handle(d) {
-          if (token !== photoToken) return;
-          if (!d) { lookup(); return; }
-          var items = (d.items || []).filter(function (it) {
-            if (it.type !== 'image' || !it.srcset || !it.srcset.length) return false;
-            var t = it.title || '';
-            if (/\.(svg|gif|png)$/i.test(t)) return false;
-            if (/map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol/i.test(t)) return false;
-            return true;
-          });
-          items.sort(function (a, b) { return (b.leadImage ? 1 : 0) - (a.leadImage ? 1 : 0); });
-          items = items.slice(0, 5).map(function (it) {
-            var src = it.srcset[0].src;
-            if (src.indexOf('//') === 0) src = 'https:' + src;
-            src = src.replace(/\/\d+px-/, '/640px-');
-            return { src: src, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
-          });
-          if (!items.length) { lookup(); return; }
-          save(cacheKey, JSON.stringify(items));
-          show(items);
+        if (token !== photoToken) return;
+        if (!d) { lookup(); return; }
+        var items = (d.items || []).filter(function (it) {
+          if (it.type !== 'image' || !it.srcset || !it.srcset.length) return false;
+          var t = it.title || '';
+          if (/\.(svg|gif|png)$/i.test(t)) return false;
+          if (/map|status|icon|logo|distribution|range|commons|wiki|question|edit|symbol/i.test(t)) return false;
+          return true;
+        });
+        items.sort(function (a, b) { return (b.leadImage ? 1 : 0) - (a.leadImage ? 1 : 0); });
+        items = items.slice(0, 5).map(function (it) {
+          // Wikimedia only serves the thumbnail widths it lists. 640 is one of
+          // them; the largest srcset entry is the safe fallback.
+          var srcs = it.srcset.map(function (e) { return e.src.indexOf('//') === 0 ? 'https:' + e.src : e.src; });
+          var largest = srcs[srcs.length - 1];
+          return { src: largest.replace(/\/\d+px-/, '/640px-'), alt: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
+        });
+        if (!items.length) { lookup(); return; }
+        save(cacheKey, JSON.stringify(items));
+        show(items);
       }
     }
 
     function show(list) {
       if (token !== photoToken) return;
-      var current = 0;
+      var current = 0, triedAlt = false;
       thumbs.innerHTML = '';
+      var dots = el('span', 'dots');
       if (list.length > 1) {
-        list.forEach(function (it, n) {
+        list.forEach(function (it, i) {
           var t = el('img'); t.src = it.src; t.alt = ''; t.loading = 'lazy';
-          t.addEventListener('click', function () { pick(n); });
+          t.addEventListener('click', function () { pick(i); });
+          t.addEventListener('error', function () { if (it.alt && t.src !== it.alt) t.src = it.alt; });
           thumbs.appendChild(t);
+          dots.appendChild(el('span'));
         });
       }
       img.onload = function () { if (token === photoToken) wrap.hidden = false; };
-      img.onerror = function () { if (current + 1 < list.length) pick(current + 1); };
+      img.onerror = function () {
+        if (list[current].alt && !triedAlt) { triedAlt = true; img.src = list[current].alt; return; }
+        if (list.length > 1) { list.splice(current, 1); pick(Math.min(current, list.length - 1)); }
+      };
+      // Swipe left / right on the photo to move through the set.
+      var x0 = null;
+      img.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      img.addEventListener('touchend', function (e) {
+        if (x0 == null) return;
+        var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) < 40 || list.length < 2) return;
+        pick((current + (dx < 0 ? 1 : list.length - 1)) % list.length);
+        e.preventDefault();
+      });
       pick(0);
 
-      function pick(n) {
-        current = n;
-        img.src = list[n].src;
+      function pick(i) {
+        current = i; triedAlt = false;
+        img.src = list[i].src;
         credit.innerHTML = '';
-        if (list[n].page) {
-          var a = el('a', null, 'Photo: Wikimedia Commons');
-          a.href = list[n].page; a.target = '_blank'; a.rel = 'noopener';
+        if (list.length > 1) {
+          var nav = el('span', 'photo-nav');
+          nav.appendChild(dots);
+          nav.appendChild(el('span', null, (i + 1) + ' of ' + list.length + ' · swipe'));
+          credit.appendChild(nav);
+        }
+        if (list[i].page) {
+          var a = el('a', null, 'Wikimedia Commons'); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener';
           credit.appendChild(a);
         }
-        Array.prototype.forEach.call(thumbs.children, function (t, k) {
-          t.setAttribute('aria-current', k === n ? 'true' : 'false');
-        });
+        var r = el('a', null, 'See on RHS ↗'); r.href = rhsUrl(c); r.target = '_blank'; r.rel = 'noopener';
+        credit.appendChild(r);
+        Array.prototype.forEach.call(thumbs.children, function (t, k) { t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+        Array.prototype.forEach.call(dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
       }
     }
   }

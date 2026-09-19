@@ -39,10 +39,14 @@ Each card shows an identifying photo above the common name. The app looks for
 one in this order:
 
 1. A photo URL given as the fourth field of the deck line.
-2. `photos/<genus>-<species>.jpg` next to `index.html`.
+2. `photos/<genus>-<species>.jpg`, `-2.jpg`, `-3.jpg` next to `index.html`.
 3. The images on the species' English Wikipedia article, fetched live from
-   Wikimedia and cached in the browser. The lead (taxobox) photo is shown first
-   and up to four more from the article appear as thumbnails to tap through.
+   Wikimedia and cached in the browser. Write `wiki:Some title` in the fourth
+   field to use a different article.
+
+When there is more than one photo, swipe the picture or tap the thumbnails to
+move through them, and tap the picture to enlarge it. Every card also links to
+the RHS plant page for that species.
 
 To keep photos with the repo for offline use, run:
 
@@ -50,6 +54,8 @@ To keep photos with the repo for offline use, run:
 python3 tools/fetch_photos.py
 ```
 
-It saves an 800px copy of each lead photo into `photos/` and lists the source,
-author and licence in `photos/CREDITS.md`. Pass a deck file as the first
-argument to fetch photos for your own list.
+It saves up to three 640px photos per species into `photos/` and lists the
+source, author and licence in `photos/CREDITS.md`. Pass a deck file as the
+first argument to fetch photos for your own list. The GitHub Actions workflow
+in `.github/workflows/fetch-photos.yml` runs the same script automatically
+whenever the deck changes and commits the results.
