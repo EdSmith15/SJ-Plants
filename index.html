@@ -800,13 +800,15 @@
     if (prev == null || prev < pct) save('binomial-drill.best.' + state.level, String(pct));
     if (prev != null && pct > prev) wrap.appendChild(el('p', 'hint', 'New best for this level (was ' + prev + '%).'));
     if (state.missed.length) {
-      wrap.appendChild(el('p', 'hint', 'Worth another look:'));
-      var ul = el('ul');
+      var toggle = el('button', 'show-name', 'Click here to see list of missed species'); toggle.type = 'button';
+      var ul = el('ul'); ul.hidden = true;
       state.missed.forEach(function (c) {
         var li = el('li'); li.appendChild(el('em', null, key(c)));
         if (c.common) li.appendChild(document.createTextNode(' · ' + c.common));
         ul.appendChild(li);
       });
+      toggle.addEventListener('click', function () { ul.hidden = !ul.hidden; toggle.textContent = ul.hidden ? 'Click here to see list of missed species' : 'Hide list of missed species'; });
+      wrap.appendChild(toggle);
       wrap.appendChild(ul);
     }
     var actions = el('div', 'actions');
