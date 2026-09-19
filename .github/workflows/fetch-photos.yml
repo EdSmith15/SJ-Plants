@@ -10,6 +10,8 @@ on:
     paths:
       - index.html
       - tools/fetch_photos.py
+      - tools/make_small.py
+      - tools/embed_index.py
       - .github/workflows/fetch-photos.yml
 
 permissions:
@@ -33,6 +35,9 @@ jobs:
 
       - name: Embed photo index in the page
         run: python3 tools/embed_index.py
+
+      - name: Make reduced copies for the embedded build
+        run: python3 tools/make_small.py
 
       - name: Commit photos
         run: |

@@ -856,7 +856,7 @@
       if (token !== photoToken) return;
       var entries = idx && idx[slug(c)];
       if (entries && entries.length) {
-        showSet(entries.map(function (e) { return { src: 'photos/' + e.file, page: e.page || null, source: e.source || '' }; }));
+        showSet(entries.map(function (e) { return { src: /^(data:|https?:|\/)/.test(e.file) ? e.file : 'photos/' + e.file, page: e.page || null, source: e.source || '' }; }));
       } else {
         probeLocal();
       }
