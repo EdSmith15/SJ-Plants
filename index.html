@@ -416,7 +416,7 @@
     </div>
     <div class="section-label">Deck</div>
     <div class="stats" id="deckStats"></div>
-    <p class="footnote">The English name is hidden on every card until you tap to reveal it. Cards you get wrong come round again in the same round.</p>
+    <p class="footnote">The English name is hidden on every card until you tap to reveal it. At the end of a round you get a percentage score and can retry just the ones you missed.</p>
   </main>
 </section>
 
@@ -583,14 +583,21 @@
   function show(id) {
     ['splash', 'levels', 'practice'].forEach(function (s) { $(s).hidden = s !== id; });
   }
+  function bestPct(level) {
+    var b = load('binomial-drill.best.' + level);
+    if (!b) return null;
+    if (b.indexOf('/') > 0) { var p = b.split('/'); return Math.round(+p[0] / +p[1] * 100); }   // older "40/46" format
+    var n = parseInt(b, 10); return isNaN(n) ? null : n;
+  }
+
   function renderDeckStats() {
     var cards = parseDeck(state.deckText).cards;
     var g = $('deckStats'); g.innerHTML = '';
     var custom = state.deckText.trim() !== SAMPLE.trim();
     var s1 = el('div', 'stat'); s1.appendChild(el('span', null, custom ? 'Your deck' : 'RHS Level 2 · PCA1 2026/27')); s1.appendChild(el('span', null, cards.length + ' species'));
     g.appendChild(s1);
-    var best = ['easy', 'medium', 'hard'].map(function (l) { var b = load('binomial-drill.best.' + l); return b ? LEVEL_NAMES[l] + ' ' + b : null; }).filter(Boolean);
-    var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best first-try score')); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
+    var best = ['easy', 'medium', 'hard'].map(function (l) { var b = bestPct(l); return b == null ? null : LEVEL_NAMES[l] + ' ' + b + '%'; }).filter(Boolean);
+    var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best score')); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
     g.appendChild(s2);
     $('splashFine').textContent = cards.length + ' species · photos from the RHS and Wikimedia Commons';
   }
@@ -786,11 +793,12 @@
     wrap.appendChild(el('p', 'eyebrow', LEVEL_NAMES[state.level] + ' · ' + state.total + ' species'));
     wrap.appendChild(el('h2', null, 'Round complete'));
     var firstTryOk = Object.keys(state.firstTry).filter(function (k) { return state.firstTry[k]; }).length;
-    wrap.appendChild(el('div', 'big', firstTryOk + ' / ' + state.total));
-    wrap.appendChild(el('p', 'hint', 'right first time. Every card was answered correctly before the round ended.'));
-    var prev = load('binomial-drill.best.' + state.level);
-    var score = firstTryOk + '/' + state.total;
-    if (!prev || parseInt(prev, 10) < firstTryOk) save('binomial-drill.best.' + state.level, score);
+    var pct = state.total ? Math.round(firstTryOk / state.total * 100) : 0;
+    wrap.appendChild(el('div', 'big', pct + '%'));
+    wrap.appendChild(el('p', 'hint', firstTryOk + ' of ' + state.total + ' right.'));
+    var prev = bestPct(state.level);
+    if (prev == null || prev < pct) save('binomial-drill.best.' + state.level, String(pct));
+    if (prev != null && pct > prev) wrap.appendChild(el('p', 'hint', 'New best for this level (was ' + prev + '%).'));
     if (state.missed.length) {
       wrap.appendChild(el('p', 'hint', 'Worth another look:'));
       var ul = el('ul');
@@ -1037,13 +1045,13 @@
       correct = sameName(state.typed, key(c));
       $('typed').classList.add(correct ? 'ok' : 'bad');
     } else {
-      if (state.blanks.some(function (cell) { return !cell.val; })) { nudge(); return; }
+      if (!state.blanks.some(function (cell) { return cell.val; })) { nudge(); return; }
       correct = true;
       state.blanks.forEach(function (cell) {
-        var good = cell.val.toLowerCase() === cell.ch.toLowerCase();
+        var good = !!cell.val && cell.val.toLowerCase() === cell.ch.toLowerCase();
         if (!good) correct = false;
         cell.el.classList.add(good ? 'ok' : 'bad');
-        if (!good) cell.el.appendChild(el('span', 'fix', cell.ch));
+        if (!good) { cell.el.textContent = cell.val || '-'; cell.el.appendChild(el('span', 'fix', cell.ch)); }
       });
     }
     finish(correct, false);
@@ -1064,15 +1072,12 @@
     var k = key(c);
     if (!(k in state.firstTry)) state.firstTry[k] = correct;
     if (correct) state.ok++; else state.bad++;
-    if (!correct) {
-      if (state.missed.indexOf(c) < 0) state.missed.push(c);
-      state.queue.splice(Math.min(state.queue.length, 3), 0, c);   // comes round again shortly
-    }
+    if (!correct && state.missed.indexOf(c) < 0) state.missed.push(c);   // listed for review at the end
     fb.className = 'feedback ' + (correct ? 'ok' : 'bad');
     fb.innerHTML = '';
     fb.appendChild(el('span', 'verdict', correct ? 'Correct' : (revealed ? 'Revealed' : 'Not quite')));
     fb.appendChild(el('span', 'full', k));
-    fb.appendChild(el('span', 'note', correct ? 'Press Next to continue.' : 'This card will come round again shortly.'));
+    fb.appendChild(el('span', 'note', correct ? 'Press Next to continue.' : 'Added to your review list for the end of the round.'));
     var rb = $('revealBtn'); if (rb) rb.hidden = true;
     var nextBtn = el('button', 'btn-fill', 'Next'); nextBtn.type = 'button'; nextBtn.addEventListener('click', nextCard);
     $('actions').appendChild(nextBtn);
@@ -1084,7 +1089,7 @@
     var a = $('answer');
     a.classList.remove('shake'); void a.offsetWidth; a.classList.add('shake');
     var fb = $('feedback'); fb.className = 'feedback'; fb.innerHTML = '';
-    fb.appendChild(el('span', 'note', state.level === 'hard' ? 'Type the name first.' : 'Fill every dash first.'));
+    fb.appendChild(el('span', 'note', state.level === 'hard' ? 'Type the name first, or tap Reveal answer.' : 'Type at least one letter, or tap Reveal answer.'));
   }
 
   // ------------------------------------------------------------------
