@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+# Publishes index.html and photos/ to https://edsmith15.github.io/SJ-Plants/
+# on every push to main, and again after the photo workflow commits new photos.
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Fetch species photos"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Enable Pages if needed
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Assemble site
+        run: |
+          mkdir -p site
+          cp index.html README.md site/
+          cp -r photos site/photos
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
