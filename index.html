@@ -947,8 +947,8 @@
         ui.credit.innerHTML = '';
         var src = list[i].source || (list[i].page ? 'Wikimedia' : '');
         if (src === 'Wikimedia Commons') src = 'Wikimedia';
-        if (list[i].page) { var a = el('a', null, 'Photo: ' + src); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener'; ui.credit.appendChild(a); }
-        else ui.credit.appendChild(el('span', null, src ? 'Photo: ' + src : 'Photo'));
+        if (list[i].page) { var a = el('a', null, src || 'Photo'); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener'; a.title = 'Photo source'; ui.credit.appendChild(a); }
+        else ui.credit.appendChild(el('span', null, src || 'Photo'));
         if (src !== 'RHS') { ui.credit.appendChild(document.createTextNode(' · ')); var r = el('a', null, 'RHS'); r.href = rhsUrl(c); r.target = '_blank'; r.rel = 'noopener'; ui.credit.appendChild(r); }
         if (ui.thumbs) Array.prototype.forEach.call(ui.thumbs.children, function (t, k) { t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
         Array.prototype.forEach.call(ui.dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
