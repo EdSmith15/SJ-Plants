@@ -1,0 +1,41 @@
+name: Fetch species photos
+
+# Downloads one identifying photo per species in the deck from Wikimedia
+# Commons (via tools/fetch_photos.py) and commits them to photos/.
+# Runs when the deck or the script changes, or on demand from the Actions tab.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - tools/fetch_photos.py
+      - .github/workflows/fetch-photos.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-photos
+  cancel-in-progress: false
+
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch photos
+        run: python3 tools/fetch_photos.py
+
+      - name: Commit photos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos
+          if git diff --cached --quiet; then
+            echo "No new photos."
+          else
+            git commit -m "Add species photos from Wikimedia Commons"
+            git push
+          fi
