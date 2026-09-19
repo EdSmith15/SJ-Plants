@@ -37,14 +37,20 @@ built-in deck.
 
 ## Photos
 
-Each card shows an identifying photo above the common name. The app looks for
-one in this order:
+Each card shows identifying photos above the common name. The app looks for
+them in this order:
 
 1. A photo URL given as the fourth field of the deck line.
-2. `photos/<genus>-<species>.jpg`, `-2.jpg`, `-3.jpg`, `-4.jpg` next to `index.html`.
+2. The files listed for the species in `photos/index.json`, or failing that
+   `photos/<genus>-<species>.jpg`, `-2.jpg`, `-3.jpg` ... next to `index.html`.
 3. The images on the species' English Wikipedia article, fetched live from
    Wikimedia and cached in the browser. Write `wiki:Some title` in the fourth
    field to use a different article.
+
+The bundled photos come from each species' page on rhs.org.uk (the sixth deck
+field is the RHS plant page number), topped up from Wikimedia Commons where an
+RHS page has fewer than three. Every photo is labelled with its source on the
+card and listed in `photos/CREDITS.md`. RHS photos remain © RHS.
 
 When there is more than one photo, swipe the picture or tap the thumbnails to
 move through them, and tap the picture to enlarge it. Every card also links to
@@ -56,10 +62,10 @@ To keep photos with the repo for offline use, run:
 python3 tools/fetch_photos.py
 ```
 
-It downloads the original files from Wikimedia Commons, resizes them to at
-most 1600px on the long side (needs `pip install pillow`), saves up to four per
-species into `photos/` and lists the source, author and licence in
-`photos/CREDITS.md`. Pass a deck file as the
+It downloads the RHS gallery photos and, where needed, Wikimedia Commons
+originals, resizes them to at most 1600px on the long side (needs
+`pip install pillow`), saves up to five per species into `photos/` and records
+each photo's source in `photos/index.json` and `photos/CREDITS.md`. Pass a deck file as the
 first argument to fetch photos for your own list. The GitHub Actions workflow
 in `.github/workflows/fetch-photos.yml` runs the same script automatically
 whenever the deck changes and commits the results.

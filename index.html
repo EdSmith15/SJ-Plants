@@ -414,7 +414,7 @@
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="grabber"></div>
     <h2 id="sheetTitle">Your deck</h2>
-    <p>One plant per line: <code>Genus species | Common name | Family | Photo URL | List number</code>. Everything after the name is optional. Write hybrids with an x or ×, e.g. <code>Erica × darleyensis</code>. Edits are kept on this device.</p>
+    <p>One plant per line: <code>Genus species | Common name | Family | Photo URL | List number | RHS page number</code>. Everything after the name is optional. Write hybrids with an x or ×, e.g. <code>Erica × darleyensis</code>. Edits are kept on this device.</p>
     <textarea id="deckText" spellcheck="false"></textarea>
     <div class="err" id="deckErr"></div>
     <div class="btns">
@@ -434,52 +434,52 @@
   // ------------------------------------------------------------------
   var SAMPLE = [
     '# RHS Level 2 Certificate in Practical Horticulture — PCA1 Plant List 2026/2027',
-    '# Genus species | Common name | Family | Photo URL or wiki:Wikipedia title (optional) | RHS list number',
-    '× Cuprocyparis leylandii | Leyland cypress | Cupressaceae | | 1',
-    'Acer griseum | Paperbark maple | Sapindaceae | | 4',
-    'Aesculus hippocastanum | Horse chestnut | Sapindaceae | | 8',
-    'Agave americana | Century plant | Asparagaceae | | 9',
-    'Araucaria araucana | Monkey puzzle | Araucariaceae | | 11',
-    'Arbutus unedo | Strawberry tree | Ericaceae | | 12',
-    'Asplenium scolopendrium | Hart\'s tongue fern | Aspleniaceae | | 14',
-    'Berberis darwinii | Darwin\'s barberry | Berberidaceae | | 17',
-    'Buxus sempervirens | Common box | Buxaceae | | 20',
-    'Capsella bursa-pastoris | Shepherd\'s purse | Brassicaceae | | 25',
-    'Choisya ternata | Mexican orange blossom | Rutaceae | | 27',
-    'Clematis armandi | Armand clematis | Ranunculaceae | wiki:Clematis armandii | 28',
-    'Clivia miniata | Natal lily | Amaryllidaceae | | 29',
-    'Cordyline australis | Cabbage palm | Asparagaceae | | 30',
-    'Cornus sanguinea | Common dogwood | Cornaceae | | 31',
-    'Cyclamen hederifolium | Ivy-leaved cyclamen | Primulaceae | | 37',
-    'Daphne bholua | Nepalese paper plant | Thymelaeaceae | | 39',
-    'Dracaena trifasciata | Snake plant | Asparagaceae | | 41',
-    'Elymus repens | Couch grass | Poaceae | | 43',
-    'Erica × darleyensis | Darley Dale heath | Ericaceae | | 44',
-    'Fagus sylvatica | Common beech | Fagaceae | | 47',
-    'Fatsia japonica | Japanese aralia | Araliaceae | | 48',
-    'Griselinia littoralis | New Zealand broadleaf | Griseliniaceae | | 52',
-    'Hedera helix | Common ivy | Araliaceae | | 53',
-    'Helleborus × hybridus | Lenten rose | Ranunculaceae | wiki:Helleborus orientalis | 55',
-    'Ilex aquifolium | Common holly | Aquifoliaceae | | 56',
-    'Ligustrum ovalifolium | Garden privet | Oleaceae | | 61',
-    'Liriope muscari | Lilyturf | Asparagaceae | | 62',
-    'Monstera deliciosa | Swiss cheese plant | Araceae | | 69',
-    'Muscari armeniacum | Grape hyacinth | Asparagaceae | | 70',
-    'Ophiopogon planiscapus | Mondo grass | Asparagaceae | | 73',
-    'Phormium tenax | New Zealand flax | Asphodelaceae | | 77',
-    'Photinia × fraseri | Red robin photinia | Rosaceae | | 78',
-    'Phyllostachys aurea | Golden bamboo | Poaceae | | 79',
-    'Pittosporum tenuifolium | Kohuhu | Pittosporaceae | | 80',
-    'Prunus serrula | Tibetan cherry | Rosaceae | | 85',
-    'Quercus robur | English oak | Fagaceae | | 87',
-    'Salvia rosmarinus | Rosemary | Lamiaceae | | 91',
-    'Sarcococca confusa | Sweet box | Buxaceae | | 93',
-    'Sempervivum arachnoideum | Cobweb houseleek | Crassulaceae | | 94',
-    'Skimmia japonica | Japanese skimmia | Rutaceae | | 95',
-    'Spathiphyllum wallisii | Peace lily | Araceae | | 96',
-    'Taxus baccata | Common yew | Taxaceae | | 102',
-    'Viburnum davidii | David\'s viburnum | Viburnaceae | | 107',
-    'Vinca major | Greater periwinkle | Apocynaceae | | 108',
+    '# Genus species | Common name | Family | Photo URL or wiki:Wikipedia title (optional) | RHS list number | RHS plant page number',
+    '× Cuprocyparis leylandii | Leyland cypress | Cupressaceae | | 1 | 190606',
+    'Acer griseum | Paperbark maple | Sapindaceae | | 4 | 197',
+    'Aesculus hippocastanum | Horse chestnut | Sapindaceae | | 8 | 585',
+    'Agave americana | Century plant | Asparagaceae | | 9 | 95075',
+    'Araucaria araucana | Monkey puzzle | Araucariaceae | | 11 | 1456',
+    'Arbutus unedo | Strawberry tree | Ericaceae | | 12 | 1473',
+    'Asplenium scolopendrium | Hart\'s tongue fern | Aspleniaceae | | 14 | 25910',
+    'Berberis darwinii | Darwin\'s barberry | Berberidaceae | | 17 | 2105',
+    'Buxus sempervirens | Common box | Buxaceae | | 20 | 2579',
+    'Capsella bursa-pastoris | Shepherd\'s purse | Brassicaceae | | 25 | 105534',
+    'Choisya ternata | Mexican orange blossom | Rutaceae | | 27 | 3766',
+    'Clematis armandi | Armand clematis | Ranunculaceae | wiki:Clematis armandii | 28 | 3923 | 3923',
+    'Clivia miniata | Natal lily | Amaryllidaceae | | 29 | 4036',
+    'Cordyline australis | Cabbage palm | Asparagaceae | | 30 | 4361',
+    'Cornus sanguinea | Common dogwood | Cornaceae | | 31 | 4408',
+    'Cyclamen hederifolium | Ivy-leaved cyclamen | Primulaceae | | 37 | 5145',
+    'Daphne bholua | Nepalese paper plant | Thymelaeaceae | | 39 | 5311',
+    'Dracaena trifasciata | Snake plant | Asparagaceae | | 41 | 16430',
+    'Elymus repens | Couch grass | Poaceae | | 43 | 6342',
+    'Erica × darleyensis | Darley Dale heath | Ericaceae | | 44 | 93146',
+    'Fagus sylvatica | Common beech | Fagaceae | | 47 | 7127',
+    'Fatsia japonica | Japanese aralia | Araliaceae | | 48 | 7147',
+    'Griselinia littoralis | New Zealand broadleaf | Griseliniaceae | | 52 | 8123',
+    'Hedera helix | Common ivy | Araliaceae | | 53 | 43091',
+    'Helleborus × hybridus | Lenten rose | Ranunculaceae | wiki:Helleborus orientalis | 55 | 124882 | 124882',
+    'Ilex aquifolium | Common holly | Aquifoliaceae | | 56 | 9087',
+    'Ligustrum ovalifolium | Garden privet | Oleaceae | | 61 | 91966',
+    'Liriope muscari | Lilyturf | Asparagaceae | | 62 | 10344',
+    'Monstera deliciosa | Swiss cheese plant | Araceae | | 69 | 11192',
+    'Muscari armeniacum | Grape hyacinth | Asparagaceae | | 70 | 11247',
+    'Ophiopogon planiscapus | Mondo grass | Asparagaceae | | 73 | 11839',
+    'Phormium tenax | New Zealand flax | Asphodelaceae | | 77 | 12791',
+    'Photinia × fraseri | Red robin photinia | Rosaceae | | 78 | 94829',
+    'Phyllostachys aurea | Golden bamboo | Poaceae | | 79 | 75274',
+    'Pittosporum tenuifolium | Kohuhu | Pittosporaceae | | 80 | 13202',
+    'Prunus serrula | Tibetan cherry | Rosaceae | | 85 | 14025',
+    'Quercus robur | English oak | Fagaceae | | 87 | 14294',
+    'Salvia rosmarinus | Rosemary | Lamiaceae | | 91 | 384211',
+    'Sarcococca confusa | Sweet box | Buxaceae | | 93 | 16452',
+    'Sempervivum arachnoideum | Cobweb houseleek | Crassulaceae | | 94 | 17075',
+    'Skimmia japonica | Japanese skimmia | Rutaceae | | 95 | 17401',
+    'Spathiphyllum wallisii | Peace lily | Araceae | | 96 | 17623',
+    'Taxus baccata | Common yew | Taxaceae | | 102 | 18001',
+    'Viburnum davidii | David\'s viburnum | Viburnaceae | | 107 | 18892',
+    'Vinca major | Greater periwinkle | Apocynaceae | | 108 | 18969',
     'Zamioculcas zamiifolia | ZZ plant | Araceae | | 110'
   ].join('\n');
 
@@ -529,7 +529,8 @@
         family: (parts[2] || '').trim(),
         image: /^wiki:/i.test(fourth) ? '' : fourth,
         wiki: /^wiki:/i.test(fourth) ? fourth.slice(5).trim() : '',
-        ref: (parts[4] || '').trim()
+        ref: (parts[4] || '').trim(),
+        rhs: /^\d+$/.test((parts[5] || '').trim()) ? (parts[5] || '').trim() : ''
       });
     });
     return { cards: cards, errors: errors };
@@ -560,7 +561,7 @@
     var best = ['easy', 'medium', 'hard'].map(function (l) { var b = load('binomial-drill.best.' + l); return b ? LEVEL_NAMES[l] + ' ' + b : null; }).filter(Boolean);
     var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best first-try score')); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
     g.appendChild(s2);
-    $('splashFine').textContent = cards.length + ' species · photos from Wikimedia Commons';
+    $('splashFine').textContent = cards.length + ' species · photos from the RHS and Wikimedia Commons';
   }
   $('startBtn').addEventListener('click', function () { renderDeckStats(); show('levels'); });
   $('backBtn').addEventListener('click', function () { renderDeckStats(); show('levels'); });
@@ -774,13 +775,35 @@
   var MAX_LOCAL = 6;
 
   function slug(c) { return (c.genus + '-' + c.species).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-+|-+$/g, ''); }
-  function rhsUrl(c) { return 'https://www.rhs.org.uk/plants/search-results?query=' + encodeURIComponent(key(c).replace(/× ?/g, '')); }
+  function rhsUrl(c) {
+    if (c.rhs) return 'https://www.rhs.org.uk/plants/' + c.rhs + '/' + slug(c) + '/details';
+    return 'https://www.rhs.org.uk/plants/search-results?query=' + encodeURIComponent(key(c).replace(/× ?/g, ''));
+  }
+
+  // photos/index.json (written by tools/fetch_photos.py) lists each species'
+  // photos with their source. Without it the app probes for files by name.
+  var photoIndex = null;
+  function getPhotoIndex() {
+    if (!photoIndex) {
+      photoIndex = (typeof fetch === 'function' ? fetch('photos/index.json').then(function (r) { return r.ok ? r.json() : {}; }) : Promise.resolve({}))
+        .catch(function () { return {}; });
+    }
+    return photoIndex;
+  }
 
   function loadPhotos(c, ui) {
     var token = ++photoToken;
-    if (c.image) { showSet([{ src: c.image, page: null }]); return; }
+    if (c.image) { showSet([{ src: c.image, page: null, source: '' }]); return; }
     var local = [], n = 0;
-    probeLocal();
+    getPhotoIndex().then(function (idx) {
+      if (token !== photoToken) return;
+      var entries = idx && idx[slug(c)];
+      if (entries && entries.length) {
+        showSet(entries.map(function (e) { return { src: 'photos/' + e.file, page: e.page || null, source: e.source || '' }; }));
+      } else {
+        probeLocal();
+      }
+    });
 
     function localName(i) { return 'photos/' + slug(c) + (i ? '-' + (i + 1) : '') + '.jpg'; }
     function probeLocal() {
@@ -824,7 +847,7 @@
           var srcs = it.srcset.map(function (e) { return e.src.indexOf('//') === 0 ? 'https:' + e.src : e.src; });
           var w = function (u) { var m = /\/(\d+)px-/.exec(u); return m ? +m[1] : 0; };
           var largest = srcs.slice().sort(function (a, b) { return w(b) - w(a); })[0];
-          return { src: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title) };
+          return { src: largest, page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title), source: 'Wikimedia Commons' };
         });
         if (!items.length) { lookup(); return; }
         save(cacheKey, JSON.stringify(items));
@@ -865,8 +888,10 @@
         ui.counter.textContent = (i + 1) + ' / ' + list.length;
         ui.counter.hidden = list.length < 2;
         ui.credit.innerHTML = '';
-        if (list[i].page) { var a = el('a', null, 'Wikimedia Commons'); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener'; ui.credit.appendChild(a); }
-        var r = el('a', null, 'See on RHS'); r.href = rhsUrl(c); r.target = '_blank'; r.rel = 'noopener'; ui.credit.appendChild(r);
+        var src = list[i].source || (list[i].page ? 'Wikimedia Commons' : 'see photos/CREDITS.md');
+        if (list[i].page) { var a = el('a', null, 'Photo: ' + src); a.href = list[i].page; a.target = '_blank'; a.rel = 'noopener'; ui.credit.appendChild(a); }
+        else ui.credit.appendChild(el('span', null, 'Photo: ' + src));
+        if (src !== 'RHS') { var r = el('a', null, 'See on RHS'); r.href = rhsUrl(c); r.target = '_blank'; r.rel = 'noopener'; ui.credit.appendChild(r); }
         Array.prototype.forEach.call(ui.thumbs.children, function (t, k) { t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
         Array.prototype.forEach.call(ui.dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
       }
