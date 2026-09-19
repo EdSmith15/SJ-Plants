@@ -958,5 +958,25 @@
    "page": "https://commons.wikimedia.org/wiki/File%3AVinca_major_-_Flower_and_bud.jpg",
    "title": "File:Vinca_major_-_Flower_and_bud.jpg"
   }
+ ],
+ "zamioculcas-zamiifolia": [
+  {
+   "file": "zamioculcas-zamiifolia.jpg",
+   "source": "RHS",
+   "page": "https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details",
+   "title": "RHS_RHS-0004097_7541.JPG"
+  },
+  {
+   "file": "zamioculcas-zamiifolia-2.jpg",
+   "source": "RHS",
+   "page": "https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details",
+   "title": "Web_Use-_S7A0380_7541.jpg"
+  },
+  {
+   "file": "zamioculcas-zamiifolia-3.jpg",
+   "source": "RHS",
+   "page": "https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details",
+   "title": "Web_Use-MAR0031836_7541.jpg"
+  }
  ]
 }

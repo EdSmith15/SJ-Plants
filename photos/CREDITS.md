@@ -154,3 +154,6 @@ If you would like special permission to use, license, or purchase the picture, p
 - **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia.jpg` — [File:Zamioculcas_zamiifolia_1.jpg](https://commons.wikimedia.org/wiki/File%3AZamioculcas_zamiifolia_1.jpg) — User:WeFt — CC BY-SA 3.0
 - **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-2.jpg` — [File:Zamioculcas_zamiifolia_bluete1.jpg](https://commons.wikimedia.org/wiki/File%3AZamioculcas_zamiifolia_bluete1.jpg) — Michelangelo76 — Public domain
 - **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-3.jpg` — [File:Raven_ZZ_Zamioculcas_Dowon_1.jpg](https://commons.wikimedia.org/wiki/File%3ARaven_ZZ_Zamioculcas_Dowon_1.jpg) — Dbwolfe — CC BY-SA 4.0
+- **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia.jpg` — [RHS_RHS-0004097_7541.JPG](https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-2.jpg` — [Web_Use-_S7A0380_7541.jpg](https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-3.jpg` — [Web_Use-MAR0031836_7541.jpg](https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details) — Royal Horticultural Society — © RHS, all rights reserved
