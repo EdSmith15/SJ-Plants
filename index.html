@@ -190,6 +190,13 @@
   .thumbs img[aria-current="true"] { border-color: var(--moss); }
   .credit { font-size: 11px; color: var(--ink-2); }
   .credit a { color: inherit; }
+  .show-name {
+    align-self: flex-start;
+    border: 1px dashed var(--moss); background: var(--moss-soft); color: var(--moss);
+    border-radius: 10px; padding: 10px 14px; font-size: 15px; font-weight: 600;
+    cursor: pointer; touch-action: manipulation; text-align: left;
+  }
+  .show-name:active { filter: brightness(.95); }
   .hint { margin: 0; font-size: 14px; color: var(--ink-2); }
 
   .answer {
@@ -198,13 +205,14 @@
     padding: 6px 0 2px;
     font-family: var(--serif);
     font-style: italic;
-    font-size: clamp(24px, 6vw, 30px);
+    font-size: clamp(20px, 5.4vw, 30px);
     min-height: 54px;
   }
-  .word { display: inline-flex; gap: 3px; }
+  .word { display: inline-flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
+  .word.long { font-size: .8em; }
   .cell {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 1.05em; height: 1.4em;
+    width: 1em; height: 1.4em;
     border-bottom: 2px solid transparent;
     border-radius: 3px;
     line-height: 1;
@@ -601,7 +609,13 @@
     pw.appendChild(img); pw.appendChild(thumbs); pw.appendChild(credit);
     cardEl.appendChild(pw);
     loadPhotos(c, pw, img, thumbs, credit);
-    cardEl.appendChild(el('h1', 'common', c.common || '(no common name given)'));
+    var common = el('h1', 'common', c.common || '(no common name given)');
+    common.id = 'common'; common.hidden = true;
+    var showBtn = el('button', 'show-name', 'Tap here to show English name');
+    showBtn.type = 'button'; showBtn.id = 'showName';
+    showBtn.addEventListener('click', revealCommon);
+    cardEl.appendChild(showBtn);
+    cardEl.appendChild(common);
     cardEl.appendChild(el('p', 'hint', hintText()));
 
     var ans = el('div', 'answer'); ans.id = 'answer';
@@ -611,7 +625,7 @@
       ans.appendChild(typed);
     } else {
       state.words.forEach(function (w) {
-        var wEl = el('span', 'word');
+        var wEl = el('span', 'word' + (w.cells.length >= 12 ? ' long' : ''));
         w.cells.forEach(function (cell) {
           var s;
           if (cell.blank) {
@@ -732,6 +746,12 @@
         });
       }
     }
+  }
+
+  function revealCommon() {
+    var common = $('common'), btn = $('showName');
+    if (common) common.hidden = false;
+    if (btn) btn.hidden = true;
   }
 
   function paintCells() {
@@ -883,6 +903,7 @@
     var c = state.current, fb = $('feedback');
     state.checked = true; state.lastCorrect = correct;
     cardEl.classList.add('checked');
+    revealCommon();
     var k = key(c);
     if (!(k in state.firstTry)) state.firstTry[k] = correct;
     if (correct) state.ok++; else state.bad++;
