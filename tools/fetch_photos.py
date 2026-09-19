@@ -37,14 +37,17 @@ def deck_lines(path=None):
     else:
         html = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
         m = re.search(r"var SAMPLE = \[(.*?)\]\.join", html, re.S)
-        text = "\n".join(re.findall(r"'([^']*)'", m.group(1)))
+        text = "\n".join(lit.replace("\\'", "'")
+                         for lit in re.findall(r"'((?:[^'\\]|\\.)*)'", m.group(1)))
     for raw in text.splitlines():
         line = raw.strip()
         if not line or line.startswith("#"):
             continue
         tokens = ["×" if t in ("x", "X", "×") else t
                   for t in re.split(r"\s*(?:\||;|\t| - | – )\s*", line)[0].split()]
-        if tokens and tokens[0] == "×":
+        if not tokens or (tokens[0] == "×" and len(tokens) < 2):
+            continue
+        if tokens[0] == "×":
             genus, rest = "× " + tokens[1].capitalize(), tokens[2:]
         else:
             genus, rest = tokens[0].capitalize(), tokens[1:]
