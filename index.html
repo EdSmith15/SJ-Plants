@@ -629,10 +629,10 @@
   // Rendering
   // ------------------------------------------------------------------
   function hintText() {
-    if (state.level === 'easy') return 'Fill in the missing letters. Each dash is one letter.';
+    if (state.level === 'easy') return 'Fill in the missing letters.';
     if (state.level === 'medium') {
       var hidden = state.words.some(function (w) { return w.role === 'genus' && w.cells.some(function (c) { return c.blank; }); }) ? 'genus' : 'species';
-      return 'Type the missing ' + hidden + '. Each dash is one letter.';
+      return 'Type the missing ' + hidden + '.';
     }
     return 'Type the full name: genus, a space, then species.' + (key(state.current).indexOf('×') >= 0 ? ' The × can be typed as x or left out.' : '');
   }

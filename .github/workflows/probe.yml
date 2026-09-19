@@ -1,0 +1,13 @@
+name: Probe RHS site
+on:
+  workflow_dispatch:
+    inputs:
+      query:
+        description: Species to look up
+        default: Quercus robur
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/probe_rhs.py "${{ github.event.inputs.query }}"
