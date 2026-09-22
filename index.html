@@ -744,7 +744,7 @@
     // One quiet caption line: family, list number, photo source; English name link on the right.
     var cap = el('div', 'cap');
     var left = el('span', 'src');
-    left.appendChild(document.createTextNode((c.family || 'Plant') + (c.ref ? ' · No. ' + c.ref : '') + ' · '));
+    if (c.ref) left.appendChild(document.createTextNode('No. ' + c.ref + ' · '));   // family is withheld: it would be a hint
     var credit = el('span'); left.appendChild(credit);
     cap.appendChild(left);
     var showBtn = el('button', 'link', 'Show English name'); showBtn.type = 'button'; showBtn.id = 'showName';
