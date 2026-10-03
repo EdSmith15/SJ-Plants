@@ -659,7 +659,9 @@
     var best = ['easy', 'medium', 'hard'].map(function (l) { var b = bestPct(l); return b == null ? null : LEVEL_NAMES[l] + ' ' + b + '%'; }).filter(Boolean);
     var s2 = el('div', 'stat'); s2.appendChild(el('span', null, 'Best score · ' + scopeName())); s2.appendChild(el('span', null, best.length ? best.join(' · ') : 'No rounds yet'));
     g.appendChild(s2);
-    $('splashFine').textContent = cards.length + ' species · photos from the RHS and Wikimedia Commons';
+    var buildMeta = document.querySelector('meta[name="build"]');
+    var build = buildMeta ? buildMeta.getAttribute('content') : '';
+    $('splashFine').textContent = cards.length + ' species · ' + weeksInDeck().length + ' weeks · photos from the RHS and Wikimedia Commons' + (build && build !== 'dev' ? ' · build ' + build : '');
   }
   $('startBtn').addEventListener('click', function () { renderScopeChips(); renderDeckStats(); show('levels'); });
   $('backBtn').addEventListener('click', function () { renderScopeChips(); renderDeckStats(); show('levels'); });
