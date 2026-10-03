@@ -40,6 +40,10 @@ jobs:
           mkdir -p site
           cp index.html README.md icon.svg icon-180.png icon-192.png icon-512.png manifest.webmanifest site/
           cp -r photos site/photos
+          # stamp the build so the app can tell when a newer deploy exists
+          sed -i "s/<meta name=\"build\" content=\"dev\">/<meta name=\"build\" content=\"${GITHUB_SHA::7}\">/" site/index.html
+          echo "{\"build\":\"${GITHUB_SHA::7}\"}" > site/version.json
+          grep -o '<meta name="build"[^>]*>' site/index.html && cat site/version.json
 
       - uses: actions/upload-pages-artifact@v3
         with:
