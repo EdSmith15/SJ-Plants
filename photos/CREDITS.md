@@ -157,3 +157,6 @@ If you would like special permission to use, license, or purchase the picture, p
 - **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia.jpg` — [RHS_RHS-0004097_7541.JPG](https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details) — Royal Horticultural Society — © RHS, all rights reserved
 - **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-2.jpg` — [Web_Use-_S7A0380_7541.jpg](https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details) — Royal Horticultural Society — © RHS, all rights reserved
 - **Zamioculcas zamiifolia** — `zamioculcas-zamiifolia-3.jpg` — [Web_Use-MAR0031836_7541.jpg](https://www.rhs.org.uk/plants/19185/zamioculcas-zamiifolia/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Plantago major** — `plantago-major.jpg` — [visi91030.jpg](https://www.rhs.org.uk/plants/42126/plantago-major/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Plantago major** — `plantago-major-2.jpg` — [WSYD0012706.jpg](https://www.rhs.org.uk/plants/42126/plantago-major/details) — Royal Horticultural Society — © RHS, all rights reserved
+- **Plantago major** — `plantago-major-3.jpg` — [WSYD0016057.jpg](https://www.rhs.org.uk/plants/42126/plantago-major/details) — Royal Horticultural Society — © RHS, all rights reserved
