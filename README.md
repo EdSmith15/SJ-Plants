@@ -6,7 +6,7 @@ Safari and use Share → Add to Home Screen. It opens with a welcome page, then 
 level picker, then the cards.
 
 The built-in deck is the **RHS Level 2 Certificate in Practical Horticulture,
-PCA1 Plant List 2026/2027** (46 species, list numbers 1 to 110), with common
+PCA1 Plant List 2026/2027** (47 species, list numbers 1 to 110), with common
 names and families taken from the RHS plant database. Hybrids such as
 *Erica × darleyensis* show the × as a fixed character; in hard mode the × can be
 typed as `x` or left out.
