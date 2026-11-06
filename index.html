@@ -433,7 +433,7 @@
     </div>
     <div class="section-label">Deck</div>
     <div class="stats" id="deckStats"></div>
-    <p class="footnote">Pick a week to revise that week's species together with everything from earlier weeks, or the full list. The English name is hidden on every card until you tap to reveal it, and each round ends with a percentage score.</p>
+    <p class="footnote">Pick a week to revise just that week's species, or the full list for every species added so far. The English name is hidden on every card until you tap to reveal it, and each round ends with a percentage score.</p>
   </main>
 </section>
 
@@ -595,7 +595,7 @@
     level: 'easy', deckText: SAMPLE, deck: [], queue: [], total: 0, current: null,
     words: [], blanks: [], cursor: 0, typed: '', checked: false, lastCorrect: false,
     firstTry: {}, ok: 0, bad: 0, missed: [], shift: false, done: false, kbOpen: false,
-    scope: 'full'   // 'full' or a week number: that week plus every earlier one
+    scope: 'full'   // 'full' (every species with a week) or a week number (that week only)
   };
 
   function allCards() { return parseDeck(state.deckText).cards; }
@@ -603,11 +603,13 @@
     var seen = {}; allCards().forEach(function (c) { if (c.week > 0) seen[c.week] = true; });
     return Object.keys(seen).map(Number).sort(function (a, b) { return a - b; });
   }
-  function scopedCards() {
+  // A week is just that week's species; the full list is every species that has a week.
+  function cardsFor(scope) {
     var cards = allCards();
-    if (state.scope === 'full') return cards;
-    return cards.filter(function (c) { return c.week > 0 && c.week <= state.scope; });
+    if (scope === 'full') return weeksInDeck().length ? cards.filter(function (c) { return c.week > 0; }) : cards;
+    return cards.filter(function (c) { return c.week === scope; });
   }
+  function scopedCards() { return cardsFor(state.scope); }
   function scopeName() { return state.scope === 'full' ? 'Full list' : 'Week ' + state.scope; }
   function scopeKey() { return state.scope === 'full' ? 'full' : 'w' + state.scope; }
   function setScope(scope) {
@@ -624,7 +626,7 @@
     var options = weeks.map(function (w) { return { value: w, label: 'Week ' + w }; }).concat([{ value: 'full', label: 'Full list' }]);
     options.forEach(function (o) {
       var b = el('button', 'chip'); b.type = 'button';
-      var count = o.value === 'full' ? allCards().length : allCards().filter(function (c) { return c.week > 0 && c.week <= o.value; }).length;
+      var count = cardsFor(o.value).length;
       b.appendChild(document.createTextNode(o.label + ' '));
       b.appendChild(el('small', null, String(count)));
       b.setAttribute('aria-pressed', state.scope === o.value ? 'true' : 'false');

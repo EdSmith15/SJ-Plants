@@ -38,9 +38,9 @@ built-in deck.
 ## Weekly sets
 
 The seventh field is the week a species is introduced. The levels screen offers
-"Week 1", "Week 2" ... and "Full list"; choosing a week revises that week's
-species together with every earlier week, so the set grows to the full list
-over the course. Week 1 is Buxus sempervirens, Cornus sanguinea, Aesculus
+"Week 1", "Week 2" ... and "Full list"; choosing a week revises just that
+week's species, and "Full list" revises every species that has been given a
+week. Week 1 is Buxus sempervirens, Cornus sanguinea, Aesculus
 hippocastanum, Griselinia littoralis and Fatsia japonica. To add a week, put
 its number on each of its species' lines in the deck.
 
